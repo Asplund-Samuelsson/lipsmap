@@ -4,30 +4,8 @@ library(tidyverse)
 
 # Load data
 lipsmap = read_tsv(
-  "data/annotated_comparison_results.2021-05-17.tab.gz",
+  "data/annotated_comparison_results.2021-05-18.tab.gz",
   col_types = cols(Protein.names = col_character())
-) %>% rename(Locus = Gene_names_ordered_locus)
-
-# Save UniProt IDs of peptides with missing loci
-write(
-  filter(lipsmap, is.na(Locus)) %>% pull(UniProt_entry) %>% unique(),
-  "data/missing_locus_uniprot_IDs.txt"
-)
-
-# Load missing locus IDs
-uniprot_locus = read_tsv(
-  "data/uniprot_locus.tab",
-  col_names = c("UniProt_entry", "Locus")
-)
-
-# Repair locus ID mapping (for Synechocystis)
-lipsmap = bind_rows(
-  lipsmap %>%
-    filter(UniProt_entry %in% uniprot_locus$UniProt_entry) %>%
-    select(-Locus) %>%
-    left_join(uniprot_locus),
-  lipsmap %>%
-    filter(!(UniProt_entry %in% uniprot_locus$UniProt_entry))
 )
 
 # Determine the number of detected genes
@@ -42,10 +20,10 @@ detected_per_met = lipsmap %>%
 
 # Compare number of significant interactions in EC and non-EC genes
 gene_interactions = lipsmap %>%
-  select(Organism, Metabolite, Peptide_ID, Locus, EC_number, Sign) %>%
+  select(Organism, Metabolite, Peptide_ID, Locus, EC_number, Conc, Sign) %>%
   mutate(Significant = ifelse(Sign == "sign", 1, 0)) %>%
   select(-Sign) %>%
-  group_by(Organism, Metabolite, Locus, EC_number) %>%
+  group_by(Organism, Metabolite, Conc, Locus, EC_number) %>%
   summarise(
     Peptides = length(Significant),
     Significant = sum(Significant)
@@ -61,22 +39,23 @@ gene_interactions = lipsmap %>%
     )
   )
 
-# Determine combinations of Organism and Metabolite
-org_met = gene_interactions %>%
+# Determine combinations of Organism, Metabolite, and Conc
+org_met_conc = gene_interactions %>%
   ungroup() %>%
-  select(Organism, Metabolite) %>%
+  select(Organism, Metabolite, Conc) %>%
   distinct()
 
 # Perform Fisher's Exact Test for each metabolite in each organism
 fisher_results = bind_rows(lapply(
-  1:nrow(org_met),
+  1:nrow(org_met_conc),
   function (i) {
     # Select Organism and Metabolite for test
-    org_met_test = org_met[i,]
+    org_met_conc_test = org_met_conc[i,]
     test_tb = gene_interactions %>%
       filter(
-        Organism == org_met_test$Organism,
-        Metabolite == org_met_test$Metabolite
+        Organism == org_met_conc_test$Organism,
+        Metabolite == org_met_conc_test$Metabolite,
+        Conc == org_met_conc_test$Conc
       )
     # Calculate contingency table
     c_table = table(test_tb$Enzyme, test_tb$Interaction) %>% as.matrix
@@ -87,8 +66,9 @@ fisher_results = bind_rows(lapply(
     p = fisher.test(c_table)$p.value
     # Return results
     tibble(
-      Organism = org_met_test$Organism,
-      Metabolite = org_met_test$Metabolite,
+      Organism = org_met_conc_test$Organism,
+      Metabolite = org_met_conc_test$Metabolite,
+      Concentration = org_met_conc_test$Conc,
       Enzyme = frac_enzyme,
       Other = frac_other,
       p = p
