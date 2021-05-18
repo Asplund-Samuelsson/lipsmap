@@ -19,7 +19,7 @@ infiles = tibble(
   )
 
 # Load all data
-lipsmap_data = bind_rows(lapply(
+lipsmap = bind_rows(lapply(
   1:nrow(infiles),
   function(i){
     infile = infiles[i,]
@@ -33,16 +33,45 @@ lipsmap_data = bind_rows(lapply(
   }
 ))
 
-# For Organism and Metabolite with multiple Date, select latest
-lipsmap_data = lipsmap_data %>%
-  select(Organism, Metabolite, Date) %>%
+# Fix Metabolite, Conc and Locus column
+lipsmap = lipsmap %>%
+  rename(Locus = Gene_names_ordered_locus) %>%
+  mutate(Conc = ifelse(str_ends(Metabolite, "-H"), 2, Conc)) %>%
+  mutate(Metabolite = str_remove(Metabolite, "-[HL]$"))
+
+# Save UniProt IDs of peptides with missing loci
+write(
+  filter(lipsmap, is.na(Locus)) %>% pull(UniProt_entry) %>% unique(),
+  "data/missing_locus_uniprot_IDs.txt"
+)
+
+# Load missing locus IDs
+uniprot_locus = read_tsv(
+  "data/uniprot_locus.tab",
+  col_names = c("UniProt_entry", "Locus")
+)
+
+# Repair locus ID mapping (for Synechocystis)
+lipsmap = bind_rows(
+  lipsmap %>%
+    filter(UniProt_entry %in% uniprot_locus$UniProt_entry) %>%
+    select(-Locus) %>%
+    left_join(uniprot_locus),
+  lipsmap %>%
+    filter(!(UniProt_entry %in% uniprot_locus$UniProt_entry))
+)
+
+
+# For Organism, Metabolite, and Conc with multiple Date, select latest
+lipsmap = lipsmap %>%
+  select(Organism, Metabolite, Conc, Date) %>%
   distinct() %>%
-  group_by(Organism, Metabolite) %>%
+  group_by(Organism, Metabolite, Conc) %>%
   top_n(1, Date) %>%
   ungroup() %>%
-  left_join(lipsmap_data)
+  left_join(lipsmap)
 
 # Save data to compressed archive
 write_tsv(
-  lipsmap_data, gzfile("data/annotated_comparison_results.2021-05-17.tab.gz")
+  lipsmap, gzfile("data/annotated_comparison_results.2021-05-18.tab.gz")
 )
