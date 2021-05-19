@@ -73,5 +73,5 @@ lipsmap = lipsmap %>%
 
 # Save data to compressed archive
 write_tsv(
-  lipsmap, gzfile("data/annotated_comparison_results.2021-05-18.tab.gz")
+  lipsmap, gzfile("data/annotated_comparison_results.tab.gz")
 )

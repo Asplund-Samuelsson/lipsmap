@@ -4,7 +4,7 @@ library(tidyverse)
 
 # Load data
 lipsmap = read_tsv(
-  "data/annotated_comparison_results.2021-05-18.tab.gz",
+  "data/annotated_comparison_results.tab.gz",
   col_types = cols(Protein.names = col_character())
 )
 
@@ -46,10 +46,13 @@ org_met_conc = gene_interactions %>%
   distinct()
 
 # Perform Fisher's Exact Test for each metabolite in each organism
-fisher_results = bind_rows(lapply(
-  1:nrow(org_met_conc),
-  function (i) {
-    # Select Organism and Metabolite for test
+library(foreach)
+library(doMC)
+registerDoMC(16)
+
+fisher_results = bind_rows(
+  foreach(i=1:nrow(org_met_conc)) %dopar% {
+  # Select Organism and Metabolite for test
     org_met_conc_test = org_met_conc[i,]
     test_tb = gene_interactions %>%
       filter(
@@ -74,7 +77,7 @@ fisher_results = bind_rows(lapply(
       p = p
     )
   }
-))
+)
 
 # Adjust p-values
 fisher_results = fisher_results %>%
