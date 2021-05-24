@@ -28,35 +28,6 @@ orthologs = orthologs %>%
   # Use selected orthologs to filter the full ortholog table
   inner_join(orthologs)
 
-# Determine undetected orthologs
-undetected = orthologs %>%
-  # Add source organism for each protein
-  inner_join(org_uniprot) %>%
-  # Add all valid combinations of Organism, Metabolite, and Conc
-  inner_join(
-    lipsmap %>%
-    select(Organism, Metabolite, Conc) %>%
-    distinct()
-  ) %>%
-  # Select only rows that are not in the lipsmap data
-  anti_join(lipsmap)
-
-# Determine unmeasured metabolites per organism
-unmeasured = orthologs %>%
-  # Add source organism for each protein
-  inner_join(org_uniprot) %>%
-  # Add all combinations of Organism, Metabolite, and Conc
-  inner_join(
-    lipsmap %>%
-    select(Organism, Metabolite, Conc) %>%
-    distinct() %>%
-    expand(Organism, Metabolite, Conc)
-  ) %>%
-  # Select only rows that are not in the lipsmap data
-  anti_join(lipsmap) %>%
-  # ...or in undetected
-  anti_join(undetected)
-
 # Determine ortholog interactions
 ortholog_interactions = lipsmap %>%
   group_by(Organism, Metabolite, Conc, UniProt_entry) %>%
@@ -145,7 +116,7 @@ ortholog_jaccard = bind_rows(foreach(i=1:nrow(jaccard_pairs)) %dopar% {
   # Extract binary vectors
   a_bin = a %>% select(-Organism, -Metabolite) %>% as.numeric()
   b_bin = b %>% select(-Organism, -Metabolite) %>% as.numeric()
-  # Subset to elements that are not NA
+  # Subset to elements that are not NA; orthologs must exist
   not_missing = !(is.na(a_bin) | is.na(b_bin))
   j = jaccard(a_bin[not_missing], b_bin[not_missing])
   # Create table with results
@@ -253,6 +224,96 @@ garbage = dev.off()
 
 # Save Jaccard index table
 write_tsv(
-  arrange(ortholog_jaccard, -Jaccard), 
+  arrange(ortholog_jaccard, -Jaccard),
   "results/orthologs_interaction_jaccard.tab"
 )
+
+# Determine orthologs that are always detected
+omnipresent_orthologs = interaction_comparison_wide %>%
+  select(-Organism, -Metabolite) %>%
+  as.matrix() %>%
+  colSums()
+
+omnipresent_orthologs = omnipresent_orthologs[!is.na(omnipresent_orthologs)]
+
+# Run PCA on raw orthologs interaction data
+ortholog_pca_data = interaction_comparison_wide #%>%
+#  select(Organism, Metabolite, all_of(names(omnipresent_orthologs)))
+
+ortholog_pca_data_m = ortholog_pca_data %>%
+  select(-Organism, -Metabolite) %>%
+  data.matrix() %>%
+  replace_na(0)
+
+ortholog_pca = prcomp(ortholog_pca_data_m)
+
+# Create plotting dataframes
+ortholog_pca_plot = as_tibble(ortholog_pca$x) %>% select(PC1, PC2)
+ortholog_pca_plot = bind_cols(
+  ortholog_pca_data %>% select(Organism, Metabolite),
+  ortholog_pca_plot,
+  tibble(Interactions = rowSums(ortholog_pca_data_m))
+)
+
+# Calculate fraction of variance per PC
+library(scales)
+ortholog_pca_var = percent(ortholog_pca$sdev^2 / sum(ortholog_pca$sdev^2))
+
+# Plot it
+gp = ggplot(
+  ortholog_pca_plot,
+  aes(x=PC1, y=PC2, colour=Organism, label=Metabolite)
+)
+gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
+gp = gp + scale_colour_manual(values=c("#9970ab","#a6dba0","#1b7837"), guide=F)
+gp = gp + scale_size_continuous(breaks=c(0,20,100,200))
+gp = gp + labs(
+            x=paste("PC1 (", ortholog_pca_var[1], ")", sep=""),
+            y=paste("PC2 (", ortholog_pca_var[2], ")", sep="")
+          )
+gp = gp + theme_bw()
+gp = gp + facet_wrap(~Metabolite, ncol=5)
+gp = gp + theme(
+  axis.ticks = element_line(colour="black"),
+  axis.text = element_text(colour="black"),
+  strip.background = element_blank(),
+  aspect.ratio = 1
+)
+gp1 = gp
+
+gp = ggplot(
+  ortholog_pca_plot,
+  aes(x=PC1, y=PC2, colour=Organism, label=Metabolite)
+)
+gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
+gp = gp + geom_text_repel(force=3, size=3,alpha=0.9)
+gp = gp + scale_size_continuous(breaks=c(0,20,100,200))
+gp = gp + scale_colour_manual(values=c("#9970ab","#a6dba0","#1b7837"), guide=F)
+gp = gp + labs(
+            x=paste("PC1 (", ortholog_pca_var[1], ")", sep=""),
+            y=paste("PC2 (", ortholog_pca_var[2], ")", sep="")
+          )
+gp = gp + theme_bw()
+gp = gp + facet_wrap(~Organism, ncol=1)
+gp = gp + theme(
+  axis.ticks = element_line(colour="black"),
+  axis.text = element_text(colour="black"),
+  strip.background = element_blank(),
+  aspect.ratio = 1
+)
+gp2 = gp
+
+library(ggpubr)
+outfile = "results/orthologs_interaction_pca.pdf"
+pdf(outfile, width=11, height=8.5, onefile=FALSE)
+ggarrange(
+  gp2,
+  gp1,
+  nrow = 1,
+  ncol = 2,
+  labels = c("A", "B"),
+  widths = c(1, 2),
+  common.legend = T,
+  label.x = 0, label.y = 1
+)
+garbage = dev.off()
