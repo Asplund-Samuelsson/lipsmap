@@ -17,6 +17,12 @@ org_uniprot = read_tsv(
   col_names = c("Organism", "UniProt_entry")
 )
 
+eggnog_annotations = read_tsv("data/eggNOG_annotations.tab")
+
+eggnog_category_descriptions = read_tsv(
+  "data/ortholog_category_descriptions.tab"
+)
+
 # Select orthologous groups with more than one member
 orthologs = orthologs %>%
   # Count proteins per ortholog group
@@ -317,3 +323,214 @@ ggarrange(
   label.x = 0, label.y = 1
 )
 garbage = dev.off()
+
+# Cluster orthologs
+library(ggtree)
+library(phytools)
+
+ortholog_jaccard_dist_t = interaction_comparison_wide %>%
+  select(-Organism, -Metabolite) %>%
+  as.matrix() %>%
+  t() %>%
+  vegdist("jaccard", na.rm=T)
+
+ortholog_jaccard_dist_t_m = as.matrix(ortholog_jaccard_dist_t)
+ortholog_jaccard_dist_t_m[!is.finite(ortholog_jaccard_dist_t_m)] = 1
+ortholog_jaccard_dist_t = as.dist(ortholog_jaccard_dist_t_m)
+
+ortholog_clustering = hclust(ortholog_jaccard_dist_t, method = "ward.D2")
+ortholog_clusters = cutree(ortholog_clustering, k=7)
+ortholog_clusters = tibble(
+  Ortholog = names(ortholog_clusters),
+  Cluster = as.character(ortholog_clusters),
+  label = Ortholog
+)
+
+colors = scan("data/colours.txt", character())
+
+ortholog_tree = as.phylo(ortholog_clustering)
+
+# Find most recent common ancestor for each cluster, then colour by cluster
+ortholog_mrca = ortholog_clusters %>%
+  group_by(Cluster) %>%
+  summarise(MRCA = findMRCA(ortholog_tree, label)) %>%
+  mutate(node = lapply(MRCA, function(x){getDescendants(ortholog_tree, x)})) %>%
+  unnest(cols="node")
+
+# Plot clustering
+gp = ggtree(
+  as.phylo(ortholog_clustering),
+  aes(colour=Cluster, label=Ortholog),
+  layout="rectangular"
+)
+gp$data = left_join(gp$data, select(ortholog_clusters, -Cluster))
+gp$data = left_join(gp$data, select(ortholog_mrca, Cluster, node), by="node")
+
+# Rename clusters according to order in plot
+new_clusters = gp$data %>%
+  filter(node %in% ortholog_mrca$MRCA) %>%
+  select(node, y) %>%
+  rename(MRCA = node) %>%
+  inner_join(ortholog_mrca) %>%
+  select(Cluster, y) %>%
+  distinct() %>%
+  arrange(-y) %>%
+  mutate(NewCluster = as.character(1:nrow(.))) %>%
+  select(-y)
+
+ortholog_clusters = ortholog_clusters %>%
+  inner_join(new_clusters) %>%
+  select(-Cluster) %>%
+  rename(Cluster = NewCluster)
+
+ortholog_mrca = ortholog_mrca %>%
+  inner_join(new_clusters) %>%
+  select(-Cluster) %>%
+  rename(Cluster = NewCluster)
+
+gp$data = gp$data %>%
+  left_join(new_clusters) %>%
+  select(-Cluster) %>%
+  rename(Cluster = NewCluster)
+
+gp$data = mutate(gp$data, Cluster = ifelse(is.na(Cluster), "None", Cluster))
+
+gp$data = gp$data %>% left_join(
+  ortholog_mrca %>%
+    select(MRCA, Cluster) %>%
+    distinct() %>%
+    rename(node = MRCA, Cluster_label = Cluster)
+)
+
+gp = gp + geom_label(aes(label=Cluster_label), alpha=0.8)
+
+gp = gp + scale_color_manual(
+  values=c(
+    "#d73027",
+    "#f46d43",
+    "#fdae61",
+    "#fee090",
+    "#abd9e9",
+    "#74add1",
+    "#4575b4",
+    "#4d4d4d"
+  ),
+  guide = F
+)
+gp1 = gp
+
+# Plot cluster properties
+
+# Count interactions per Organism and Metabolite for each Cluster
+interactions_per_cluster = interaction_comparison %>%
+  inner_join(ortholog_clusters) %>%
+  group_by(Organism, Metabolite, Cluster) %>%
+  summarise(Interactions = sum(Interaction)) %>%
+  complete(Organism, Metabolite, Cluster, fill = list(Interactions = 0)) %>%
+  distinct()
+
+gp = ggplot(
+  interactions_per_cluster,
+  aes(x=Metabolite, y=Interactions, group=Organism, fill=Organism)
+)
+gp = gp + geom_col(position=position_dodge(width=0.75), width=0.75)
+gp = gp + facet_grid(Cluster~., scales="free_y")
+gp = gp + theme_bw()
+gp = gp + theme(
+  axis.text = element_text(colour="black"),
+  axis.ticks = element_line(colour="black"),
+  strip.background = element_blank(),
+  axis.text.x = element_text(angle=60, vjust=1, hjust=1),
+  strip.text = element_blank()
+)
+gp = gp + scale_fill_manual(values=c("#9970ab","#a6dba0","#1b7837"))
+gp2 = gp
+
+# Determine eggNOG annotations
+eggnog_annotations_unique = eggnog_annotations %>%
+  select(Ortholog, Version, Category) %>%
+  mutate(Category = str_split(Category, "")) %>%
+  unnest(cols="Category") %>%
+  mutate(
+    Ortholog = ifelse(
+      str_starts(Ortholog, "COG"),
+      Ortholog,
+      ifelse(
+        Version == 4.1,
+        paste("ENOG41", Ortholog, sep=""),
+        paste("ENOG50", Ortholog, sep="")
+      )
+    )
+  ) %>%
+  select(-Version) %>%
+  distinct()
+
+interactions_per_category = interaction_comparison %>%
+  inner_join(ortholog_clusters) %>%
+  inner_join(eggnog_annotations_unique) %>%
+  group_by(Organism, Category, Cluster) %>%
+  summarise(Interactions = sum(Interaction)) %>%
+  ungroup() %>%
+  complete(Organism, Category, Cluster, fill = list(Interactions = 0)) %>%
+  distinct() %>%
+  inner_join(select(eggnog_category_descriptions, -Description)) %>%
+  mutate(Label = paste("[", Category, "] ", Short_description, sep="")) %>%
+  mutate(
+    Label = factor(
+      Label,
+      levels = (
+        group_by(., Label) %>%
+        summarise(Count = sum(Interactions)) %>%
+        arrange(-Count, Label) %>%
+        pull(Label)
+      )
+    )
+  )
+
+gp = ggplot(
+  interactions_per_category,
+  aes(x=Label, y=Interactions, group=Organism, fill=Organism)
+)
+gp = gp + geom_col(position=position_dodge(width=0.75), width=0.75)
+gp = gp + facet_grid(Cluster~., scales="free_y")
+gp = gp + theme_bw()
+gp = gp + theme(
+  axis.text = element_text(colour="black"),
+  axis.ticks = element_line(colour="black"),
+  strip.background = element_blank(),
+  axis.text.x = element_text(angle=60, vjust=1, hjust=1),
+  axis.title.y = element_blank()
+)
+gp = gp + scale_fill_manual(values=c("#9970ab","#a6dba0","#1b7837"))
+gp = gp + xlab("Ortholog category")
+gp3 = gp
+
+# Make combined plot
+outfile = "results/orthologs_interaction_clustering.pdf"
+pdf(outfile, width=11, height=8.5, onefile=FALSE)
+ggarrange(
+  gp1,
+  ggarrange(
+    gp2,
+    gp3,
+    nrow = 1,
+    ncol = 2,
+    labels = c("B", ""),
+    widths = c(1, 1),
+    common.legend = T,
+    legend="bottom",
+    align="h"
+  ),
+  common.legend=F,
+  nrow = 1,
+  ncol = 2,
+  labels = c("A",""),
+  widths = c(1,4)
+)
+garbage = dev.off()
+
+# Make table
+# interaction_comparison %>%
+#   left_join(ortholog_clusters) %>%
+#   left_join(eggnog_annotations_unique) %>%
+#   left_join(eggnog_category_descriptions)

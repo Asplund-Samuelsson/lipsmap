@@ -1,0 +1,26 @@
+Category	Description	Short_description
+J	[J] Translation, ribosomal structure and biogenesis 	Translation
+A	[A] RNA processing and modification 	RNA processing
+K	[K] Transcription 	Transcription
+L	[L] Replication, recombination and repair 	Replication
+B	[B] Chromatin structure and dynamics 	Chromatin
+D	[D] Cell cycle control, cell division, chromosome partitioning 	Cell cycle
+Y	[Y] Nuclear structure 	Nuclear structure
+V	[V] Defense mechanisms 	Defense
+T	[T] Signal transduction mechanisms 	Signaling
+M	[M] Cell wall/membrane/envelope biogenesis 	Cell envelope
+N	[N] Cell motility 	Motility
+Z	[Z] Cytoskeleton 	Cytoskeleton
+W	[W] Extracellular structures 	Extracellular structures
+U	[U] Intracellular trafficking, secretion, and vesicular transport 	Intracellular transport
+O	[O] Posttranslational modification, protein turnover, chaperones 	Protein processing
+C	[C] Energy production and conversion 	Energy
+G	[G] Carbohydrate transport and metabolism 	Carbohydrates
+E	[E] Amino acid transport and metabolism 	Amino acids
+F	[F] Nucleotide transport and metabolism 	Nucleotides
+H	[H] Coenzyme transport and metabolism 	Coenzymes
+I	[I] Lipid transport and metabolism 	Lipids
+P	[P] Inorganic ion transport and metabolism 	Inorganic ions
+Q	[Q] Secondary metabolites biosynthesis, transport and catabolism 	Secondary metabolites
+R	[R] General function prediction only 	General function
+S	[S] Function unknown 	Unknown
