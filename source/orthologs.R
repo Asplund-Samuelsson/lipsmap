@@ -354,9 +354,47 @@ garbage = dev.off()
 library(ggtree)
 library(phytools)
 
+# Simplify and filter
+interaction_comparison_concs = ortholog_interactions %>%
+  # Simplify to existence of interaction within ortholog
+  group_by(Organism, Metabolite, Conc, Ortholog) %>%
+  summarise(Interaction = TRUE %in% Interaction) %>%
+  # Keep only data with at least one Interaction and more than one example
+  group_by(Ortholog) %>%
+  filter(length(Interaction) > 1, sum(Interaction) > 0) %>%
+  # Sort Orthologs and metabolites by number of Interaction
+  ungroup() %>%
+  mutate(
+    Metabolite = factor(
+      Metabolite,
+      levels = (
+        group_by(., Metabolite) %>%
+        summarise(Count = sum(Interaction)) %>%
+        arrange(-Count, Metabolite) %>%
+        pull(Metabolite)
+      )
+    ),
+    Ortholog = factor(
+      Ortholog,
+      levels = (
+        group_by(., Ortholog) %>%
+        summarise(Count = sum(Interaction)) %>%
+        arrange(-Count, Ortholog) %>%
+        pull(Ortholog)
+      )
+    )
+  )
+
+# Make wide version
+interaction_comparison_concs_wide = interaction_comparison_concs %>%
+  group_by(Organism, Metabolite, Conc) %>%
+  spread(Ortholog, Interaction) %>%
+  ungroup()
+
+
 # Make Jaccard distance object
-ortholog_jaccard_dist_t = interaction_comparison_wide %>%
-  select(-Organism, -Metabolite) %>%
+ortholog_jaccard_dist_t = interaction_comparison_concs_wide %>%
+  select(-Organism, -Metabolite, -Conc) %>%
   as.matrix() %>%
   # Transpose to cluster Orthologs
   t() %>%
@@ -456,20 +494,27 @@ gp1 = gp
 # Plot cluster properties
 
 # Count interactions per Organism and Metabolite for each Cluster
-interactions_per_cluster = interaction_comparison %>%
+interactions_per_cluster = interaction_comparison_concs %>%
   # Add cluster numbers
   inner_join(ortholog_clusters) %>%
   # Sum the interactions per Organism, Metabolite, and Cluster
-  group_by(Organism, Metabolite, Cluster) %>%
+  group_by(Organism, Metabolite, Conc, Cluster) %>%
   summarise(Interactions = sum(Interaction)) %>%
   # Add missing values as zeros for plotting
-  complete(Organism, Metabolite, Cluster, fill = list(Interactions = 0)) %>%
+  complete(
+    Organism, Metabolite, Conc, Cluster,
+    fill = list(Interactions = 0)
+  ) %>%
   distinct()
 
 # Plot the interactions per Organism, Metabolite, and Cluster
 gp = ggplot(
   interactions_per_cluster,
-  aes(x=Metabolite, y=Interactions, group=Organism, fill=Organism)
+  aes(
+    x=Metabolite, y=Interactions,
+    group=paste(Organism, Conc),
+    fill=Organism, alpha=Conc
+  )
 )
 gp = gp + geom_col(position=position_dodge(width=0.75), width=0.75)
 gp = gp + facet_grid(Cluster~., scales="free_y")
@@ -481,21 +526,22 @@ gp = gp + theme(
   axis.text.x = element_text(angle=60, vjust=1, hjust=1),
   strip.text = element_blank()
 )
+gp = gp + scale_alpha_manual(values=c(1,0.25))
 gp = gp + scale_fill_manual(values=c("#9970ab","#a6dba0","#1b7837"))
 gp2 = gp
 
 # Count the number of interactions per Organism, Ortholog Category, and Cluster
-interactions_per_category = interaction_comparison %>%
+interactions_per_category = interaction_comparison_concs %>%
   # Add cluster numbers
   inner_join(ortholog_clusters) %>%
   # Add eggNOG Category annotations
   inner_join(eggnog_annotations_unique) %>%
   # Sum the interactions per Organism, Category, and Cluster
-  group_by(Organism, Category, Cluster) %>%
+  group_by(Organism, Conc, Category, Cluster) %>%
   summarise(Interactions = sum(Interaction)) %>%
   ungroup() %>%
   # Add missing values as zero
-  complete(Organism, Category, Cluster, fill = list(Interactions = 0)) %>%
+  complete(Organism, Category, Conc, Cluster, fill = list(Interactions = 0)) %>%
   distinct() %>%
   # Add eggNOG Category Description
   inner_join(select(eggnog_category_descriptions, -Description)) %>%
@@ -517,7 +563,11 @@ interactions_per_category = interaction_comparison %>%
 # Plot the interactions per Organism, Category, and Cluster
 gp = ggplot(
   interactions_per_category,
-  aes(x=Label, y=Interactions, group=Organism, fill=Organism)
+  aes(
+    x=Label, y=Interactions,
+    group=paste(Organism, Conc),
+    fill=Organism, alpha=Conc
+  )
 )
 gp = gp + geom_col(position=position_dodge(width=0.75), width=0.75)
 gp = gp + facet_grid(Cluster~., scales="free_y")
@@ -529,13 +579,14 @@ gp = gp + theme(
   axis.text.x = element_text(angle=60, vjust=1, hjust=1),
   axis.title.y = element_blank()
 )
+gp = gp + scale_alpha_manual(values=c(1,0.25))
 gp = gp + scale_fill_manual(values=c("#9970ab","#a6dba0","#1b7837"))
 gp = gp + xlab("Ortholog category")
 gp3 = gp
 
 # Make combined plot
 outfile = "results/orthologs_interaction_clustering.pdf"
-pdf(outfile, width=11, height=8.5, onefile=FALSE)
+pdf(outfile, width=12.5, height=8.5, onefile=FALSE)
 ggarrange(
   gp1,
   ggarrange(
@@ -558,15 +609,17 @@ ggarrange(
 garbage = dev.off()
 
 # Calculate and plot Ortholog Categories per Metabolite in total
-interactions_per_category_and_metabolite = interaction_comparison %>%
+interactions_per_category_and_metabolite = interaction_comparison_concs %>%
   # Add eggNOG Category annotations
   inner_join(eggnog_annotations_unique) %>%
   # Count number of Interactions per Organism, Metabolite, and Category
-  group_by(Organism, Metabolite, Category) %>%
+  group_by(Organism, Metabolite, Conc, Category) %>%
   summarise(Interactions = sum(Interaction)) %>%
   ungroup() %>%
   # Add missing data as zero for plotting
-  complete(Organism, Metabolite, Category, fill = list(Interactions = 0)) %>%
+  complete(
+    Organism, Metabolite, Conc, Category, fill = list(Interactions = 0)
+  ) %>%
   distinct() %>%
   # Add eggNOG Category Description
   inner_join(select(eggnog_category_descriptions, -Description)) %>%
@@ -588,7 +641,11 @@ interactions_per_category_and_metabolite = interaction_comparison %>%
 # Plot Interactions summary
 gp = ggplot(
   interactions_per_category_and_metabolite,
-  aes(x=Label, y=Interactions, group=Organism, fill=Organism)
+  aes(
+    x=Label, y=Interactions,
+    group=paste(Organism, Conc),
+    fill=Organism, alpha=Conc
+  )
 )
 gp = gp + geom_col(position=position_dodge(width=0.75), width=0.75)
 gp = gp + facet_grid(~Metabolite, scales="free_x")
@@ -601,10 +658,11 @@ gp = gp + theme(
   strip.text.y = element_text(angle=0, vjust=0.5, hjust=0),
   axis.text.x = element_text(angle=90, vjust=0.5, hjust=1)
 )
+gp = gp + scale_alpha_manual(values=c(1,0.25))
 gp = gp + scale_fill_manual(values=c("#9970ab","#a6dba0","#1b7837"))
 gp = gp + xlab("Ortholog category")
 
-ggsave("results/metabolite_function_interactions.pdf", gp, w=16, h=5)
+ggsave("results/metabolite_function_interactions.pdf", gp, w=16, h=7)
 
 # Now cluster based on metabolite or ortholog for each organism
 cluster_organism = function(organism, grouping, n_clusters){
@@ -625,9 +683,9 @@ cluster_organism = function(organism, grouping, n_clusters){
   )
 
   # Prepare distance matrix
-  jaccard_dist = interaction_comparison_wide %>%
+  jaccard_dist = interaction_comparison_concs_wide %>%
     filter(Organism == organism) %>%
-    select(-Organism, -Metabolite) %>%
+    select(-Organism, -Metabolite, -Conc) %>%
     as.matrix()
 
   # Remove missing orthologs
@@ -639,9 +697,10 @@ cluster_organism = function(organism, grouping, n_clusters){
     jaccard_dist = t(jaccard_dist)
   } else {
     # Add rownames if clustering metabolites
-    rownames(jaccard_dist) = interaction_comparison_wide %>%
+    rownames(jaccard_dist) = interaction_comparison_concs_wide %>%
       filter(Organism == organism) %>%
-      pull(Metabolite)
+      mutate(Met_Conc = paste(Metabolite, Conc, sep="_")) %>%
+      pull(Met_Conc)
   }
 
   # Calculate Jaccard distance
@@ -718,7 +777,7 @@ cluster_organism = function(organism, grouping, n_clusters){
   )
 
   if (grouping == "Metabolite") {
-    gp = gp + geom_tiplab(aes(label=label))
+    gp = gp + geom_tiplab(aes(label=label), size=2.5)
     gp = gp + xlim(0, max(gp$data$x)*1.5)
   }
 
@@ -733,10 +792,11 @@ cluster_organism = function(organism, grouping, n_clusters){
   jaccard_pcoa = pcoa(jaccard_dist)
 
   # Summarize interactions
-  interaction_summary = interaction_comparison %>%
+  interaction_summary = interaction_comparison_concs %>%
     # Filter to Organism in question
     filter(Organism == organism) %>%
     # Rename the column that is used as grouping to "label"
+    mutate(Metabolite = paste(Metabolite, Conc, sep="_")) %>%
     rename(label = grouping) %>%
     # Sum the Interactions for each label
     group_by(label) %>%
@@ -754,6 +814,15 @@ cluster_organism = function(organism, grouping, n_clusters){
     # Add cluster numbers
     inner_join(clusters)
 
+  # If grouping is Metabolite, make labels shorter
+  if (grouping == "Metabolite") {
+    jaccard_pcoa_plot = jaccard_pcoa_plot %>%
+      mutate(
+        label = str_replace(label, "_High", "-H"),
+        label = str_replace(label, "_Low", "-L")
+      )
+  }
+
   # Calculate fraction of variance per PC
   library(scales)
   jaccard_pcoa_var = percent(jaccard_pcoa$values$Relative_eig, accuracy=0.1)
@@ -769,7 +838,7 @@ cluster_organism = function(organism, grouping, n_clusters){
 
   # Add labels only if fewer than 50
   if (nrow(jaccard_pcoa_plot) < 50){
-    gp = gp + geom_text_repel(force=3, size=3,alpha=0.9)
+    gp = gp + geom_text_repel(force=3, size=2,alpha=0.9)
   }
 
   gp = gp + scale_color_manual(
@@ -799,19 +868,23 @@ cluster_organism = function(organism, grouping, n_clusters){
   # If the grouping is "Ortholog", one may summarise interactions per metabolite
   if (grouping == "Ortholog") {
     # Count interactions per Organism and Metabolite for each Cluster
-    interactions_per_cluster = interaction_comparison %>%
+    interactions_per_cluster = interaction_comparison_concs %>%
       filter(Organism == organism) %>%
       rename(label = Ortholog) %>%
       inner_join(clusters) %>%
-      group_by(Metabolite, Cluster) %>%
+      group_by(Metabolite, Conc, Cluster) %>%
       summarise(Interactions = sum(Interaction)) %>%
       # Add missing values as zero for plotting
-      complete(Metabolite, Cluster, fill = list(Interactions = 0)) %>%
+      complete(Metabolite, Conc, Cluster, fill = list(Interactions = 0)) %>%
       distinct()
 
     gp = ggplot(
       interactions_per_cluster,
-      aes(x=Metabolite, y=Interactions, group=Cluster, fill=Cluster)
+      aes(
+        x=Metabolite, y=Interactions,
+        group=Conc,
+        fill=Cluster, alpha=Conc
+      )
     )
     gp = gp + geom_col(position=position_dodge(width=0.75), width=0.75)
     gp = gp + facet_grid(Cluster~., scales="free_y")
@@ -827,11 +900,17 @@ cluster_organism = function(organism, grouping, n_clusters){
       values=custom_palette,
       guide = F
     )
+    gp = gp + scale_alpha_manual(values=c(1,0.25))
     gp_metabolites = gp
   }
 
+  # If grouping is Metabolite, split cluster label
+  if (grouping == "Metabolite") {
+    clusters = clusters %>% separate(label, c("label", "Conc"), sep="_")
+  }
+
   # Count interactions per ortholog category
-  interactions_per_category = interaction_comparison %>%
+  interactions_per_category = interaction_comparison_concs %>%
     # Select relevant Organism
     filter(Organism == organism) %>%
     # Add eggNOG Categories
@@ -841,11 +920,13 @@ cluster_organism = function(organism, grouping, n_clusters){
     # Add Cluster numbers
     inner_join(clusters) %>%
     # Sum up the Interactions for each Category and Cluster
-    group_by(Category, Cluster) %>%
+    group_by(Category, Conc, Cluster) %>%
     summarise(Interactions = sum(Interaction)) %>%
     ungroup() %>%
     # Add missing data as zero for plotting
-    complete(Category, Cluster, fill = list(Interactions = 0)) %>%
+    complete(
+      Category, Conc, Cluster, fill = list(Interactions = 0)
+    ) %>%
     distinct() %>%
     # Add eggNOG Category Description
     inner_join(select(eggnog_category_descriptions, -Description)) %>%
@@ -862,7 +943,7 @@ cluster_organism = function(organism, grouping, n_clusters){
   # Plot Interactions per Category ("Label") and Cluster
   gp = ggplot(
     interactions_per_category,
-    aes(x=Label, y=Interactions, fill=Cluster)
+    aes(x=Label, y=Interactions, group=Conc, fill=Cluster, alpha=Conc)
   )
   gp = gp + geom_col(position=position_dodge(width=0.75), width=0.75)
   gp = gp + facet_grid(Cluster~., scales="free_y")
@@ -878,6 +959,7 @@ cluster_organism = function(organism, grouping, n_clusters){
     values=custom_palette,
     guide = F
   )
+  gp = gp + scale_alpha_manual(values=c(1,0.25))
   gp = gp + xlab("Ortholog category")
   gp_categories = gp
 
@@ -902,7 +984,9 @@ cluster_organism = function(organism, grouping, n_clusters){
       ncol = 2,
       labels = c("C", ""),
       widths = c(1, 1),
-      align="h"
+      align="h",
+      common.legend=T,
+      legend="bottom"
     )
   } else {
     gp_composition = ggarrange(
@@ -910,7 +994,9 @@ cluster_organism = function(organism, grouping, n_clusters){
       nrow = 1,
       ncol = 1,
       labels = c("C", ""),
-      widths = c(1)
+      widths = c(1),
+      common.legend=T,
+      legend="bottom"
     )
   }
 
@@ -941,8 +1027,8 @@ cluster_organism = function(organism, grouping, n_clusters){
 
 # Plot each organism by Metabolite
 cluster_organism("Cupriavidus", "Metabolite", 4)
-cluster_organism("Synechocystis", "Metabolite", 4)
-cluster_organism("Synechococcus", "Metabolite", 4)
+cluster_organism("Synechocystis", "Metabolite", 6)
+cluster_organism("Synechococcus", "Metabolite", 6)
 
 # Plot each organism by Ortholog
 cluster_organism("Cupriavidus", "Ortholog", 7)
