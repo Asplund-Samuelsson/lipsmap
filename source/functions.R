@@ -65,6 +65,20 @@ pathway_annotations = lipsmap %>%
   # Rename to Annotation
   rename(Annotation = Pathway)
 
+# Determine KEGG modules annotations
+kegg_uniprot = read_tsv("data/KEGGgene_uniprot_organism.tab")
+kegg_modules = read_tsv("data/KEGGgene_module_organism.tab")
+
+module_annotations = kegg_uniprot %>%
+  # Clean up the UniProt ID
+  mutate(UniProt_entry = str_remove(UniProt, "up:")) %>%
+  # Add modules
+  inner_join(kegg_modules) %>%
+  # Clean up the Module ID
+  separate(Module, c(NA, "Annotation"), sep="_") %>%
+  select(UniProt_entry, Annotation) %>%
+  distinct()
+
 # Function to perform Fisher's exact test by a provided grouping variable
 do_fisher = function(annotations) {
 
@@ -166,3 +180,7 @@ write_tsv(ec_fisher, "results/Fisher_exact_test_for_EC_interactions.tab")
 # Analyze Pathway
 pw_fisher= do_fisher(pathway_annotations)
 write_tsv(pw_fisher, "results/Fisher_exact_test_for_pathway_interactions.tab")
+
+# Analyze Module
+mo_fisher = do_fisher(module_annotations)
+write_tsv(mo_fisher, "results/Fisher_exact_test_for_module_interactions.tab")
