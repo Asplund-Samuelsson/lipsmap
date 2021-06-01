@@ -24,3 +24,6 @@ wget -qO - http://rest.kegg.jp/link/module/syn | sed -e 's/$/\tSynechocystis/'
 
 # Module descriptions
 wget -qO data/module_description.tab http://rest.kegg.jp/list/module
+
+# Module to compound connection
+wget -qO data/module_compound.tab http://rest.kegg.jp/link/compound/module
