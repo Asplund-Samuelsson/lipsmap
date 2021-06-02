@@ -27,3 +27,7 @@ wget -qO data/module_description.tab http://rest.kegg.jp/list/module
 
 # Module to compound connection
 wget -qO data/module_compound.tab http://rest.kegg.jp/link/compound/module
+
+# Module to compound full
+wget -qO data/module_reaction.tab http://rest.kegg.jp/link/reaction/module
+wget -qO data/reaction_compound.tab http://rest.kegg.jp/link/compound/reaction
