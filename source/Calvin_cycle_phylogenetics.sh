@@ -2,6 +2,9 @@
 wget -qO - http://rest.kegg.jp/link/ko/M00165 | cut -f 3 -d : | \
 sort | uniq > data/cbb_ko.txt
 
+# Add transaldolase since it is missing
+echo -e "K00616\nK13810" >> data/cbb_ko.txt
+
 # Get descriptions for Calvin cycle orthologs
 wget -qO - http://rest.kegg.jp/list/`cat data/cbb_ko.txt | tr "\n" "+"` \
 > data/cbb_ko_description.tab
@@ -12,9 +15,6 @@ cat data/cbb_ko.txt | while read KO; do
 done
 
 # Downsample sequences based on percent identity
-cd-hit -T 0 -c 1 -n 3 -i data/cbb_ko/K00615.fasta \
--o intermediate/K00615.cdhit.fasta
-
 ls data/cbb_ko/ | while read Fasta; do
   # Cluster at decreasing identity thresholds
   for c in 1 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.6 0.55 0.5; do
