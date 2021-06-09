@@ -2,6 +2,23 @@
 
 Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.cell.com/cell/fulltext/S0092-8674(17)31448-4) data.
 
+### Contents
+
+**1. [Data preparation](#prep)**
+
+**2. [Interaction with enzymes](#enzymes)**
+
+**3. [Functional categories](#functions)**
+
+**4. [Comparison of orthologs](#orthologs)**
+
+**5. [Comparison of KEGG modules](#modules)**
+
+**6. [Phylogenetic analysis](#phylogenetics)**
+
+**A. [Author](#author)**
+
+<a name="prep"></a>
 ## 1. Data preparation
 
 ### Concatenation
@@ -49,6 +66,7 @@ data/module_reaction.tab
 data/reaction_compound.tab
 ```
 
+<a name="enzymes"></a>
 ## 2. Interactions with enzymes
 
 Metabolite interactions with enzymes and non-enzymes were compared using Fisher's exact test:
@@ -61,6 +79,7 @@ source/enzymes.R
 results/Fisher_exact_test_for_enzyme_interactions.tab
 ```
 
+<a name="functions"></a>
 ## 3. Functional categories
 
 Proteins were grouped by various functional categories (EC, GO, KEGG module, pathway) and tested for enrichment of interactions:
@@ -77,6 +96,7 @@ results/Fisher_exact_test_for_module_interactions.tab
 results/Fisher_exact_test_for_pathway_interactions.tab
 ```
 
+<a name="orthologs"></a>
 ## 4. Comparison of orthologs
 
 Orthologs in the organisms were identified via UniProt and the eggNOG labels:
@@ -136,6 +156,7 @@ results/ortholog_clustering.Synechocystis_by_Ortholog.pdf
 
 ![alt text](data/examples/ortholog_clustering.Cupriavidus_by_Metabolite.png "Ortholog metabolite interaction clustering example in Cupriavidus")
 
+<a name="modules"></a>
 ## 5. Comparison of KEGG modules
 
 KEGG modules are groups of enzymes constituting complete or partial pathways. Proteins were grouped by these modules and interactions were summarized and compared:
@@ -153,6 +174,7 @@ results/module_interactions.pdf
 
 ![alt text](data/examples/module_interactions.png "KEGG module metabolite interactions (top modules)")
 
+<a name="phylogenetics"></a>
 ## 6. Phylogenetic analysis
 
 A phylogenetic analysis was performed on Calvin cycle enzymes from the corresponding KEGG module ([M00165](https://www.genome.jp/kegg-bin/show_module?M00165)). Sequences were downloaded from UniProt, filtered with CD-HIT, aligned with MAFFT, and used to make trees with FastTreeMP:
@@ -189,5 +211,6 @@ results/cbb_ko_trees.pdf
 
 ![alt text](data/examples/cbb_ko_trees.png "PRK phylogenetic tree")
 
-## Author
+<a name="author"></a>
+## A. Author
 Johannes Asplund-Samuelsson, KTH (johannes.asplund.samuelsson@scilifelab.se)
