@@ -61,7 +61,6 @@ lipsmap = bind_rows(
     filter(!(UniProt_entry %in% uniprot_locus$UniProt_entry))
 )
 
-
 # For Organism, Metabolite, and Conc with multiple Date, select latest
 lipsmap = lipsmap %>%
   select(Organism, Metabolite, Conc, Date) %>%

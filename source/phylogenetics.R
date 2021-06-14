@@ -1,6 +1,10 @@
 options(width=110)
 library(tidyverse)
 
+# Define organisms and colors
+organisms = c("Hydrogenophaga", "Cupriavidus", "Synechococcus", "Synechocystis")
+organcols = c("#762a83", "#9970ab","#5aae61","#1b7837")
+
 # Load data
 uniprot_genename = read_tsv(
   "data/uniprot_gene.tab", col_names=c("UniProt_entry", "Gene_name")
@@ -156,16 +160,10 @@ tax_colors = tax_colors %>%
   distinct()
 
 # Prepare organism shape scale
-org_shape = tibble(
-  Organism = c("Synechocystis", "Synechococcus", "Cupriavidus"),
-  Shape = c(15, 16, 17)
-)
+org_shape = tibble(Organism = organisms, Shape = c(8, 15, 16, 17))
 
 # Prepare organism color scale
-org_color = tibble(
-  Organism = c("Synechocystis", "Synechococcus", "Cupriavidus"),
-  Color = c("#1b7837","#a6dba0","#9970ab")
-)
+org_color = tibble(Organism = organisms, Color = organcols)
 
 library(ggpubr)
 library(ggrepel)
@@ -223,9 +221,7 @@ plot_tree = function (ko) {
           sep=""
         )
       ),
-      Organism = factor(
-        Organism, levels=c("Synechocystis", "Synechococcus", "Cupriavidus")
-      )
+      Organism = factor(Organism, levels=organisms)
     ) %>%
     left_join(org_shape) %>%
     left_join(org_color)
@@ -237,7 +233,7 @@ plot_tree = function (ko) {
   gp = gp + scale_shape_identity()
   gp = gp + geom_label_repel(
     mapping=aes(label=Gene, color=Color), size=2.5, fill="#ffffffcc",
-    label.size=0
+    label.size=0, max.overlaps=Inf
   )
   gp = gp + scale_color_identity()
 
@@ -274,7 +270,7 @@ plot_tree = function (ko) {
   # Create shape legend
   gp = ggplot(
     inner_join(org_shape, org_color),
-    aes(y=Organism, x=0, shape=Shape, color=Color)
+    aes(y=factor(Organism, levels=organisms), x=0, shape=Shape, color=Color)
   )
   gp = gp + geom_point()
   gp = gp + theme_bw()

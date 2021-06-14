@@ -27,6 +27,10 @@ module_description = read_tsv(
   "data/module_description.tab", col_names=c("Module", "Description")
 )
 
+# Define organisms and colors
+organisms = c("Hydrogenophaga", "Cupriavidus", "Synechococcus", "Synechocystis")
+organcols = c("#762a83", "#9970ab","#5aae61","#1b7837")
+
 # Clean up strings
 module_compound = module_reaction %>%
   inner_join(reaction_compound) %>%
@@ -117,13 +121,20 @@ interaction_counts = interaction_counts %>%
     )
   )
 
+interaction_counts = mutate(
+  interaction_counts, Organism = factor(Organism, levels = organisms)
+)
+
 # Make plot
 gp = ggplot(
   # Consider only top modules
   filter(interaction_counts, as.numeric(Description) %in% 1:40),
   aes(
     x=Organism, alpha=Conc,
-    group=paste(Organism, Conc),
+    group=factor(
+      paste(Organism, Conc),
+      levels=paste(rep(organisms, each=2), rep(c("High", "Low"), 4))
+    ),
     fill=Organism, y=Interactions
   )
 )
@@ -148,7 +159,7 @@ gp = gp + theme(
   legend.position="top"
 )
 gp = gp + scale_alpha_manual(values=c(1,0.25))
-gp = gp + scale_fill_manual(values=c("#9970ab","#a6dba0","#1b7837"))
+gp = gp + scale_fill_manual(values=organcols)
 gp = gp + scale_linetype_manual(values=c(3,1))
 
 ggsave("results/module_interactions.pdf", gp, w=15, h=16)

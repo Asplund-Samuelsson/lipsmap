@@ -23,6 +23,10 @@ eggnog_category_descriptions = read_tsv(
   "data/ortholog_category_descriptions.tab"
 )
 
+# Define organisms and colors
+organisms = c("Hydrogenophaga", "Cupriavidus", "Synechococcus", "Synechocystis")
+organcols = c("#762a83", "#9970ab","#5aae61","#1b7837")
+
 # Determine eggNOG annotations
 eggnog_annotations_unique = eggnog_annotations %>%
   # Select relevant data
@@ -98,7 +102,7 @@ gp = ggplot(
 gp = gp + geom_tile()
 gp = gp + facet_grid(Metabolite~.)
 gp = gp + theme_bw()
-gp = gp + scale_fill_manual(values=c("#9970ab", "#a6dba0"))
+gp = gp + scale_fill_manual(values=c("#9970ab", "#5aae61"))
 gp = gp + theme(
   axis.ticks = element_line(colour="black"),
   axis.ticks.x = element_blank(),
@@ -202,13 +206,17 @@ ortholog_jaccard_pcoa_var = percent(ortholog_jaccard_pcoa$values$Relative_eig)
 # Plot it
 library(ggrepel)
 
+# Make Organism factor
+ortholog_jaccard_pcoa_plot = ortholog_jaccard_pcoa_plot %>%
+  mutate(Organism = factor(Organism, levels = organisms))
+
 # Plot split by Metabolite
 gp = ggplot(
   ortholog_jaccard_pcoa_plot,
   aes(x=PCo1, y=PCo2, colour=Organism, label=Metabolite)
 )
 gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
-gp = gp + scale_colour_manual(values=c("#9970ab","#a6dba0","#1b7837"), guide=F)
+gp = gp + scale_colour_manual(values=organcols, guide=F)
 gp = gp + labs(
             x=paste("PCo1 (", ortholog_jaccard_pcoa_var[1], ")", sep=""),
             y=paste("PCo2 (", ortholog_jaccard_pcoa_var[2], ")", sep="")
@@ -230,7 +238,7 @@ gp = ggplot(
 )
 gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
 gp = gp + geom_text_repel(force=3, size=3,alpha=0.9)
-gp = gp + scale_colour_manual(values=c("#9970ab","#a6dba0","#1b7837"), guide=F)
+gp = gp + scale_colour_manual(values=organcols, guide=F)
 gp = gp + labs(
             x=paste("PCo1 (", ortholog_jaccard_pcoa_var[1], ")", sep=""),
             y=paste("PCo2 (", ortholog_jaccard_pcoa_var[2], ")", sep="")
@@ -290,13 +298,16 @@ ortholog_pca_plot = bind_cols(
 library(scales)
 ortholog_pca_var = percent(ortholog_pca$sdev^2 / sum(ortholog_pca$sdev^2))
 
+ortholog_pca_plot = ortholog_pca_plot %>%
+  mutate(Organism = factor(Organism, levels = organisms))
+
 # Make plot split by Metabolite
 gp = ggplot(
   ortholog_pca_plot,
   aes(x=PC1, y=PC2, colour=Organism, label=Metabolite)
 )
 gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
-gp = gp + scale_colour_manual(values=c("#9970ab","#a6dba0","#1b7837"), guide=F)
+gp = gp + scale_colour_manual(values=organcols, guide=F)
 gp = gp + scale_size_continuous(breaks=c(0,20,100,200))
 gp = gp + labs(
             x=paste("PC1 (", ortholog_pca_var[1], ")", sep=""),
@@ -320,7 +331,7 @@ gp = ggplot(
 gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
 gp = gp + geom_text_repel(force=3, size=3,alpha=0.9)
 gp = gp + scale_size_continuous(breaks=c(0,20,100,200))
-gp = gp + scale_colour_manual(values=c("#9970ab","#a6dba0","#1b7837"), guide=F)
+gp = gp + scale_colour_manual(values=organcols, guide=F)
 gp = gp + labs(
             x=paste("PC1 (", ortholog_pca_var[1], ")", sep=""),
             y=paste("PC2 (", ortholog_pca_var[2], ")", sep="")
@@ -507,12 +518,18 @@ interactions_per_cluster = interaction_comparison_concs %>%
   ) %>%
   distinct()
 
+interactions_per_cluster = interactions_per_cluster %>%
+  mutate(Organism = factor(Organism, levels = organisms))
+
 # Plot the interactions per Organism, Metabolite, and Cluster
 gp = ggplot(
   interactions_per_cluster,
   aes(
     x=Metabolite, y=Interactions,
-    group=paste(Organism, Conc),
+    group=factor(
+      paste(Organism, Conc),
+      levels=paste(rep(organisms, each=2), rep(c("High", "Low"), 4))
+    ),
     fill=Organism, alpha=Conc
   )
 )
@@ -527,7 +544,7 @@ gp = gp + theme(
   strip.text = element_blank()
 )
 gp = gp + scale_alpha_manual(values=c(1,0.25))
-gp = gp + scale_fill_manual(values=c("#9970ab","#a6dba0","#1b7837"))
+gp = gp + scale_fill_manual(values=organcols)
 gp2 = gp
 
 # Count the number of interactions per Organism, Ortholog Category, and Cluster
@@ -560,12 +577,18 @@ interactions_per_category = interaction_comparison_concs %>%
     )
   )
 
+interactions_per_category = interactions_per_category %>%
+  mutate(Organism = factor(Organism, levels = organisms))
+
 # Plot the interactions per Organism, Category, and Cluster
 gp = ggplot(
   interactions_per_category,
   aes(
     x=Label, y=Interactions,
-    group=paste(Organism, Conc),
+    group=factor(
+      paste(Organism, Conc),
+      levels=paste(rep(organisms, each=2), rep(c("High", "Low"), 4))
+    ),
     fill=Organism, alpha=Conc
   )
 )
@@ -580,7 +603,7 @@ gp = gp + theme(
   axis.title.y = element_blank()
 )
 gp = gp + scale_alpha_manual(values=c(1,0.25))
-gp = gp + scale_fill_manual(values=c("#9970ab","#a6dba0","#1b7837"))
+gp = gp + scale_fill_manual(values=organcols)
 gp = gp + xlab("Ortholog category")
 gp3 = gp
 
@@ -638,12 +661,20 @@ interactions_per_category_and_metabolite = interaction_comparison_concs %>%
     )
   )
 
+interactions_per_category_and_metabolite = mutate(
+  interactions_per_category_and_metabolite,
+  Organism = factor(Organism, levels = organisms)
+)
+
 # Plot Interactions summary
 gp = ggplot(
   interactions_per_category_and_metabolite,
   aes(
     x=Label, y=Interactions,
-    group=paste(Organism, Conc),
+    group=factor(
+      paste(Organism, Conc),
+      levels=paste(rep(organisms, each=2), rep(c("High", "Low"), 4))
+    ),
     fill=Organism, alpha=Conc
   )
 )
@@ -659,7 +690,7 @@ gp = gp + theme(
   axis.text.x = element_text(angle=90, vjust=0.5, hjust=1)
 )
 gp = gp + scale_alpha_manual(values=c(1,0.25))
-gp = gp + scale_fill_manual(values=c("#9970ab","#a6dba0","#1b7837"))
+gp = gp + scale_fill_manual(values=organcols)
 gp = gp + xlab("Ortholog category")
 
 ggsave("results/metabolite_function_interactions.pdf", gp, w=16, h=7)
@@ -1026,11 +1057,13 @@ cluster_organism = function(organism, grouping, n_clusters){
 }
 
 # Plot each organism by Metabolite
+cluster_organism("Hydrogenophaga", "Metabolite", 4)
 cluster_organism("Cupriavidus", "Metabolite", 4)
 cluster_organism("Synechocystis", "Metabolite", 6)
 cluster_organism("Synechococcus", "Metabolite", 6)
 
 # Plot each organism by Ortholog
+cluster_organism("Hydrogenophaga", "Ortholog", 7)
 cluster_organism("Cupriavidus", "Ortholog", 7)
 cluster_organism("Synechocystis", "Ortholog", 7)
 cluster_organism("Synechococcus", "Ortholog", 7)
