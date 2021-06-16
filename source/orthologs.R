@@ -268,6 +268,71 @@ ggarrange(
 )
 garbage = dev.off()
 
+# Plot split by Metabolite subset
+gp = ggplot(
+  filter(
+    ortholog_jaccard_pcoa_plot,
+    Metabolite %in% c("GAP","ATP","FBP","Cit","G6P","3PGA")
+  ),
+  aes(x=PCo1, y=PCo2, colour=Organism, label=Metabolite)
+)
+gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
+gp = gp + scale_colour_manual(values=organcols, guide=F)
+gp = gp + theme_bw()
+gp = gp + facet_wrap(~Metabolite, ncol=6)
+gp = gp + theme(
+  axis.ticks = element_line(colour="black"),
+  axis.text = element_text(colour="black"),
+  strip.background = element_blank(),
+  aspect.ratio = 1,
+  axis.title = element_blank()
+)
+gp = gp + scale_size_continuous(guide=guide_legend(nrow=1))
+gp = gp + scale_y_continuous(breaks=c(-0.3,0,0.3))
+gp = gp + scale_x_continuous(breaks=c(-0.25,0,0.25))
+gp1 = gp
+
+# Plot split by Organism
+gp = ggplot(
+  ortholog_jaccard_pcoa_plot,
+  aes(x=PCo1, y=PCo2, colour=Organism, label=Metabolite)
+)
+gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
+gp = gp + geom_text_repel(force=3, size=2.5,alpha=0.9)
+gp = gp + scale_colour_manual(values=organcols, guide=F)
+gp = gp + theme_bw()
+gp = gp + facet_wrap(~Organism, ncol=4)
+gp = gp + theme(
+  axis.ticks = element_line(colour="black"),
+  axis.text = element_text(colour="black"),
+  strip.background = element_blank(),
+  aspect.ratio = 1,
+  axis.title = element_blank()
+)
+gp = gp + scale_size_continuous(guide=guide_legend(nrow=1))
+gp = gp + scale_y_continuous(breaks=c(-0.3,0,0.3))
+gp = gp + scale_x_continuous(breaks=c(-0.25,0,0.25))
+gp2 = gp
+
+library(ggpubr)
+outfile = "results/Fig.orthologs_interaction_pcoa.pdf"
+pdf(outfile, width=180/25.4, height=120/25.4, onefile=FALSE)
+annotate_figure(
+  ggarrange(
+    gp2,
+    gp1,
+    nrow = 2,
+    ncol = 1,
+    heights = c(3/2, 1),
+    common.legend = T,
+    label.x = 0, label.y = 1,
+    align="hv"
+  ),
+  bottom=paste("PCo1 (", ortholog_jaccard_pcoa_var[1], ")", sep=""),
+  left=paste("PCo2 (", ortholog_jaccard_pcoa_var[2], ")", sep="")
+)
+garbage = dev.off()
+
 # Save Jaccard index table
 write_tsv(
   arrange(ortholog_jaccard, -Jaccard),
