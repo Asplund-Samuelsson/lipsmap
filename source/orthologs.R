@@ -1132,8 +1132,7 @@ cluster_organism = function(organism, grouping, n_clusters){
       axis.text = element_text(colour="black"),
       axis.ticks = element_line(colour="black"),
       strip.background = element_blank(),
-      axis.text.x = element_text(angle=60, vjust=1, hjust=1),
-      axis.title.y = element_blank()
+      axis.text.x = element_text(angle=60, vjust=1, hjust=1)
     )
     gp = gp + scale_fill_manual(
       values=custom_palette,
@@ -1172,8 +1171,8 @@ cluster_organism = function(organism, grouping, n_clusters){
     )
   } else {
     gp_composition = ggarrange(
-      gp_categories,
       gp_modules,
+      gp_categories,
       nrow = 1,
       ncol = 2,
       labels = c("C", ""),
