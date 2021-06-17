@@ -1,0 +1,29 @@
+Module	Description	Short_description
+M00049	Adenine ribonucleotide biosynthesis, IMP => ADP,ATP	Adenine biosynthesis
+M00009	Citrate cycle (TCA cycle, Krebs cycle)	TCA cycle
+M00021	Cysteine biosynthesis, serine => cysteine	Cys biosynthesis
+M00008	Entner-Doudoroff pathway, glucose-6P => glyceraldehyde-3P + pyruvate	ED pathway
+M00083	Fatty acid biosynthesis, elongation	Fatty acid elongation
+M00082	Fatty acid biosynthesis, initiation	Fatty acid initiation
+M00118	Glutathione biosynthesis, glutamate => glutathione	Glutathione biosynthesis
+M00854	Glycogen biosynthesis, glucose-1P => glycogen/starch	Glycogen biosynthesis
+M00855	Glycogen degradation, glycogen => glucose-6P	Glycogen degradation
+M00001	Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate	Glycolysis
+M00012	Glyoxylate cycle	Glyoxylate cycle
+M00026	Histidine biosynthesis, PRPP => histidine	His biosynthesis
+M00030	Lysine biosynthesis, AAA pathway, 2-oxoglutarate => 2-aminoadipate => lysine	Lys biosynthesis
+M00017	Methionine biosynthesis, aspartate => homoserine => methionine	Met biosynthesis
+M00024	Phenylalanine biosynthesis, chorismate => phenylpyruvate => phenylalanine	Phe biosynthesis
+M00532	Photorespiration	Photorespiration
+M00015	Proline biosynthesis, glutamate => proline	Pro biosynthesis
+M00165	Reductive pentose phosphate cycle (Calvin cycle)	Calvin cycle
+M00020	Serine biosynthesis, glycerate-3P => serine	Ser biosynthesis
+M00022	Shikimate pathway, phosphoenolpyruvate + erythrose-4P => chorismate	Shikimate pathway
+M00018	Threonine biosynthesis, aspartate => homoserine => threonine	Thr biosynthesis
+M00089	Triacylglycerol biosynthesis	TAG biosynthesis
+M00023	Tryptophan biosynthesis, chorismate => tryptophan	Trp biosynthesis
+M00025	Tyrosine biosynthesis, chorismate => HPP => tyrosine	Tyr biosynthesis
+M00019	Valine/isoleucine biosynthesis, pyruvate => valine / 2-oxobutanoate => isoleucine	Val/Ile biosynthesis
+M00432	Leucine biosynthesis, 2-oxoisovalerate => 2-oxoisocaproate	Leu biosynthesis
+M00844	Arginine biosynthesis, ornithine => arginine	Arg biosynthesis
+M00028	Ornithine biosynthesis, glutamate => ornithine	Orn biosynthesis

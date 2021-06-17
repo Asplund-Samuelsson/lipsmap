@@ -23,6 +23,30 @@ eggnog_category_descriptions = read_tsv(
   "data/ortholog_category_descriptions.tab"
 )
 
+kegg_uniprot = read_tsv("data/KEGGgene_uniprot_organism.tab")
+
+kegg_modules = read_tsv("data/KEGGgene_module_organism.tab")
+
+modules = kegg_uniprot %>%
+  # Clean up the UniProt ID
+  mutate(UniProt_entry = str_remove(UniProt, "up:")) %>%
+  # Add modules
+  inner_join(kegg_modules) %>%
+  # Clean up the Module ID
+  separate(Module, c(NA, "Module"), sep="_") %>%
+  select(UniProt_entry, Module) %>%
+  distinct()
+
+module_description = read_tsv(
+  "data/module_description.tab", col_names=c("Module", "Description")
+)
+
+module_description = module_description %>%
+  mutate(Module = str_remove(Module, "md:"))
+
+module_description_short = read_tsv("data/module_description_short.tab") %>%
+  mutate(Label = paste(Short_description, " [", Module, "]", sep=""))
+
 # Define organisms and colors
 organisms = c("Hydrogenophaga", "Cupriavidus", "Synechococcus", "Synechocystis")
 organcols = c("#762a83", "#9970ab","#5aae61","#1b7837")
@@ -1059,6 +1083,68 @@ cluster_organism = function(organism, grouping, n_clusters){
   gp = gp + xlab("Ortholog category")
   gp_categories = gp
 
+  if (grouping == "Metabolite"){
+
+    # Count interactions per ortholog module
+    interactions_per_module = ortholog_interactions %>%
+      # Select relevant Organism
+      filter(Organism == organism) %>%
+      # Add modules
+      inner_join(modules) %>%
+      # Rename the column that is used as grouping to "label"
+      rename(label = grouping) %>%
+      # Add Cluster numbers
+      inner_join(clusters) %>%
+      # Sum up the Interactions for each Category and Cluster
+      group_by(Module, Conc, Cluster) %>%
+      summarise(Interactions = sum(Interaction)) %>%
+      ungroup() %>%
+      # Add missing data as zero for plotting
+      complete(
+        Module, Conc, Cluster, fill = list(Interactions = 0)
+      ) %>%
+      distinct() %>%
+      # Add Module Description
+      inner_join(module_description_short) %>%
+      # Sort the Label by number of Interactions
+      mutate(
+        Label = factor(
+          Label,
+          levels = ortholog_interactions %>%
+            inner_join(modules) %>%
+            inner_join(module_description_short) %>%
+            group_by(Label) %>%
+            summarise(Interaction = sum(Interaction)) %>%
+            arrange(-Interaction) %>%
+            pull(Label)
+        )
+      )
+
+    # Plot Interactions per Module ("Label") and Cluster
+    gp = ggplot(
+      interactions_per_module,
+      aes(x=Label, y=Interactions, group=Conc, fill=Cluster, alpha=Conc)
+    )
+    gp = gp + geom_col(position=position_dodge(width=0.75), width=0.75)
+    gp = gp + facet_grid(Cluster~., scales="free_y")
+    gp = gp + theme_bw()
+    gp = gp + theme(
+      axis.text = element_text(colour="black"),
+      axis.ticks = element_line(colour="black"),
+      strip.background = element_blank(),
+      axis.text.x = element_text(angle=60, vjust=1, hjust=1),
+      axis.title.y = element_blank()
+    )
+    gp = gp + scale_fill_manual(
+      values=custom_palette,
+      guide = F
+    )
+    gp = gp + scale_alpha_manual(values=c(1,0.25))
+    gp = gp + xlab("KEGG module")
+    gp_modules = gp
+
+  }
+
   # Select plot heights based on grouping
   plot_heights = if (grouping == "Ortholog") {c(2,1)} else {c(1.5,1)}
 
@@ -1087,18 +1173,22 @@ cluster_organism = function(organism, grouping, n_clusters){
   } else {
     gp_composition = ggarrange(
       gp_categories,
+      gp_modules,
       nrow = 1,
-      ncol = 1,
+      ncol = 2,
       labels = c("C", ""),
-      widths = c(1),
+      widths = c(1,1),
+      align="h",
       common.legend=T,
       legend="bottom"
     )
   }
 
   # Select width of plots based on grouping
-  plot_widths = if (grouping == "Ortholog") {c(1,4)} else {c(1,1.5)}
-  plot_width = if (grouping == "Ortholog") {11} else {11/5*3}
+  # plot_widths = if (grouping == "Ortholog") {c(1,4)} else {c(1,1.5)}
+  # plot_width = if (grouping == "Ortholog") {11} else {11/5*3}
+  plot_widths = c(1,4)
+  plot_width = 11
 
   outfile = paste(
     "results/ortholog_clustering.", organism, "_by_", grouping, ".pdf", sep=""
@@ -1122,7 +1212,7 @@ cluster_organism = function(organism, grouping, n_clusters){
 }
 
 # Plot each organism by Metabolite
-cluster_organism("Hydrogenophaga", "Metabolite", 4)
+cluster_organism("Hydrogenophaga", "Metabolite", 3)
 cluster_organism("Cupriavidus", "Metabolite", 4)
 cluster_organism("Synechocystis", "Metabolite", 6)
 cluster_organism("Synechococcus", "Metabolite", 6)
