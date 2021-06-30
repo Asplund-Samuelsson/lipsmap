@@ -25,6 +25,15 @@ wget -qO - http://rest.kegg.jp/link/module/syn | sed -e 's/$/\tSynechocystis/'
 wget -qO - http://rest.kegg.jp/link/module/hpse | sed -e 's/$/\tHydrogenophaga/'
 ) > data/KEGGgene_module_organism.tab
 
+# KEGG gene ID to EC conversion
+(
+echo -e "KEGGgene\tEC\tOrganism"
+wget -qO - http://rest.kegg.jp/link/ec/reh | sed -e 's/$/\tCupriavidus/'
+wget -qO - http://rest.kegg.jp/link/ec/syf | sed -e 's/$/\tSynechococcus/'
+wget -qO - http://rest.kegg.jp/link/ec/syn | sed -e 's/$/\tSynechocystis/'
+wget -qO - http://rest.kegg.jp/link/ec/hpse | sed -e 's/$/\tHydrogenophaga/'
+) > data/KEGGgene_EC_organism.tab
+
 # Module descriptions
 wget -qO data/module_description.tab http://rest.kegg.jp/list/module
 
@@ -34,3 +43,6 @@ wget -qO data/module_compound.tab http://rest.kegg.jp/link/compound/module
 # Module to compound full
 wget -qO data/module_reaction.tab http://rest.kegg.jp/link/reaction/module
 wget -qO data/reaction_compound.tab http://rest.kegg.jp/link/compound/reaction
+
+# EC descriptions
+wget -qO data/EC_description.tab http://rest.kegg.jp/list/ec
