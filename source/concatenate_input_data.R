@@ -1,5 +1,7 @@
 options(width=110)
 library(tidyverse)
+library(foreach)
+library(doMC)
 
 # Define input path
 inpath = "/hdd/emil/LiP-SMap/data/comparison_results/annotated"
@@ -19,9 +21,9 @@ infiles = tibble(
   )
 
 # Load all data
-lipsmap = bind_rows(lapply(
-  1:nrow(infiles),
-  function(i){
+registerDoMC(32)
+lipsmap = bind_rows(
+  foreach(i=1:nrow(infiles)) %dopar% {
     infile = infiles[i,]
     read_csv(file.path(infile$Directory, infile$File)) %>%
       mutate(
@@ -31,7 +33,7 @@ lipsmap = bind_rows(lapply(
         Date = infile$Date
       )
   }
-))
+)
 
 # Fix Metabolite, Conc and Locus column
 lipsmap = lipsmap %>%

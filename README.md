@@ -136,6 +136,7 @@ source/orthologs.R
 ```
 results/orthologs_interaction_comparison.png
 results/orthologs_interaction_pcoa.pdf
+results/Fig.orthologs_interaction_pcoa.pdf
 results/orthologs_interaction_jaccard.tab
 results/orthologs_interaction_pca.pdf
 results/orthologs_interaction_clustering.pdf
@@ -146,6 +147,7 @@ results/ortholog_clustering.Synechococcus_by_Metabolite.pdf
 results/ortholog_clustering.Synechococcus_by_Ortholog.pdf
 results/ortholog_clustering.Synechocystis_by_Metabolite.pdf
 results/ortholog_clustering.Synechocystis_by_Ortholog.pdf
+results/ortholog_category_heatmap.pdf
 ```
 
 **Example 1:** Ortholog metabolite interaction PCoA

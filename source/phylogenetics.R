@@ -10,13 +10,13 @@ uniprot_genename = read_tsv(
   "data/uniprot_gene.tab", col_names=c("UniProt_entry", "Gene_name")
 )
 
-uniprot_locus = read_tsv(
-  "data/uniprot_locus.tab", col_names=c("UniProt_entry", "Locus")
-)
-
 org_uniprot = read_tsv(
   "data/organism_uniprot.tab",
   col_names = c("Organism", "UniProt_entry")
+)
+
+uniprot_locus = read_tsv(
+    "data/uniprot_locus_complete.tab", col_names=c("UniProt_entry", "Locus")
 )
 
 orthologs = scan("data/cbb_ko.txt", character())
@@ -214,7 +214,7 @@ plot_tree = function (ko) {
     left_join(liplab) %>%
     mutate(
       Gene = ifelse(
-        is.na(Locus), NA,
+        is.na(Organism), NA,
         paste(
           UniProt_entry, " ", ifelse(is.na(Gene_name), "Unnamed", Gene_name),
           " (", Locus, ")\n", Interaction,

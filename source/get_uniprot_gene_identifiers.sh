@@ -10,4 +10,4 @@ cat data/*.fasta |
 grep ">" | cut -f 2 -d \| | parallel --no-notice --jobs 16 '
   wget -qO - "https://www.uniprot.org/uniprot/{}.txt" |
   grep "^DR   KEGG" | tr ":;" "\t" | cut -f 3 | sed -e "s/^/{}\t/"
-' > data/uniprot_locus.tab
+' > data/uniprot_locus_complete.tab

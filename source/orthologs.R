@@ -1223,7 +1223,7 @@ cluster_organism("Synechocystis", "Ortholog", 7)
 cluster_organism("Synechococcus", "Ortholog", 7)
 
 # Make a heatmap
-interactions_summary = ortholog_interactions %>%
+interactions_summary_full = ortholog_interactions %>%
   inner_join(eggnog_annotations_unique) %>%
   group_by(Organism, Metabolite, Conc, Category) %>%
   summarise(Interactions = sum(Interaction)) %>%
@@ -1237,168 +1237,242 @@ interactions_summary = ortholog_interactions %>%
   select(-Conc)
 
 # Require more than 10 interactions per Metabolite and Category
-wanted_categories = interactions_summary %>%
+wanted_categories = interactions_summary_full %>%
   group_by(Category) %>%
   summarise(Interactions = sum(Interactions)) %>%
   filter(Interactions > 10) %>%
   pull(Category)
 
-wanted_metabolites = interactions_summary %>%
+wanted_metabolites = interactions_summary_full %>%
   group_by(Metabolite) %>%
   summarise(Interactions = sum(Interactions)) %>%
   filter(Interactions > 10) %>%
   pull(Metabolite)
 
-interactions_summary = interactions_summary %>%
+interactions_summary = interactions_summary_full %>%
   filter(
     Category %in% wanted_categories,
     Metabolite %in% wanted_metabolites
   )
 
-# Make wide format for clustering
-category_wide = interactions_summary %>%
-  mutate(Feature = paste(Organism, Metabolite)) %>%
-  select(Category, Feature, Interactions) %>%
-  spread(Feature, Interactions)
-
-metabolite_wide = interactions_summary %>%
-  mutate(Feature = paste(Organism, Category)) %>%
-  select(Metabolite, Feature, Interactions) %>%
-  spread(Feature, Interactions)
-
-# Perform clustering of each axis
-category_clust = category_wide %>%
-  select(-Category) %>%
-  as.matrix() %>%
-  scale() %>%
-  vegdist(method="euclidean", na.rm=T) %>%
-  hclust(method="ward.D2")
-
-metabolite_clust = metabolite_wide %>%
-  select(-Metabolite) %>%
-  as.matrix() %>%
-  scale() %>%
-  vegdist(method="euclidean", na.rm=T) %>%
-  hclust(method="ward.D2")
-
-# Make Metabolite and Category factors based on clustering order
-category_label = category_wide %>%
-  inner_join(eggnog_category_descriptions) %>%
-  select(Category, Short_description) %>%
-  mutate(Label = paste("[", Category, "] ", Short_description, sep="")) %>%
-  select(-Short_description)
-
-interactions_heat = interactions_summary %>%
-  inner_join(category_label) %>%
-  left_join(
-    ortholog_interactions %>%
-      ungroup() %>%
-      select(Organism, Metabolite, Conc) %>%
-      mutate(
-        Metabolite = paste(
-          Metabolite, ifelse(Conc == "High", "H", "L"), sep="-"
-        )
-      ) %>%
-      distinct() %>%
-      select(-Conc) %>%
-      mutate(Data = "")
-  ) %>%
+# Calculate total number of proteins per group
+total_proteins = lipsmap %>%
+  select(Organism, Metabolite, Conc, UniProt_entry) %>%
+  distinct() %>%
   mutate(
-    Data = ifelse(is.na(Data), "Missing", ""),
-    Metabolite = factor(
-      Metabolite,
-      levels = metabolite_wide$Metabolite[
-        ggtree(as.phylo(metabolite_clust))$data %>%
-          arrange(-y) %>%
-          filter(isTip) %>%
-          pull(label) %>%
-          as.numeric()
-      ]
-    ),
-    Category = factor(
-      Label,
-      levels = category_label$Label[
-        ggtree(as.phylo(category_clust))$data %>%
-          arrange(-y) %>%
-          filter(isTip) %>%
-          pull(label) %>%
-          as.numeric()
-      ]
-    ),
-    Organism = factor(Organism, levels = organisms),
-    Metabolism = factor(
-      ifelse(str_starts(Organism, "Syn"), "Photoautotroph", "Lithoautotroph"),
-      levels=c("Photoautotroph", "Lithoautotroph")
-    ),
-    Friendship = factor(
-      ifelse(Organism %in% c("Cupriavidus", "Synechocystis"), "Old", "New"),
-      levels=c("Old", "New")
+    Metabolite = paste(Metabolite, ifelse(Conc == 1, "L", "H"), sep="-")
+  ) %>%
+  select(-Conc) %>%
+  inner_join(orthologs) %>%
+  inner_join(eggnog_annotations_unique) %>%
+  select(Organism, Metabolite, Category, UniProt_entry, Ortholog) %>%
+  group_by(Organism, Metabolite, Category) %>%
+  summarise(Proteins = length(UniProt_entry))
+
+# Function to plot heatmap with either counts or fractions data
+plot_heatmap = function(interactions_summary, nametag){
+
+  # Make wide format for clustering
+  category_wide = interactions_summary %>%
+    mutate(Feature = paste(Organism, Metabolite)) %>%
+    select(Category, Feature, Interactions) %>%
+    spread(Feature, Interactions)
+
+  metabolite_wide = interactions_summary %>%
+    mutate(Feature = paste(Organism, Category)) %>%
+    select(Metabolite, Feature, Interactions) %>%
+    spread(Feature, Interactions)
+
+  # Perform clustering of each axis
+  category_clust = category_wide %>%
+    select(-Category) %>%
+    as.matrix() %>%
+    scale() %>%
+    vegdist(method="euclidean", na.rm=T) %>%
+    hclust(method="ward.D2")
+
+  metabolite_clust = metabolite_wide %>%
+    select(-Metabolite) %>%
+    as.matrix() %>%
+    scale() %>%
+    vegdist(method="euclidean", na.rm=T) %>%
+    hclust(method="ward.D2")
+
+  # Make Metabolite and Category factors based on clustering order
+  category_label = category_wide %>%
+    inner_join(eggnog_category_descriptions) %>%
+    select(Category, Short_description) %>%
+    mutate(Label = paste("[", Category, "] ", Short_description, sep="")) %>%
+    select(-Short_description)
+
+  # Determine measured data
+  measured_data = ortholog_interactions %>%
+    ungroup() %>%
+    select(Organism, Metabolite, Conc) %>%
+    mutate(
+      Metabolite = paste(
+        Metabolite, ifelse(Conc == "High", "H", "L"), sep="-"
+      )
+    ) %>%
+    distinct() %>%
+    select(-Conc)
+
+  # Determine existing categories
+  existing_categories = org_uniprot %>%
+    inner_join(orthologs) %>%
+    inner_join(eggnog_annotations_unique) %>%
+    select(Organism, Category) %>%
+    distinct()
+
+  # Classify missing data
+  missing_data = interactions_summary_full %>%
+    filter(
+      Category %in% wanted_categories,
+      Metabolite %in% wanted_metabolites
+    ) %>%
+    anti_join(select(interactions_summary, -Interactions)) %>%
+    # Determine if Category exists in Organism
+    left_join(existing_categories %>% mutate(Exists = T)) %>%
+    mutate(Exists = ifelse(is.na(Exists), F, T)) %>%
+    # Determine if Metabolite was measured
+    left_join(measured_data %>% mutate(Measured = T)) %>%
+    mutate(Measured = ifelse(is.na(Measured), F, T)) %>%
+    # Determine if Category was detected
+    left_join(total_proteins %>% select(-Proteins) %>% mutate(Detected = T)) %>%
+    mutate(Detected = ifelse(is.na(Detected), F, T)) %>%
+    # Determine Data status
+    mutate(
+      Data = case_when(
+        !Exists ~ "Inexistent",
+        !Measured ~ "Unmeasured",
+        !Detected ~ "Undetected"
+      )
+    ) %>%
+    # Clean up
+    select(Organism, Metabolite, Category, Interactions, Data)
+
+  # Prepare heatmap table
+  interactions_heat = interactions_summary %>%
+    bind_rows(missing_data) %>%
+    inner_join(category_label) %>%
+    mutate(
+      Data = factor(
+        ifelse(is.na(Data), "", Data),
+        levels = c("", "Undetected", "Unmeasured", "Inexistent")
+      ),
+      Metabolite = factor(
+        Metabolite,
+        levels = metabolite_wide$Metabolite[
+          ggtree(as.phylo(metabolite_clust))$data %>%
+            arrange(-y) %>%
+            filter(isTip) %>%
+            pull(label) %>%
+            as.numeric()
+        ]
+      ),
+      Category = factor(
+        Label,
+        levels = category_label$Label[
+          ggtree(as.phylo(category_clust))$data %>%
+            arrange(-y) %>%
+            filter(isTip) %>%
+            pull(label) %>%
+            as.numeric()
+        ]
+      ),
+      Organism = factor(Organism, levels = organisms),
+      Metabolism = factor(
+        ifelse(str_starts(Organism, "Syn"), "Photoautotroph", "Lithoautotroph"),
+        levels=c("Photoautotroph", "Lithoautotroph")
+      ),
+      Friendship = factor(
+        ifelse(Organism %in% c("Cupriavidus", "Synechocystis"), "Old", "New"),
+        levels=c("Old", "New")
+      )
     )
+
+  # Create Metabolite (x) and Category (y) trees
+  metabolite_tree = as.phylo(metabolite_clust)
+  metabolite_tree$tip.label = metabolite_wide$Metabolite[
+    as.numeric(metabolite_tree$tip.label)
+  ]
+
+  gp = ggtree(metabolite_tree)
+  gp = gp + geom_tiplab(angle=90)
+  gp = gp + xlim(0, max(gp$data$x)*1.5)
+  gp = gp + coord_flip()
+  gp = gp + scale_y_reverse()
+  gp_metabolite = gp
+
+
+  category_tree = as.phylo(category_clust)
+  category_tree$tip.label = category_wide$Category[
+    as.numeric(category_tree$tip.label)
+  ]
+
+  gp = ggtree(category_tree)
+  gp = gp + geom_tiplab()
+  gp = gp + xlim(0, max(gp$data$x)*1.5)
+  gp_category = gp
+
+
+  gp = ggplot(
+    interactions_heat,
+    aes(x=Friendship, y=Metabolism, fill=Organism, alpha=Interactions, shape=Data)
   )
+  gp = gp + geom_tile()
+  gp = gp + geom_point(mapping = aes(color=Organism), alpha=0.5)
+  gp = gp + facet_grid(Category~Metabolite)
+  gp = gp + theme_bw()
+  gp = gp + scale_fill_manual(values=organcols)
+  gp = gp + scale_color_manual(values=organcols)
+  gp = gp + scale_alpha_continuous(trans="log10")
+  gp = gp + scale_shape_manual(values=c(NA, 1, 4, 0))
+  gp = gp + theme(
+    strip.background = element_blank(),
+    aspect.ratio = 1,
+    axis.title = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text = element_blank(),
+    strip.text.y = element_text(angle=0, hjust=0, vjust=0.5),
+    strip.text.x = element_text(angle=90, hjust=0, vjust=0.5),
+    panel.spacing = unit(0.1, "lines"),
+    panel.border = element_rect(color="#d9d9d9")
+  )
+  gp_heatmap = gp
 
-# Create Metabolite (x) and Category (y) trees
-metabolite_tree = as.phylo(metabolite_clust)
-metabolite_tree$tip.label = metabolite_wide$Metabolite[
-  as.numeric(metabolite_tree$tip.label)
-]
+  gp_null = ggplot() + theme_void()
 
-gp = ggtree(metabolite_tree)
-gp = gp + geom_tiplab(angle=90)
-gp = gp + xlim(0, max(gp$data$x)*1.5)
-gp = gp + coord_flip()
-gp = gp + scale_y_reverse()
-gp_metabolite = gp
+  outfile = paste("results/ortholog_category_heatmap.", nametag, ".pdf", sep="")
+  pdf(outfile, width=11.5, height=6.5, onefile=FALSE)
+  print(ggarrange(
+    gp_category,
+    gp_heatmap,
+    gp_null,
+    gp_metabolite,
+    common.legend=T,
+    nrow = 2,
+    ncol = 2,
+    widths = c(1,7),
+    heights = c(4,1)
+  ))
+  dev.off()
+
+}
+
+# Calculate relative number of interactions
+interactions_summary_norm = interactions_summary %>%
+  left_join(total_proteins) %>%
+  filter(!is.na(Proteins)) %>%
+  mutate(Interactions = Interactions / Proteins) %>%
+  select(-Proteins)
+
+# Get absolute counts without missing proteins
+interactions_summary_abs = interactions_summary %>%
+  left_join(total_proteins) %>%
+  filter(!is.na(Proteins)) %>%
+  select(-Proteins)
 
 
-category_tree = as.phylo(category_clust)
-category_tree$tip.label = category_wide$Category[
-  as.numeric(category_tree$tip.label)
-]
-
-gp = ggtree(category_tree)
-gp = gp + geom_tiplab()
-gp = gp + xlim(0, max(gp$data$x)*1.5)
-gp_category = gp
-
-
-gp = ggplot(
-  interactions_heat,
-  aes(x=Friendship, y=Metabolism, fill=Organism, alpha=Interactions, shape=Data)
-)
-gp = gp + geom_tile()
-gp = gp + geom_point(mapping = aes(color=Organism), alpha=0.5)
-gp = gp + facet_grid(Category~Metabolite)
-gp = gp + theme_bw()
-gp = gp + scale_fill_manual(values=organcols)
-gp = gp + scale_color_manual(values=organcols)
-gp = gp + scale_alpha_continuous(trans="log10")
-gp = gp + scale_shape_manual(values=c(NA, 4))
-gp = gp + theme(
-  strip.background = element_blank(),
-  aspect.ratio = 1,
-  axis.title = element_blank(),
-  axis.ticks = element_blank(),
-  axis.text = element_blank(),
-  strip.text.y = element_text(angle=0, hjust=0, vjust=0.5),
-  strip.text.x = element_text(angle=90, hjust=0, vjust=0.5),
-  panel.spacing = unit(0.1, "lines"),
-  panel.border = element_rect(color="#d9d9d9")
-)
-gp_heatmap = gp
-
-gp_null = ggplot() + theme_void()
-
-outfile = "results/ortholog_category_heatmap.pdf"
-pdf(outfile, width=11.5, height=6.5, onefile=FALSE)
-ggarrange(
-  gp_category,
-  gp_heatmap,
-  gp_null,
-  gp_metabolite,
-  common.legend=T,
-  nrow = 2,
-  ncol = 2,
-  widths = c(1,7),
-  heights = c(4,1)
-)
-dev.off()
+plot_heatmap(interactions_summary_norm, "norm")
+plot_heatmap(interactions_summary_abs, "abs")
