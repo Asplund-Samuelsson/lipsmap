@@ -60,6 +60,8 @@ source/get_ko_and_modules.sh
 data/KEGGgene_uniprot_organism.tab
 data/KEGGgene_KO_organism.tab
 data/KEGGgene_module_organism.tab
+data/KEGGgene_EC_organism.tab
+data/EC_description.tab
 data/module_description.tab
 data/module_compound.tab
 data/module_reaction.tab
