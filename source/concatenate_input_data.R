@@ -47,9 +47,17 @@ write(
   "data/missing_locus_uniprot_IDs.txt"
 )
 
+# Download missing loci
+system(paste(c(
+"cat data/missing_locus_uniprot_IDs.txt | parallel --no-notice --jobs 16 '",
+'wget -qO - "https://www.uniprot.org/uniprot/{}.txt" |',
+'grep "^DR   KEGG" | tr ";:" "\t" | cut -f 3 | sed -e "s/^/{}\t/"',
+"' > data/uniprot_locus_missing.tab"
+), collapse=""))
+
 # Load missing locus IDs
 uniprot_locus = read_tsv(
-  "data/uniprot_locus.tab",
+  "data/uniprot_locus_missing.tab",
   col_names = c("UniProt_entry", "Locus")
 )
 
@@ -71,6 +79,14 @@ lipsmap = lipsmap %>%
   top_n(1, Date) %>%
   ungroup() %>%
   left_join(lipsmap)
+
+# Keep only data of interest
+lipsmap = lipsmap %>%
+  select(
+    Organism, Metabolite, Conc, Date, Peptide_ID,
+    log2FC, SE, adj.pvalue, Peptide, UniProt_entry,
+    Gene_ontology_GO, Pathway, Sign, Locus
+  )
 
 # Save data to compressed archive
 write_tsv(

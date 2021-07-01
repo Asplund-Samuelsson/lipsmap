@@ -3,10 +3,7 @@ library(tidyverse)
 
 
 # Load data
-lipsmap = read_tsv(
-  "data/annotated_comparison_results.tab.gz",
-  col_types = cols(Protein.names = col_character())
-)
+lipsmap = read_tsv("data/annotated_comparison_results.tab.gz")
 
 # Determine the number of detected genes
 detected_genes = lipsmap %>%

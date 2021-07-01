@@ -2,10 +2,7 @@ options(width=110)
 library(tidyverse)
 
 # Load data
-lipsmap = read_tsv(
-  "data/annotated_comparison_results.tab.gz",
-  col_types = cols(Protein.names = col_character())
-)
+lipsmap = read_tsv("data/annotated_comparison_results.tab.gz")
 
 kegg_uniprot = read_tsv("data/KEGGgene_uniprot_organism.tab")
 
