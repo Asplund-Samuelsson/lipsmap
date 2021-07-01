@@ -82,10 +82,54 @@ ortholog_interactions = lipsmap %>%
   # Clarify concentration description
   mutate(Conc = ifelse(Conc == 1, "Low", "High"))
 
+# Count number of interactions
+number_interactions = ortholog_interactions %>%
+  group_by(Organism, Metabolite, Conc) %>%
+  count(Interaction) %>%
+  mutate(
+    Interaction = ifelse(Interaction, "Interaction", "No_interaction")
+  ) %>%
+  spread(Conc, n, fill=0) %>%
+  filter(Interaction == "Interaction") %>%
+  select(-Interaction)
+
 # Simplify and filter
 interaction_comparison = ortholog_interactions %>%
   # Select only High Conc
   filter(Conc == "High") %>%
+  # Simplify to existence of interaction within ortholog
+  group_by(Organism, Metabolite, Ortholog) %>%
+  summarise(Interaction = TRUE %in% Interaction) %>%
+  # Keep only data with at least one Interaction and more than one example
+  group_by(Ortholog) %>%
+  filter(length(Interaction) > 1, sum(Interaction) > 0) %>%
+  # Sort Orthologs and metabolites by number of Interaction
+  ungroup() %>%
+  mutate(
+    Metabolite = factor(
+      Metabolite,
+      levels = (
+        group_by(., Metabolite) %>%
+        summarise(Count = sum(Interaction)) %>%
+        arrange(-Count, Metabolite) %>%
+        pull(Metabolite)
+      )
+    ),
+    Ortholog = factor(
+      Ortholog,
+      levels = (
+        group_by(., Ortholog) %>%
+        summarise(Count = sum(Interaction)) %>%
+        arrange(-Count, Ortholog) %>%
+        pull(Ortholog)
+      )
+    )
+  )
+
+# Simplify and filter, but for Low concentration
+interaction_comparison_low = ortholog_interactions %>%
+  # Select only Low Conc
+  filter(Conc == "Low") %>%
   # Simplify to existence of interaction within ortholog
   group_by(Organism, Metabolite, Ortholog) %>%
   summarise(Interaction = TRUE %in% Interaction) %>%
@@ -149,303 +193,312 @@ jaccard = function(x, y){
 # Jaccard similarity disregards cases where both vectors are zero
 # ...therefore it can be used directly on the comparison data already acquired
 
-# Spread interactions data into wide format to allow making matrices
-interaction_comparison_wide = interaction_comparison %>%
-  group_by(Organism, Metabolite) %>%
-  spread(Ortholog, Interaction) %>%
-  ungroup()
+jaccard_pc_plots = function(interaction_comparison, conc){
 
-# Define non-redundant pairs to compare through Jaccard similarity
-jaccard_pairs = as_tibble(t(combn(1:nrow(interaction_comparison_wide), 2)))
+  # Spread interactions data into wide format to allow making matrices
+  interaction_comparison_wide = interaction_comparison %>%
+    group_by(Organism, Metabolite) %>%
+    spread(Ortholog, Interaction) %>%
+    ungroup()
 
-library(foreach)
-library(doMC)
-registerDoMC(16)
+  # Define non-redundant pairs to compare through Jaccard similarity
+  jaccard_pairs = as_tibble(t(combn(1:nrow(interaction_comparison_wide), 2)))
 
-ortholog_jaccard = bind_rows(foreach(i=1:nrow(jaccard_pairs)) %dopar% {
-  # Select data for pair to compare
-  a = interaction_comparison_wide[jaccard_pairs[i,]$V1,]
-  b = interaction_comparison_wide[jaccard_pairs[i,]$V2,]
-  # Extract binary vectors
-  a_bin = a %>% select(-Organism, -Metabolite) %>% as.numeric()
-  b_bin = b %>% select(-Organism, -Metabolite) %>% as.numeric()
-  # Subset to elements that are not NA; orthologs must exist
-  not_missing = !(is.na(a_bin) | is.na(b_bin))
-  j = jaccard(a_bin[not_missing], b_bin[not_missing])
-  # Create table with results
-  tibble(
-    # First organism and metabolite of pair; store number of interactions
-    Organism_A = a$Organism, Metabolite_A = a$Metabolite,
-    Interactions_A = sum(a_bin[not_missing]),
-    # Second organism and metabolite of pair; store number of interactions
-    Organism_B = b$Organism, Metabolite_B = b$Metabolite,
-    Interactions_B = sum(b_bin[not_missing]),
-    # Jaccard similarity and number of orthologs in comparison
-    Jaccard = j, Orthologs = sum(not_missing)
-  )
-})
+  library(foreach)
+  library(doMC)
+  registerDoMC(16)
 
-# Perform Principal Coordinates Analysis
-library(vegan)
+  ortholog_jaccard = bind_rows(foreach(i=1:nrow(jaccard_pairs)) %dopar% {
+    # Select data for pair to compare
+    a = interaction_comparison_wide[jaccard_pairs[i,]$V1,]
+    b = interaction_comparison_wide[jaccard_pairs[i,]$V2,]
+    # Extract binary vectors
+    a_bin = a %>% select(-Organism, -Metabolite) %>% as.numeric()
+    b_bin = b %>% select(-Organism, -Metabolite) %>% as.numeric()
+    # Subset to elements that are not NA; orthologs must exist
+    not_missing = !(is.na(a_bin) | is.na(b_bin))
+    j = jaccard(a_bin[not_missing], b_bin[not_missing])
+    # Create table with results
+    tibble(
+      # First organism and metabolite of pair; store number of interactions
+      Organism_A = a$Organism, Metabolite_A = a$Metabolite,
+      Interactions_A = sum(a_bin[not_missing]),
+      # Second organism and metabolite of pair; store number of interactions
+      Organism_B = b$Organism, Metabolite_B = b$Metabolite,
+      Interactions_B = sum(b_bin[not_missing]),
+      # Jaccard similarity and number of orthologs in comparison
+      Jaccard = j, Orthologs = sum(not_missing)
+    )
+  })
 
-# Create Jaccard distance object
-ortholog_jaccard_dist = interaction_comparison_wide %>%
-  select(-Organism, -Metabolite) %>%
-  as.matrix() %>%
-  vegdist("jaccard", na.rm=T)
+  # Perform Principal Coordinates Analysis
+  library(vegan)
 
-# Replace missing values with maximum distance (1)
-ortholog_jaccard_dist_m = as.matrix(ortholog_jaccard_dist)
-ortholog_jaccard_dist_m[!is.finite(ortholog_jaccard_dist_m)] = 1
-ortholog_jaccard_dist = as.dist(ortholog_jaccard_dist_m)
+  # Create Jaccard distance object
+  ortholog_jaccard_dist = interaction_comparison_wide %>%
+    select(-Organism, -Metabolite) %>%
+    as.matrix() %>%
+    vegdist("jaccard", na.rm=T)
 
-library(ape)
+  # Replace missing values with maximum distance (1)
+  ortholog_jaccard_dist_m = as.matrix(ortholog_jaccard_dist)
+  ortholog_jaccard_dist_m[!is.finite(ortholog_jaccard_dist_m)] = 1
+  ortholog_jaccard_dist = as.dist(ortholog_jaccard_dist_m)
 
-ortholog_jaccard_pcoa = pcoa(ortholog_jaccard_dist)
+  library(ape)
 
-# Create plotting table
-ortholog_jaccard_pcoa_plot = ortholog_jaccard_pcoa$vectors[,1:2] %>%
-  as_tibble() %>%
-  # Add Organism and Metabolite
-  mutate(
-    Organism = interaction_comparison_wide$Organism,
-    Metabolite = interaction_comparison_wide$Metabolite
-  ) %>%
-  # Give sensible names to axes
-  rename(PCo1 = Axis.1, PCo2 = Axis.2) %>%
-  # Add number of interactions per Organism and Metabolite
-  inner_join(
-    interaction_comparison %>%
-      group_by(Organism, Metabolite) %>%
-      summarise(Interactions = sum(Interaction))
-  )
+  ortholog_jaccard_pcoa = pcoa(ortholog_jaccard_dist)
 
-# Calculate fraction of variance per PC
-library(scales)
-ortholog_jaccard_pcoa_var = percent(ortholog_jaccard_pcoa$values$Relative_eig)
+  # Create plotting table
+  ortholog_jaccard_pcoa_plot = ortholog_jaccard_pcoa$vectors[,1:2] %>%
+    as_tibble() %>%
+    # Add Organism and Metabolite
+    mutate(
+      Organism = interaction_comparison_wide$Organism,
+      Metabolite = interaction_comparison_wide$Metabolite
+    ) %>%
+    # Give sensible names to axes
+    rename(PCo1 = Axis.1, PCo2 = Axis.2) %>%
+    # Add number of interactions per Organism and Metabolite
+    inner_join(
+      interaction_comparison %>%
+        group_by(Organism, Metabolite) %>%
+        summarise(Interactions = sum(Interaction))
+    )
 
-# Plot it
-library(ggrepel)
+  # Calculate fraction of variance per PC
+  library(scales)
+  ortholog_jaccard_pcoa_var = percent(ortholog_jaccard_pcoa$values$Relative_eig)
 
-# Make Organism factor
-ortholog_jaccard_pcoa_plot = ortholog_jaccard_pcoa_plot %>%
-  mutate(Organism = factor(Organism, levels = organisms))
+  # Plot it
+  library(ggrepel)
 
-# Plot split by Metabolite
-gp = ggplot(
-  ortholog_jaccard_pcoa_plot,
-  aes(x=PCo1, y=PCo2, colour=Organism, label=Metabolite)
-)
-gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
-gp = gp + scale_colour_manual(values=organcols, guide=F)
-gp = gp + labs(
-            x=paste("PCo1 (", ortholog_jaccard_pcoa_var[1], ")", sep=""),
-            y=paste("PCo2 (", ortholog_jaccard_pcoa_var[2], ")", sep="")
-          )
-gp = gp + theme_bw()
-gp = gp + facet_wrap(~Metabolite, ncol=5)
-gp = gp + theme(
-  axis.ticks = element_line(colour="black"),
-  axis.text = element_text(colour="black"),
-  strip.background = element_blank(),
-  aspect.ratio = 1
-)
-gp1 = gp
+  # Make Organism factor
+  ortholog_jaccard_pcoa_plot = ortholog_jaccard_pcoa_plot %>%
+    mutate(Organism = factor(Organism, levels = organisms))
 
-# Plot split by Organism
-gp = ggplot(
-  ortholog_jaccard_pcoa_plot,
-  aes(x=PCo1, y=PCo2, colour=Organism, label=Metabolite)
-)
-gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
-gp = gp + geom_text_repel(force=3, size=3,alpha=0.9)
-gp = gp + scale_colour_manual(values=organcols, guide=F)
-gp = gp + labs(
-            x=paste("PCo1 (", ortholog_jaccard_pcoa_var[1], ")", sep=""),
-            y=paste("PCo2 (", ortholog_jaccard_pcoa_var[2], ")", sep="")
-          )
-gp = gp + theme_bw()
-gp = gp + facet_wrap(~Organism, ncol=1)
-gp = gp + theme(
-  axis.ticks = element_line(colour="black"),
-  axis.text = element_text(colour="black"),
-  strip.background = element_blank(),
-  aspect.ratio = 1
-)
-gp2 = gp
-
-library(ggpubr)
-outfile = "results/orthologs_interaction_pcoa.pdf"
-pdf(outfile, width=11, height=8.5, onefile=FALSE)
-ggarrange(
-  gp2,
-  gp1,
-  nrow = 1,
-  ncol = 2,
-  labels = c("A", "B"),
-  widths = c(1, 2),
-  common.legend = T,
-  label.x = 0, label.y = 1
-)
-garbage = dev.off()
-
-# Plot split by Metabolite subset
-gp = ggplot(
-  filter(
+  # Plot split by Metabolite
+  gp = ggplot(
     ortholog_jaccard_pcoa_plot,
-    Metabolite %in% c("GAP","ATP","FBP","Cit","G6P","3PGA")
-  ),
-  aes(x=PCo1, y=PCo2, colour=Organism, label=Metabolite)
-)
-gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
-gp = gp + scale_colour_manual(values=organcols, guide=F)
-gp = gp + theme_bw()
-gp = gp + facet_wrap(~Metabolite, ncol=6)
-gp = gp + theme(
-  axis.ticks = element_line(colour="black"),
-  axis.text = element_text(colour="black"),
-  strip.background = element_blank(),
-  aspect.ratio = 1,
-  axis.title = element_blank()
-)
-gp = gp + scale_size_continuous(guide=guide_legend(nrow=1))
-gp = gp + scale_y_continuous(breaks=c(-0.3,0,0.3))
-gp = gp + scale_x_continuous(breaks=c(-0.25,0,0.25))
-gp1 = gp
+    aes(x=PCo1, y=PCo2, colour=Organism, label=Metabolite)
+  )
+  gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
+  gp = gp + scale_colour_manual(values=organcols, guide=F)
+  gp = gp + labs(
+              x=paste("PCo1 (", ortholog_jaccard_pcoa_var[1], ")", sep=""),
+              y=paste("PCo2 (", ortholog_jaccard_pcoa_var[2], ")", sep="")
+            )
+  gp = gp + theme_bw()
+  gp = gp + facet_wrap(~Metabolite, ncol=5)
+  gp = gp + theme(
+    axis.ticks = element_line(colour="black"),
+    axis.text = element_text(colour="black"),
+    strip.background = element_blank(),
+    aspect.ratio = 1
+  )
+  gp1 = gp
 
-# Plot split by Organism
-gp = ggplot(
-  ortholog_jaccard_pcoa_plot,
-  aes(x=PCo1, y=PCo2, colour=Organism, label=Metabolite)
-)
-gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
-gp = gp + geom_text_repel(force=3, size=2.5,alpha=0.9)
-gp = gp + scale_colour_manual(values=organcols, guide=F)
-gp = gp + theme_bw()
-gp = gp + facet_wrap(~Organism, ncol=4)
-gp = gp + theme(
-  axis.ticks = element_line(colour="black"),
-  axis.text = element_text(colour="black"),
-  strip.background = element_blank(),
-  aspect.ratio = 1,
-  axis.title = element_blank()
-)
-gp = gp + scale_size_continuous(guide=guide_legend(nrow=1))
-gp = gp + scale_y_continuous(breaks=c(-0.3,0,0.3))
-gp = gp + scale_x_continuous(breaks=c(-0.25,0,0.25))
-gp2 = gp
+  # Plot split by Organism
+  gp = ggplot(
+    ortholog_jaccard_pcoa_plot,
+    aes(x=PCo1, y=PCo2, colour=Organism, label=Metabolite)
+  )
+  gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
+  gp = gp + geom_text_repel(force=3, size=3,alpha=0.9)
+  gp = gp + scale_colour_manual(values=organcols, guide=F)
+  gp = gp + labs(
+              x=paste("PCo1 (", ortholog_jaccard_pcoa_var[1], ")", sep=""),
+              y=paste("PCo2 (", ortholog_jaccard_pcoa_var[2], ")", sep="")
+            )
+  gp = gp + theme_bw()
+  gp = gp + facet_wrap(~Organism, ncol=1)
+  gp = gp + theme(
+    axis.ticks = element_line(colour="black"),
+    axis.text = element_text(colour="black"),
+    strip.background = element_blank(),
+    aspect.ratio = 1
+  )
+  gp2 = gp
 
-library(ggpubr)
-outfile = "results/Fig.orthologs_interaction_pcoa.pdf"
-pdf(outfile, width=180/25.4, height=120/25.4, onefile=FALSE)
-annotate_figure(
-  ggarrange(
+  library(ggpubr)
+  outfile = paste("results/orthologs_interaction_pcoa.", conc, ".pdf", sep="")
+  pdf(outfile, width=11, height=8.5, onefile=FALSE)
+  print(ggarrange(
     gp2,
     gp1,
-    nrow = 2,
-    ncol = 1,
-    heights = c(3/2, 1),
+    nrow = 1,
+    ncol = 2,
+    labels = c("A", "B"),
+    widths = c(1, 2),
     common.legend = T,
-    label.x = 0, label.y = 1,
-    align="hv"
-  ),
-  bottom=paste("PCo1 (", ortholog_jaccard_pcoa_var[1], ")", sep=""),
-  left=paste("PCo2 (", ortholog_jaccard_pcoa_var[2], ")", sep="")
-)
-garbage = dev.off()
+    label.x = 0, label.y = 1
+  ))
+  garbage = dev.off()
 
-# Save Jaccard index table
-write_tsv(
-  arrange(ortholog_jaccard, -Jaccard),
-  "results/orthologs_interaction_jaccard.tab"
-)
+  # Plot split by Metabolite subset
+  gp = ggplot(
+    filter(
+      ortholog_jaccard_pcoa_plot,
+      Metabolite %in% c("GAP","ATP","FBP","Cit","G6P","3PGA")
+    ),
+    aes(x=PCo1, y=PCo2, colour=Organism, label=Metabolite)
+  )
+  gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
+  gp = gp + scale_colour_manual(values=organcols, guide=F)
+  gp = gp + theme_bw()
+  gp = gp + facet_wrap(~Metabolite, ncol=6)
+  gp = gp + theme(
+    axis.ticks = element_line(colour="black"),
+    axis.text = element_text(colour="black"),
+    strip.background = element_blank(),
+    aspect.ratio = 1,
+    axis.title = element_blank()
+  )
+  gp = gp + scale_size_continuous(guide=guide_legend(nrow=1))
+  gp = gp + scale_y_continuous(breaks=c(-0.3,0,0.3))
+  gp = gp + scale_x_continuous(breaks=c(-0.25,0,0.25))
+  gp1 = gp
 
-# Run PCA on raw orthologs interaction data
+  # Plot split by Organism
+  gp = ggplot(
+    ortholog_jaccard_pcoa_plot,
+    aes(x=PCo1, y=PCo2, colour=Organism, label=Metabolite)
+  )
+  gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
+  gp = gp + geom_text_repel(force=3, size=2.5,alpha=0.9)
+  gp = gp + scale_colour_manual(values=organcols, guide=F)
+  gp = gp + theme_bw()
+  gp = gp + facet_wrap(~Organism, ncol=4)
+  gp = gp + theme(
+    axis.ticks = element_line(colour="black"),
+    axis.text = element_text(colour="black"),
+    strip.background = element_blank(),
+    aspect.ratio = 1,
+    axis.title = element_blank()
+  )
+  gp = gp + scale_size_continuous(guide=guide_legend(nrow=1))
+  gp = gp + scale_y_continuous(breaks=c(-0.3,0,0.3))
+  gp = gp + scale_x_continuous(breaks=c(-0.25,0,0.25))
+  gp2 = gp
 
-# Create matrix from interaction comparison data
-interaction_comparison_wide_m = interaction_comparison_wide %>%
-  select(-Organism, -Metabolite) %>%
-  # Make binary
-  data.matrix() %>%
-  # Set missing values to zero
-  replace_na(0)
+  library(ggpubr)
+  outfile = paste(
+    "results/Fig.orthologs_interaction_pcoa.", conc, ".pdf", sep=""
+  )
+  pdf(outfile, width=180/25.4, height=120/25.4, onefile=FALSE)
+  print(annotate_figure(
+    ggarrange(
+      gp2,
+      gp1,
+      nrow = 2,
+      ncol = 1,
+      heights = c(3/2, 1),
+      common.legend = T,
+      label.x = 0, label.y = 1,
+      align="hv"
+    ),
+    bottom=paste("PCo1 (", ortholog_jaccard_pcoa_var[1], ")", sep=""),
+    left=paste("PCo2 (", ortholog_jaccard_pcoa_var[2], ")", sep="")
+  ))
+  garbage = dev.off()
 
-ortholog_pca = prcomp(interaction_comparison_wide_m)
+  # Save Jaccard index table
+  write_tsv(
+    arrange(ortholog_jaccard, -Jaccard),
+    paste("results/orthologs_interaction_jaccard.", conc, ".tab", sep="")
+  )
 
-# Create plotting dataframes
-ortholog_pca_plot = as_tibble(ortholog_pca$x) %>% select(PC1, PC2)
-ortholog_pca_plot = bind_cols(
-  interaction_comparison_wide %>% select(Organism, Metabolite),
-  ortholog_pca_plot,
-  tibble(Interactions = rowSums(interaction_comparison_wide_m))
-)
+  # Run PCA on raw orthologs interaction data
 
-# Calculate fraction of variance per PC
-library(scales)
-ortholog_pca_var = percent(ortholog_pca$sdev^2 / sum(ortholog_pca$sdev^2))
+  # Create matrix from interaction comparison data
+  interaction_comparison_wide_m = interaction_comparison_wide %>%
+    select(-Organism, -Metabolite) %>%
+    # Make binary
+    data.matrix() %>%
+    # Set missing values to zero
+    replace_na(0)
 
-ortholog_pca_plot = ortholog_pca_plot %>%
-  mutate(Organism = factor(Organism, levels = organisms))
+  ortholog_pca = prcomp(interaction_comparison_wide_m)
 
-# Make plot split by Metabolite
-gp = ggplot(
-  ortholog_pca_plot,
-  aes(x=PC1, y=PC2, colour=Organism, label=Metabolite)
-)
-gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
-gp = gp + scale_colour_manual(values=organcols, guide=F)
-gp = gp + scale_size_continuous(breaks=c(0,20,100,200))
-gp = gp + labs(
-            x=paste("PC1 (", ortholog_pca_var[1], ")", sep=""),
-            y=paste("PC2 (", ortholog_pca_var[2], ")", sep="")
-          )
-gp = gp + theme_bw()
-gp = gp + facet_wrap(~Metabolite, ncol=5)
-gp = gp + theme(
-  axis.ticks = element_line(colour="black"),
-  axis.text = element_text(colour="black"),
-  strip.background = element_blank(),
-  aspect.ratio = 1
-)
-gp1 = gp
+  # Create plotting dataframes
+  ortholog_pca_plot = as_tibble(ortholog_pca$x) %>% select(PC1, PC2)
+  ortholog_pca_plot = bind_cols(
+    interaction_comparison_wide %>% select(Organism, Metabolite),
+    ortholog_pca_plot,
+    tibble(Interactions = rowSums(interaction_comparison_wide_m))
+  )
 
-# Make plot split by Organism
-gp = ggplot(
-  ortholog_pca_plot,
-  aes(x=PC1, y=PC2, colour=Organism, label=Metabolite)
-)
-gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
-gp = gp + geom_text_repel(force=3, size=3,alpha=0.9)
-gp = gp + scale_size_continuous(breaks=c(0,20,100,200))
-gp = gp + scale_colour_manual(values=organcols, guide=F)
-gp = gp + labs(
-            x=paste("PC1 (", ortholog_pca_var[1], ")", sep=""),
-            y=paste("PC2 (", ortholog_pca_var[2], ")", sep="")
-          )
-gp = gp + theme_bw()
-gp = gp + facet_wrap(~Organism, ncol=1)
-gp = gp + theme(
-  axis.ticks = element_line(colour="black"),
-  axis.text = element_text(colour="black"),
-  strip.background = element_blank(),
-  aspect.ratio = 1
-)
-gp2 = gp
+  # Calculate fraction of variance per PC
+  library(scales)
+  ortholog_pca_var = percent(ortholog_pca$sdev^2 / sum(ortholog_pca$sdev^2))
 
-library(ggpubr)
-outfile = "results/orthologs_interaction_pca.pdf"
-pdf(outfile, width=11, height=8.5, onefile=FALSE)
-ggarrange(
-  gp2,
-  gp1,
-  nrow = 1,
-  ncol = 2,
-  labels = c("A", "B"),
-  widths = c(1, 2),
-  common.legend = T,
-  label.x = 0, label.y = 1
-)
-garbage = dev.off()
+  ortholog_pca_plot = ortholog_pca_plot %>%
+    mutate(Organism = factor(Organism, levels = organisms))
+
+  # Make plot split by Metabolite
+  gp = ggplot(
+    ortholog_pca_plot,
+    aes(x=PC1, y=PC2, colour=Organism, label=Metabolite)
+  )
+  gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
+  gp = gp + scale_colour_manual(values=organcols, guide=F)
+  gp = gp + scale_size_continuous(breaks=c(0,20,100,200))
+  gp = gp + labs(
+              x=paste("PC1 (", ortholog_pca_var[1], ")", sep=""),
+              y=paste("PC2 (", ortholog_pca_var[2], ")", sep="")
+            )
+  gp = gp + theme_bw()
+  gp = gp + facet_wrap(~Metabolite, ncol=5)
+  gp = gp + theme(
+    axis.ticks = element_line(colour="black"),
+    axis.text = element_text(colour="black"),
+    strip.background = element_blank(),
+    aspect.ratio = 1
+  )
+  gp1 = gp
+
+  # Make plot split by Organism
+  gp = ggplot(
+    ortholog_pca_plot,
+    aes(x=PC1, y=PC2, colour=Organism, label=Metabolite)
+  )
+  gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
+  gp = gp + geom_text_repel(force=3, size=3,alpha=0.9)
+  gp = gp + scale_size_continuous(breaks=c(0,20,100,200))
+  gp = gp + scale_colour_manual(values=organcols, guide=F)
+  gp = gp + labs(
+              x=paste("PC1 (", ortholog_pca_var[1], ")", sep=""),
+              y=paste("PC2 (", ortholog_pca_var[2], ")", sep="")
+            )
+  gp = gp + theme_bw()
+  gp = gp + facet_wrap(~Organism, ncol=1)
+  gp = gp + theme(
+    axis.ticks = element_line(colour="black"),
+    axis.text = element_text(colour="black"),
+    strip.background = element_blank(),
+    aspect.ratio = 1
+  )
+  gp2 = gp
+
+  library(ggpubr)
+  outfile = paste("results/orthologs_interaction_pca.", conc, ".pdf", sep="")
+  pdf(outfile, width=11, height=8.5, onefile=FALSE)
+  print(ggarrange(
+    gp2,
+    gp1,
+    nrow = 1,
+    ncol = 2,
+    labels = c("A", "B"),
+    widths = c(1, 2),
+    common.legend = T,
+    label.x = 0, label.y = 1
+  ))
+  garbage = dev.off()
+
+}
+
+jaccard_pc_plots(interaction_comparison, "high")
+jaccard_pc_plots(interaction_comparison_low, "low")
 
 # Cluster orthologs
 library(ggtree)
