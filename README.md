@@ -16,6 +16,8 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
 
 **6. [Phylogenetic analysis](#phylogenetics)**
 
+**7. [Supplementary tables](#tables)**
+
 **A. [Author](#author)**
 
 <a name="prep"></a>
@@ -41,6 +43,8 @@ data/annotated_comparison_results.tab.gz
 
 ### Additional annotations
 
+#### KEGG annotations
+
 Additional annotations were downloaded from KEGG:
 ```
 source/get_ko_and_modules.sh
@@ -58,6 +62,37 @@ data/module_compound.tab
 data/module_reaction.tab
 data/reaction_compound.tab
 ```
+
+#### eggNOG ortholog annotations
+
+Orthologs in the organisms were identified via UniProt and the eggNOG labels:
+```
+source/identify_orthologs.sh
+```
+
+...resulting in these data files:
+```
+data/uniprot_eggNOG.tab
+data/organism_uniprot.tab
+```
+
+The second file lists all UniProt sequences in the organisms, so that those without an ortholog could be accounted for as well.
+
+Annotations for the eggNOG labels were acquired:
+```
+source/get_eggNOG_categories.sh
+```
+
+...and filtered with R:
+```
+source/filter_eggNOG_annotations.R
+```
+
+...thus producing the final eggNOG ortholog annotations:
+```
+data/eggNOG_annotations.tab
+```
+
 
 <a name="enzymes"></a>
 ## 2. Interactions with enzymes
@@ -92,64 +127,57 @@ results/Fisher_exact_test_for_pathway_interactions.tab
 <a name="orthologs"></a>
 ## 4. Comparison of orthologs
 
-Orthologs in the organisms were identified via UniProt and the eggNOG labels:
-```
-source/identify_orthologs.sh
-```
-
-...resulting in these data files:
-```
-data/uniprot_eggNOG.tab
-data/organism_uniprot.tab
-```
-
-The second file lists all UniProt sequences in the organisms, so that those without an ortholog could be accounted for as well.
-
-Annotations for the eggNOG labels were acquired:
-```
-source/get_eggNOG_categories.sh
-```
-
-...and filtered with R:
-```
-source/filter_eggNOG_annotations.R
-```
-
-...thus producing the final eggNOG ortholog annotations:
-```
-data/eggNOG_annotations.tab
-```
-
-Interaction patterns with orthologs were then compared within and between organisms:
+Interaction patterns with orthologs were compared within and between organisms:
 ```
 source/orthologs.R
 ```
 
-...producing a range of comparison plots and tables:
+...producing a range of comparison plots and tables.
+
+Overview and clustering of orthologs across the whole dataset:
 ```
 results/orthologs_interaction_comparison.png
-results/orthologs_interaction_pcoa.pdf
-results/Fig.orthologs_interaction_pcoa.pdf
-results/orthologs_interaction_jaccard.tab
-results/orthologs_interaction_pca.pdf
 results/orthologs_interaction_clustering.pdf
 results/metabolite_function_interactions.pdf
+```
+
+PCoA and PCA analysis at high and low concentration:
+```
+results/Fig.orthologs_interaction_pcoa.high.pdf
+results/Fig.orthologs_interaction_pcoa.low.pdf
+results/orthologs_interaction_jaccard.high.tab
+results/orthologs_interaction_jaccard.low.tab
+results/orthologs_interaction_pca.high.pdf
+results/orthologs_interaction_pca.low.pdf
+results/orthologs_interaction_pcoa.high.pdf
+results/orthologs_interaction_pcoa.low.pdf
+```
+
+**Example:** Ortholog metabolite interaction PCoA
+
+![alt text](data/examples/orthologs_interaction_pcoa.png "Ortholog metabolite interaction PCoA example")
+
+Clustering of metabolites or orthologs per organism:
+```
 results/ortholog_clustering.Cupriavidus_by_Metabolite.pdf
 results/ortholog_clustering.Cupriavidus_by_Ortholog.pdf
+results/ortholog_clustering.Hydrogenophaga_by_Metabolite.pdf
+results/ortholog_clustering.Hydrogenophaga_by_Ortholog.pdf
 results/ortholog_clustering.Synechococcus_by_Metabolite.pdf
 results/ortholog_clustering.Synechococcus_by_Ortholog.pdf
 results/ortholog_clustering.Synechocystis_by_Metabolite.pdf
 results/ortholog_clustering.Synechocystis_by_Ortholog.pdf
-results/ortholog_category_heatmap.pdf
 ```
 
-**Example 1:** Ortholog metabolite interaction PCoA
-
-![alt text](data/examples/orthologs_interaction_pcoa.png "Ortholog metabolite interaction PCoA example")
-
-**Example 2:** Ortholog metabolite interaction clustering in _Cupriavidus_
+**Example:** Ortholog metabolite interaction clustering in _Cupriavidus_
 
 ![alt text](data/examples/ortholog_clustering.Cupriavidus_by_Metabolite.png "Ortholog metabolite interaction clustering example in Cupriavidus")
+
+Clustered heatmap of interactions between metabolites and ortholog categories:
+```
+results/ortholog_category_heatmap.abs.pdf
+results/ortholog_category_heatmap.norm.pdf
+```
 
 <a name="modules"></a>
 ## 5. Comparison of KEGG modules
@@ -163,6 +191,16 @@ source/modules.R
 ```
 results/module_interaction_summary.tab
 results/module_interactions.pdf
+```
+
+The overlap of modules and ortholog categories was examined:
+```
+source/category_module_overlap.R
+```
+
+...producing the following plot:
+```
+results/category_module_overlap.pdf
 ```
 
 **Example:** KEGG module metabolite interactions (top modules by number of interactions)
@@ -205,6 +243,21 @@ results/cbb_ko_trees.pdf
 **Example:** PRK phylogenetic tree with LiP-SMap interactions
 
 ![alt text](data/examples/cbb_ko_trees.png "PRK phylogenetic tree")
+
+<a name="tables"></a>
+## 7. Supplementary tables
+
+KEGG EC and module annotations were combined with eggNOG orthologs and categories to give context to metabolite-protein interactions for low and high concentration:
+
+```
+source/tables.R
+```
+
+...yielding a long format supplementary table:
+
+```
+results/ortholog_ec_module_interactions.tab.gz
+```
 
 <a name="author"></a>
 ## A. Author
