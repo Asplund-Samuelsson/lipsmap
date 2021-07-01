@@ -54,14 +54,8 @@ ec_description = read_tsv(
   "data/EC_description.tab", col_names=c("EC", "Description")
 )
 
-# Determine eggNOG annotations
-eggnog_annotations_unique = eggnog_annotations %>%
-  # Select relevant data
-  select(Ortholog, Version, Category) %>%
-  # Split multiple categories between each character
-  mutate(Category = str_split(Category, "")) %>%
-  # Unnest categories per ortholog into rows
-  unnest(cols="Category") %>%
+# Correct Ortholog names based on eggNOG version
+eggnog_annotations = eggnog_annotations %>%
   # Add missing version string to non-COG orthologs
   mutate(
     Ortholog = ifelse(
@@ -76,6 +70,21 @@ eggnog_annotations_unique = eggnog_annotations %>%
   ) %>%
   # Remove version and make rows unique
   select(-Version) %>%
+  distinct()
+
+eggnog_description = eggnog_annotations %>%
+  select(Ortholog, Description) %>%
+  distinct()
+
+# Determine eggNOG annotations
+eggnog_annotations_unique = eggnog_annotations %>%
+  # Select relevant data
+  select(Ortholog, Category) %>%
+  # Split multiple categories between each character
+  mutate(Category = str_split(Category, "")) %>%
+  # Unnest categories per ortholog into rows
+  unnest(cols="Category") %>%
+  # Make rows unique
   distinct()
 
 # Determine interactions
@@ -110,13 +119,18 @@ annotated_interactions = interactions %>%
   left_join(kegg_ec) %>%
   left_join(ec_description) %>%
   rename(EC_description = Description) %>%
-  # Add eggNOG orthologs and description
+  # Add eggNOG orthologs, category, and description
   left_join(orthologs) %>%
   left_join(eggnog_annotations_unique) %>%
   left_join(eggnog_category_descriptions) %>%
   rename(
-    Ortholog_description = Description,
-    Ortholog_short_description = Short_description
+    Ortholog_category = Description,
+    Ortholog_short_category = Short_description
+  ) %>%
+  left_join(
+    eggnog_description %>%
+      group_by(Ortholog) %>%
+      summarise(Ortholog_description = paste(Description, collapse="; "))
   ) %>%
   # Add locus ID
   left_join(uniprot_locus) %>%
@@ -129,7 +143,7 @@ annotated_interactions = interactions %>%
   select(
     Organism, Metabolite, Conc, UniProt_entry, Locus, Interaction,
     EC, EC_description, Module, Module_description,
-    Ortholog, Ortholog_description
+    Ortholog, Ortholog_description, Ortholog_category
   )
 
 # Save table
