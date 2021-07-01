@@ -4,6 +4,20 @@ library(tidyverse)
 # Load data
 lipsmap = read_tsv("data/annotated_comparison_results.tab.gz")
 
+kegg_modules = read_tsv("data/KEGGgene_module_organism.tab")
+
+kegg_uniprot = read_tsv("data/KEGGgene_uniprot_organism.tab") %>%
+  # Clean up the UniProt ID
+  mutate(UniProt_entry = str_remove(UniProt, "up:"))
+
+kegg_ec = read_tsv("data/KEGGgene_EC_organism.tab") %>%
+  # Clean up the EC
+  mutate(EC = str_remove(EC, "ec:"))
+
+uniprot_ec = kegg_uniprot %>%
+  inner_join(kegg_ec) %>%
+  select(UniProt_entry, EC)
+
 # Determine interactions
 interactions = lipsmap %>%
   # Determine metabolite-interacting proteins; at least one significant peptide
@@ -27,16 +41,7 @@ go_annotations = lipsmap %>%
   rename(Annotation = GO)
 
 # Determine EC annotations
-ec_annotations = lipsmap %>%
-  select(UniProt_entry, EC_number) %>%
-  distinct() %>%
-  # Split EC data into rows
-  ungroup() %>%
-  mutate(EC = str_split(EC_number, "; ")) %>%
-  unnest(cols="EC") %>%
-  select(-EC_number) %>%
-  # Remove proteins that are not enzymes
-  filter(!is.na(EC)) %>%
+ec_annotations = uniprot_ec %>%
   # Rename to Annotation
   rename(Annotation = EC)
 
@@ -63,12 +68,7 @@ pathway_annotations = lipsmap %>%
   rename(Annotation = Pathway)
 
 # Determine KEGG modules annotations
-kegg_uniprot = read_tsv("data/KEGGgene_uniprot_organism.tab")
-kegg_modules = read_tsv("data/KEGGgene_module_organism.tab")
-
 module_annotations = kegg_uniprot %>%
-  # Clean up the UniProt ID
-  mutate(UniProt_entry = str_remove(UniProt, "up:")) %>%
   # Add modules
   inner_join(kegg_modules) %>%
   # Clean up the Module ID

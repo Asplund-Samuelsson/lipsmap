@@ -1,9 +1,14 @@
 options(width=110)
 library(tidyverse)
 
-
 # Load data
 lipsmap = read_tsv("data/annotated_comparison_results.tab.gz")
+
+kegg_uniprot = read_tsv("data/KEGGgene_uniprot_organism.tab") %>%
+  # Clean up the UniProt ID
+  mutate(UniProt_entry = str_remove(UniProt, "up:"))
+
+kegg_ec = read_tsv("data/KEGGgene_EC_organism.tab")
 
 # Determine the number of detected genes
 detected_genes = lipsmap %>%
@@ -14,20 +19,22 @@ detected_per_met = lipsmap %>%
   group_by(Organism, Metabolite) %>%
   summarise(Detected = length(unique(Locus)))
 
+# Make table of enzymes
+enzymes = kegg_uniprot %>% inner_join(kegg_ec)
 
 # Compare number of significant interactions in EC and non-EC genes
 gene_interactions = lipsmap %>%
-  select(Organism, Metabolite, Peptide_ID, Locus, EC_number, Conc, Sign) %>%
+  select(Organism, Metabolite, Peptide_ID, UniProt_entry, Conc, Sign) %>%
   mutate(Significant = ifelse(Sign == "sign", 1, 0)) %>%
   select(-Sign) %>%
-  group_by(Organism, Metabolite, Conc, Locus, EC_number) %>%
+  group_by(Organism, Metabolite, Conc, UniProt_entry) %>%
   summarise(
     Peptides = length(Significant),
     Significant = sum(Significant)
   ) %>%
   mutate(
     Enzyme = factor(
-      ifelse(is.na(EC_number), "Other", "Enzyme"),
+      ifelse(UniProt_entry %in% enzymes$UniProt_entry, "Enzyme", "Other"),
       levels=c("Enzyme", "Other")
     ),
     Interaction = factor(
