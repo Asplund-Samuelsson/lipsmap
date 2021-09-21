@@ -355,8 +355,12 @@ jaccard_pc_plots = function(interaction_comparison, conc){
     axis.title = element_blank()
   )
   gp = gp + scale_size_continuous(guide=guide_legend(nrow=1))
-  gp = gp + scale_y_continuous(breaks=c(-0.3,0,0.3))
-  gp = gp + scale_x_continuous(breaks=c(-0.25,0,0.25))
+  gp = gp + scale_x_continuous(
+    breaks=labeling::extended(min(gp$data$PCo1), max(gp$data$PCo1), m=3)
+  )
+  gp = gp + scale_y_continuous(
+    breaks=labeling::extended(min(gp$data$PCo2), max(gp$data$PCo2), m=3)
+  )
   gp1 = gp
 
   # Plot split by Organism
@@ -377,8 +381,12 @@ jaccard_pc_plots = function(interaction_comparison, conc){
     axis.title = element_blank()
   )
   gp = gp + scale_size_continuous(guide=guide_legend(nrow=1))
-  gp = gp + scale_y_continuous(breaks=c(-0.3,0,0.3))
-  gp = gp + scale_x_continuous(breaks=c(-0.25,0,0.25))
+  gp = gp + scale_x_continuous(
+    breaks=labeling::extended(min(gp$data$PCo1), max(gp$data$PCo1), m=3)
+  )
+  gp = gp + scale_y_continuous(
+    breaks=labeling::extended(min(gp$data$PCo2), max(gp$data$PCo2), m=3)
+  )
   gp2 = gp
 
   library(ggpubr)
@@ -492,6 +500,81 @@ jaccard_pc_plots = function(interaction_comparison, conc){
     widths = c(1, 2),
     common.legend = T,
     label.x = 0, label.y = 1
+  ))
+  garbage = dev.off()
+
+  # Plot PCA split by Metabolite subset
+  gp = ggplot(
+    filter(
+      ortholog_pca_plot,
+      Metabolite %in% c("GAP","ATP","FBP","Cit","G6P","3PGA")
+    ),
+    aes(x=PC1, y=PC2, colour=Organism, label=Metabolite)
+  )
+  gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
+  gp = gp + scale_colour_manual(values=organcols, guide=F)
+  gp = gp + theme_bw()
+  gp = gp + facet_wrap(~Metabolite, ncol=6)
+  gp = gp + theme(
+    axis.ticks = element_line(colour="black"),
+    axis.text = element_text(colour="black"),
+    strip.background = element_blank(),
+    aspect.ratio = 1,
+    axis.title = element_blank()
+  )
+  gp = gp + scale_size_continuous(guide=guide_legend(nrow=1))
+  gp = gp + scale_x_continuous(
+    breaks=labeling::extended(min(gp$data$PC1), max(gp$data$PC1), m=3)
+  )
+  gp = gp + scale_y_continuous(
+    breaks=labeling::extended(min(gp$data$PC2), max(gp$data$PC2), m=3)
+  )
+  gp1 = gp
+
+  # Plot PCA split by Organism
+  gp = ggplot(
+    ortholog_pca_plot,
+    aes(x=PC1, y=PC2, colour=Organism, label=Metabolite)
+  )
+  gp = gp + geom_point(alpha=0.8, mapping=aes(size=Interactions))
+  gp = gp + geom_text_repel(force=3, size=2.5,alpha=0.9)
+  gp = gp + scale_colour_manual(values=organcols, guide=F)
+  gp = gp + theme_bw()
+  gp = gp + facet_wrap(~Organism, ncol=4)
+  gp = gp + theme(
+    axis.ticks = element_line(colour="black"),
+    axis.text = element_text(colour="black"),
+    strip.background = element_blank(),
+    aspect.ratio = 1,
+    axis.title = element_blank()
+  )
+  gp = gp + scale_size_continuous(guide=guide_legend(nrow=1))
+  gp = gp + scale_x_continuous(
+    breaks=labeling::extended(min(gp$data$PC1), max(gp$data$PC1), m=3)
+  )
+  gp = gp + scale_y_continuous(
+    breaks=labeling::extended(min(gp$data$PC2), max(gp$data$PC2), m=3)
+  )
+  gp2 = gp
+
+  library(ggpubr)
+  outfile = paste(
+    "results/Fig.orthologs_interaction_pca.", conc, ".pdf", sep=""
+  )
+  pdf(outfile, width=180/25.4, height=120/25.4, onefile=FALSE)
+  print(annotate_figure(
+    ggarrange(
+      gp2,
+      gp1,
+      nrow = 2,
+      ncol = 1,
+      heights = c(3/2, 1),
+      common.legend = T,
+      label.x = 0, label.y = 1,
+      align="hv"
+    ),
+    bottom=paste("PC1 (", ortholog_pca_var[1], ")", sep=""),
+    left=paste("PC2 (", ortholog_pca_var[2], ")", sep="")
   ))
   garbage = dev.off()
 
