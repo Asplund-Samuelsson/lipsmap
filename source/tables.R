@@ -2,7 +2,9 @@ options(width=110)
 library(tidyverse)
 
 # Load data
-lipsmap = read_tsv("data/annotated_comparison_results.tab.gz")
+lipsmap = read_tsv("data/annotated_comparison_results.tab.gz") %>%
+  # Change significance
+  mutate(Sign = ifelse(adj.pvalue < 0.01, "sign", "unsign"))
 
 orthologs = read_tsv(
   "data/uniprot_eggNOG.tab",

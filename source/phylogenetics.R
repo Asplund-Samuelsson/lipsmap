@@ -37,7 +37,9 @@ taxonomy = bind_rows(
   )
 )
 
-lipsmap = read_tsv("data/annotated_comparison_results.tab.gz")
+lipsmap = read_tsv("data/annotated_comparison_results.tab.gz") %>%
+  # Change significance
+  mutate(Sign = ifelse(adj.pvalue < 0.01, "sign", "unsign"))
 
 interactions = lipsmap %>%
   # Determine metabolite-interacting proteins; at least one significant peptide
