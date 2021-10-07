@@ -18,6 +18,8 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
 
 **7. [Supplementary tables](#tables)**
 
+**8. [Calvin cycle and sinks](#calvin)**
+
 **A. [Author](#author)**
 
 <a name="prep"></a>
@@ -257,6 +259,28 @@ source/tables.R
 
 ```
 results/ortholog_ec_module_interactions.tab.gz
+```
+
+<a name="calvin"></a>
+## 8. Calvin cycle and sinks
+
+Calvin (CBB) cycle enzymes and related sink (or "drain") enzymes were investigated for interactions with the tested metabolites:
+
+```
+source/cbb_drains.R
+```
+
+...by creating a plot of all interactions:
+
+```
+results/cbb_drains.pdf
+```
+
+...with these enzymes, defined by EC number annotations from KEGG:
+
+```
+data/cbb_enzymes.tab
+data/cbb_drains.tab
 ```
 
 <a name="author"></a>
