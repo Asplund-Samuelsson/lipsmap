@@ -106,7 +106,7 @@ gp = gp + theme(
   strip.background = element_blank(),
   axis.ticks = element_line(color="black"),
   axis.text = element_text(color="black"),
-  axis.text.x = element_text(angle=90, hjust=1, vjust=1),
+  axis.text.x = element_text(angle=90, hjust=1, vjust=0.5),
   legend.position = "top",
   legend.title = element_blank()
 )
