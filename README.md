@@ -20,6 +20,8 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
 
 **8. [Calvin cycle and sinks](#calvin)**
 
+**9. [Carbon concentration mechanisms](#ccm)**
+
 **A. [Author](#author)**
 
 <a name="prep"></a>
@@ -282,6 +284,28 @@ results/cbb_drains.pdf
 data/cbb_enzymes.tab
 data/cbb_drains.tab
 ```
+
+<a name="ccm"></a>
+## 9. Carbon concentration mechanisms
+
+Carbon concentration mechanism (CCM) interactions in _Synechocystis_ were plotted using this script:
+
+```
+source/ccm.R
+```
+
+...generating this output:
+
+```
+results/ccm.pdf
+```
+
+...based on this list of CCM and regulatory genes:
+
+```
+data/CCM_regulatory_proteins.csv
+```
+
 
 <a name="author"></a>
 ## A. Author
