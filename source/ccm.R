@@ -1,6 +1,5 @@
 options(width=110)
 library(tidyverse)
-library(ggarrange)
 
 # Load data
 lipsmap = read_tsv("data/annotated_comparison_results.tab.gz") %>%
@@ -112,4 +111,4 @@ gp = gp + theme(
 )
 gp = gp + guides(alpha=F)
 
-ggsave("results/ccm.pdf", gp, w=8, h=8)
+ggsave("results/ccm.pdf", gp, w=8, h=10)
