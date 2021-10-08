@@ -22,6 +22,8 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
 
 **9. [Carbon concentration mechanisms](#ccm)**
 
+**10. [Number of detected peptides](#peptides)**
+
 **A. [Author](#author)**
 
 <a name="prep"></a>
@@ -306,6 +308,24 @@ results/ccm.pdf
 data/CCM_regulatory_proteins.csv
 ```
 
+<a name="peptides"></a>
+## 10. Number of detected peptides
+
+The number of detected peptides for proteins where none (Interaction FALSE) or at least one peptide (Interaction TRUE) showed significant interaction with a metabolite was plotted for each organism and concentration:
+
+```
+source/peptides.R
+```
+
+...yielding this graphic:
+
+```
+results/peptides.pdf
+```
+
+**Example:** Detected peptides per protein compared to occurrence of interaction in _Synechocystis_
+
+![alt text](data/examples/peptides.png "Detected peptides and interaction in Synechocystis")
 
 <a name="author"></a>
 ## A. Author
