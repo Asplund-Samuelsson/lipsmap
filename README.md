@@ -14,7 +14,7 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
 
 **5. [Comparison of KEGG modules](#modules)**
 
-**6. [Phylogenetic analysis](#phylogenetics)**
+**6. [Phylogenetic trees](#phylogenetics)**
 
 **7. [Supplementary tables](#tables)**
 
@@ -99,6 +99,29 @@ source/filter_eggNOG_annotations.R
 data/eggNOG_annotations.tab
 ```
 
+#### Gene identifiers
+
+Gene identifiers were downloaded for the LiP-SMap organism proteins:
+```
+source/get_uniprot_gene_identifiers.sh
+```
+
+...producing these lists:
+```
+data/uniprot_gene.tab
+data/uniprot_locus_complete.tab
+```
+
+### Phylogenetic analysis
+
+A phylogenetic analysis was performed on Calvin cycle enzymes from the corresponding KEGG module ([M00165](https://www.genome.jp/kegg-bin/show_module?M00165)), supplemented with transaldolase (K00616, K13810), triose-phosphate isomerase (K01803), and ribulose-phosphate epimerase (K01783). Sequences were downloaded from UniProt, filtered with CD-HIT, aligned with MAFFT, and used to make trees with FastTreeMP:
+```
+source/Calvin_cycle_phylogenetics.sh
+```
+
+The NCBI taxonomy was consulted to give organism labels to all proteins in the tree using the helper script `source/taxid-to-taxonomy.py`.
+
+UniProt sequences were acquired based on KEGG orthologs using the helper script `source/uniprot_sequences_from_KO.sh`.
 
 <a name="enzymes"></a>
 ## 2. Interactions with enzymes
@@ -214,34 +237,14 @@ results/category_module_overlap.pdf
 ![alt text](data/examples/module_interactions.png "KEGG module metabolite interactions (top modules)")
 
 <a name="phylogenetics"></a>
-## 6. Phylogenetic analysis
+## 6. Phylogenetic trees
 
-A phylogenetic analysis was performed on Calvin cycle enzymes from the corresponding KEGG module ([M00165](https://www.genome.jp/kegg-bin/show_module?M00165)). Sequences were downloaded from UniProt, filtered with CD-HIT, aligned with MAFFT, and used to make trees with FastTreeMP:
-```
-source/Calvin_cycle_phylogenetics.sh
-```
-
-The NCBI taxonomy was consulted to give organism labels to all proteins in the tree using the following helper script:
-```
-source/taxid-to-taxonomy.py
-```
-
-UniProt sequences were acquired based on KEGG orthologs using the following helper script:
-```
-source/uniprot_sequences_from_KO.sh
-```
-
-Additionally, gene identifiers were downloaded for the LiP-SMap organism proteins:
-```
-source/get_uniprot_gene_identifiers.sh
-```
-
-Finally, the trees were plotted using _phytools_ and _ggtree_ in R:
+Phylogenetic trees of Calvin cycle genes were plotted using _phytools_ and _ggtree_ in R:
 ```
 source/phylogenetics.R
 ```
 
-...producing the following final PDF containing visualizations of all trees:
+...producing the following final PDF containing visualizations of all trees, highlighting interactions with metabolites:
 ```
 results/cbb_ko_trees.pdf
 ```

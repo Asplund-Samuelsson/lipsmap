@@ -5,6 +5,9 @@ sort | uniq > data/cbb_ko.txt
 # Add transaldolase since it is missing
 echo -e "K00616\nK13810" >> data/cbb_ko.txt
 
+# Add triose-phosphate isomerase (TPI) and ribulose-phosphate epimerase (RPE)
+echo -e "K01803\nK01783" >> data/cbb_ko.txt
+
 # Get descriptions for Calvin cycle orthologs
 wget -qO - http://rest.kegg.jp/list/`cat data/cbb_ko.txt | tr "\n" "+"` \
 > data/cbb_ko_description.tab
