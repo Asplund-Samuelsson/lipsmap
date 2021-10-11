@@ -423,6 +423,7 @@ ec:1.1.1.422	pseudoephedrine dehydrogenase; PseDH
 ec:1.1.1.423	(1R,2S)-ephedrine 1-dehydrogenase; EDH; ephedrine dehydrogenase
 ec:1.1.1.424	D-xylose 1-dehydrogenase (NADP+, D-xylono-1,4-lactone-forming); xacA (gene name); xdh (gene name)
 ec:1.1.1.425	levoglucosan dehydrogenase; 1,6-anhydro-beta-D-glucose dehydrogenase
+ec:1.1.1.426	UDP-N-acetyl-alpha-D-quinovosamine dehydrogenase; wbpV (gene name); wreQ (gene name)
 ec:1.1.2.1	Transferred to 1.1.5.3
 ec:1.1.2.2	mannitol dehydrogenase (cytochrome); polyol dehydrogenase
 ec:1.1.2.3	L-lactate dehydrogenase (cytochrome); lactic acid dehydrogenase; cytochrome b2 (flavin-free derivative of flavocytochrome b2); flavocytochrome b2; L-lactate cytochrome c reductase; L(+)-lactate:cytochrome c oxidoreductase; dehydrogenase, lactate (cytochrome); L-lactate cytochrome c oxidoreductase; lactate dehydrogenase (cytochrome); lactic cytochrome c reductase
@@ -497,6 +498,7 @@ ec:1.1.5.10	D-2-hydroxyacid dehydrogenase (quinone); (R)-2-hydroxy acid dehydrog
 ec:1.1.5.11	1-butanol dehydrogenase (quinone); BOH
 ec:1.1.5.12	D-lactate dehydrogenase (quinone); dld (gene name)
 ec:1.1.5.13	(S)-2-hydroxyglutarate dehydrogenase; L-2-hydroxyglutarate dehydrogenase; lhgO (gene name); ygaF (gene name)
+ec:1.1.5.14	fructose 5-dehydrogenase; fructose 5-dehydrogenase (acceptor); D-fructose dehydrogenase; D-fructose:(acceptor) 5-oxidoreductase
 ec:1.1.7.1	4-hydroxybenzoyl-CoA reductase; 4-hydroxybenzoyl-CoA reductase (dehydroxylating); 4-hydroxybenzoyl-CoA:(acceptor) oxidoreductase; benzoyl-CoA:acceptor oxidoreductase
 ec:1.1.9.1	alcohol dehydrogenase (azurin); type II quinoprotein alcohol dehydrogenase; quinohaemoprotein ethanol dehydrogenase; QHEDH; ADHIIB
 ec:1.1.98.1	Transferred to 1.1.9.1
@@ -516,7 +518,7 @@ ec:1.1.99.7	lactate---malate transhydrogenase; malate-lactate transhydrogenase
 ec:1.1.99.8	Transferred to 1.1.2.7 and 1.1.2.8
 ec:1.1.99.9	pyridoxine 5-dehydrogenase; pyridoxal-5-dehydrogenase; pyridoxol 5-dehydrogenase; pyridoxin 5-dehydrogenase; pyridoxine dehydrogenase; pyridoxine 5'-dehydrogenase; pyridoxine:(acceptor) 5-oxidoreductase
 ec:1.1.99.10	Transferred to 1.1.5.9
-ec:1.1.99.11	fructose 5-dehydrogenase; fructose 5-dehydrogenase (acceptor); D-fructose dehydrogenase; D-fructose:(acceptor) 5-oxidoreductase
+ec:1.1.99.11	Transferred to 1.1.5.14
 ec:1.1.99.12	sorbose dehydrogenase; L-sorbose:(acceptor) 5-oxidoreductase
 ec:1.1.99.13	glucoside 3-dehydrogenase; D-glucoside 3-dehydrogenase; D-aldohexopyranoside dehydrogenase; D-aldohexoside:cytochrome c oxidoreductase; D-glucoside 3-dehydrogenase; hexopyranoside-cytochrome c oxidoreductase; D-aldohexoside:(acceptor) 3-oxidoreductase
 ec:1.1.99.14	glycolate dehydrogenase; glycolate oxidoreductase; glycolic acid dehydrogenase; glycolate:(acceptor) 2-oxidoreductase
@@ -567,7 +569,7 @@ ec:1.2.1.16	succinate-semialdehyde dehydrogenase [NAD(P)+]; succinate semialdehy
 ec:1.2.1.17	glyoxylate dehydrogenase (acylating)
 ec:1.2.1.18	malonate-semialdehyde dehydrogenase (acetylating); malonic semialdehyde oxidative decarboxylase
 ec:1.2.1.19	aminobutyraldehyde dehydrogenase; gamma-guanidinobutyraldehyde dehydrogenase (ambiguous); ABAL dehydrogenase; 4-aminobutyraldehyde dehydrogenase; 4-aminobutanal dehydrogenase; gamma-aminobutyraldehyde dehydroganase; 1-pyrroline dehydrogenase; ABALDH; YdcW
-ec:1.2.1.20	glutarate-semialdehyde dehydrogenase; glutarate semialdehyde dehydrogenase
+ec:1.2.1.20	glutarate-semialdehyde dehydrogenase; glutarate semialdehyde dehydrogenase; davD (gene name)
 ec:1.2.1.21	glycolaldehyde dehydrogenase; glycol aldehyde dehydrogenase
 ec:1.2.1.22	lactaldehyde dehydrogenase; L-lactaldehyde:NAD oxidoreductase; nicotinamide adenine dinucleotide (NAD)-linked dehydrogenase
 ec:1.2.1.23	2-oxoaldehyde dehydrogenase (NAD+); alpha-ketoaldehyde dehydrogenase; methylglyoxal dehydrogenase; NAD+-linked alpha-ketoaldehyde dehydrogenase; 2-ketoaldehyde dehydrogenase; NAD+-dependent alpha-ketoaldehyde dehydrogenase
@@ -654,6 +656,7 @@ ec:1.2.1.103	[amino-group carrier protein]-6-phospho-L-2-aminoadipate reductase;
 ec:1.2.1.104	pyruvate dehydrogenase system; pyruvate dehydrogenase complex; PDH
 ec:1.2.1.105	2-oxoglutarate dehydrogenase system; 2-oxoglutarate dehydrogenase complex
 ec:1.2.1.106	[amino-group carrier protein]-5-phospho-L-glutamate reductase; lysY (gene name)
+ec:1.2.1.107	glyceraldehyde-3-phosphate dehydrogenase (arsenate-transferring)
 ec:1.2.2.1	formate dehydrogenase (cytochrome); formate dehydrogenase; formate:cytochrome b1 oxidoreductase
 ec:1.2.2.2	Deleted entry
 ec:1.2.2.3	Transferred to 1.17.2.3
@@ -1100,7 +1103,7 @@ ec:1.5.99.8	Transferred to 1.5.5.2
 ec:1.5.99.9	Transferred to 1.5.98.1
 ec:1.5.99.10	Transferred to 1.5.8.1
 ec:1.5.99.11	Transferred to 1.5.98.2
-ec:1.5.99.12	cytokinin dehydrogenase; N6-dimethylallyladenine:(acceptor) oxidoreductase; 6-N-dimethylallyladenine:acceptor oxidoreductase; OsCKX2; CKX; cytokinin oxidase/dehydrogenase
+ec:1.5.99.12	cytokinin dehydrogenase; N6-dimethylallyladenine:(acceptor) oxidoreductase; 6-N-dimethylallyladenine:acceptor oxidoreductase; OsCKX2; CKX; cytokinin oxidase/dehydrogenase; N6-dimethylallyladenine:acceptor oxidoreductase
 ec:1.5.99.13	D-proline dehydrogenase; D-Pro DH; D-Pro dehydrogenase; dye-linked D-proline dehydrogenase
 ec:1.5.99.14	6-hydroxypseudooxynicotine dehydrogenase
 ec:1.5.99.15	dihydromethanopterin reductase (acceptor); DmrX
@@ -1481,6 +1484,7 @@ ec:1.13.11.88	isoeugenol monooxygenase; iem (gene name)
 ec:1.13.11.89	(hydroxymethyl)phosphonate dioxygenase; phnZ1 (gene name)
 ec:1.13.11.90	[1-hydroxy-2-(trimethylamino)ethyl]phosphonate dioxygenase (glycine-betaine-forming); tmpB (gene name)
 ec:1.13.11.91	3-mercaptopropionate dioxygenase; mdo (gene name); 3-mercaptopropionic acid dioxygenase; 3-sulfanylpropanoate dioxygenase
+ec:1.13.11.92	fatty acid alpha-dioxygenase; DOX1 (gene name)
 ec:1.13.12.1	arginine 2-monooxygenase; arginine monooxygenase; arginine decarboxylase (incorrect); arginine oxygenase (decarboxylating); arginine decarboxy-oxidase
 ec:1.13.12.2	lysine 2-monooxygenase; lysine oxygenase; lysine monooxygenase; L-lysine-2-monooxygenase
 ec:1.13.12.3	tryptophan 2-monooxygenase; tms1 (gene name); iaaM (gene name)
@@ -1600,6 +1604,7 @@ ec:1.14.11.73	[protein]-arginine 3-hydroxylase; JMJD5 (gene name)
 ec:1.14.11.74	L-isoleucine 31-dioxygenase; hilA (gene name); L-isoleucine 4'-dioxygenase (incorrect)
 ec:1.14.11.75	31-hydroxy-L-isoleucine 4-dioxygenase; hilB (gene name); 4'-hydroxy-L-isoleucine 4-dioxygenase (incorrect)
 ec:1.14.11.76	L-glutamate 3(R)-hydroxylase; iboH (gene name)
+ec:1.14.11.77	alkyl sulfatase; atsK (gene name); alpha-ketoglutarate-dependent sulfate ester dioxygenase; 2-oxoglutarate-dependent sulfate ester dioxygenase; type II alkyl sulfatase
 ec:1.14.12.1	anthranilate 1,2-dioxygenase (deaminating, decarboxylating); anthranilate hydroxylase; anthranilic hydroxylase; anthranilic acid hydroxylase
 ec:1.14.12.2	Transferred to 1.14.13.35
 ec:1.14.12.3	benzene 1,2-dioxygenase; benzene hydroxylase; benzene dioxygenase
@@ -2293,7 +2298,7 @@ ec:1.16.1.2	diferric-transferrin reductase; diferric transferrin reductase; NADH
 ec:1.16.1.3	Deleted entry
 ec:1.16.1.4	cob(II)alamin reductase; vitamin B12r reductase; B12r reductase; NADH2:cob(II)alamin oxidoreductase
 ec:1.16.1.5	Deleted entry
-ec:1.16.1.6	cyanocobalamin reductase (cyanide-eliminating); MMACHC (gene name); CblC; cyanocobalamin reductase; cyanocobalamin reductase (NADPH, cyanide-eliminating); cyanocobalamin reductase (NADPH, CN-eliminating); NADPH:cyanocob(III)alamin oxidoreductase (cyanide-eliminating); cob(I)alamin, cyanide:NADP+ oxidoreductase
+ec:1.16.1.6	cyanocobalamin reductase; MMACHC (gene name); CblC; cyanocobalamin reductase (NADPH, cyanide-eliminating); cyanocobalamin reductase (NADPH, CN-eliminating); NADPH:cyanocob(III)alamin oxidoreductase (cyanide-eliminating); cob(I)alamin, cyanide:NADP+ oxidoreductase; cyanocobalamin reductase (cyanide-eliminating)
 ec:1.16.1.7	ferric-chelate reductase (NADH); ferric chelate reductase (ambiguous); iron chelate reductase (ambiguous); NADH:Fe3+-EDTA reductase; NADH2:Fe3+ oxidoreductase; ferB (gene name); Fe(II):NAD+ oxidoreductase
 ec:1.16.1.8	[methionine synthase] reductase; methionine synthase cob(II)alamin reductase (methylating); methionine synthase reductase; [methionine synthase]-cobalamin methyltransferase (cob(II)alamin reducing); [methionine synthase]-methylcob(I)alamin,S-adenosylhomocysteine:NADP+ oxidoreductase
 ec:1.16.1.9	ferric-chelate reductase (NADPH); ferric chelate reductase (ambiguous); iron chelate reductase (ambiguous); NADPH:Fe3+-EDTA reductase; NADPH-dependent ferric reductase; yqjH (gene name); Fe(II):NADP+ oxidoreductase
@@ -2305,6 +2310,7 @@ ec:1.16.5.1	Transferred to 7.2.1.3
 ec:1.16.8.1	Deleted entry
 ec:1.16.9.1	iron:rusticyanin reductase; Cyc2 (ambiguous)
 ec:1.16.98.1	Transferred to 1.16.9.1
+ec:1.16.99.1	[Co(II) methylated amine-specific corrinoid protein] reductase
 ec:1.17.1.1	CDP-4-dehydro-6-deoxyglucose reductase; CDP-4-keto-6-deoxyglucose reductase; cytidine diphospho-4-keto-6-deoxy-D-glucose reductase; cytidine diphosphate 4-keto-6-deoxy-D-glucose-3-dehydrogenase; CDP-4-keto-deoxy-glucose reductase; CDP-4-keto-6-deoxy-D-glucose-3-dehydrogenase system; NAD(P)H:CDP-4-keto-6-deoxy-D-glucose oxidoreductase
 ec:1.17.1.2	Transferred to 1.17.7.4
 ec:1.17.1.3	leucoanthocyanidin reductase; leucocyanidin reductase
@@ -2334,7 +2340,7 @@ ec:1.17.5.3	formate dehydrogenase-N; Fdh-N; FdnGHI; nitrate-inducible formate de
 ec:1.17.7.1	(E)-4-hydroxy-3-methylbut-2-enyl-diphosphate synthase (ferredoxin); 4-hydroxy-3-methylbut-2-en-1-yl diphosphate synthase (ambiguous); (E)-4-hydroxy-3-methylbut-2-en-1-yl-diphosphate:protein-disulfide oxidoreductase (hydrating) (incorrect); (E)-4-hydroxy-3-methylbut-2-enyl diphosphate synthase (ambiguous); gcpE (gene name); ISPG (gene name); (E)-4-hydroxy-3-methylbut-2-enyl-diphosphate synthase
 ec:1.17.7.2	7-hydroxymethyl chlorophyll a reductase; HCAR; 71-hydroxychlorophyll-a:ferredoxin oxidoreductase
 ec:1.17.7.3	(E)-4-hydroxy-3-methylbut-2-enyl-diphosphate synthase (flavodoxin); 4-hydroxy-3-methylbut-2-en-1-yl diphosphate synthase (ambiguous); (E)-4-hydroxy-3-methylbut-2-en-1-yl-diphosphate:protein-disulfide oxidoreductase (hydrating) (incorrect); (E)-4-hydroxy-3-methylbut-2-enyl diphosphate synthase (ambiguous); ispG (gene name)
-ec:1.17.7.4	4-hydroxy-3-methylbut-2-en-1-yl diphosphate reductase; isopentenyl-diphosphate:NADP+ oxidoreductase; LytB; (E)-4-hydroxy-3-methylbut-2-en-1-yl diphosphate reductase; HMBPP reductase; IspH; LytB/IspH
+ec:1.17.7.4	4-hydroxy-3-methylbut-2-en-1-yl diphosphate reductase; isopentenyl-diphosphate:NADP+ oxidoreductase; LytB; (E)-4-hydroxy-3-methylbut-2-en-1-yl diphosphate reductase; HMBPP reductase; IspH; LytB/IspH; isopentenyl-diphosphate:ferredoxin oxidoreductase
 ec:1.17.8.1	hydroxysqualene dehydroxylase; hpnE (gene name)
 ec:1.17.9.1	4-methylphenol dehydrogenase (hydroxylating); pchCF (gene names); p-cresol-(acceptor) oxidoreductase (hydroxylating); p-cresol methylhydroxylase; 4-cresol dehydrogenase (hydroxylating)
 ec:1.17.9.2	(+)-pinoresinol hydroxylase; pinoresinol alpha-hydroxylase; pinAB (gene names)
@@ -2498,11 +2504,11 @@ ec:2.1.1.53	putrescine N-methyltransferase; putrescine methyltransferase
 ec:2.1.1.54	deoxycytidylate C-methyltransferase; deoxycytidylate methyltransferase; dCMP methyltransferase
 ec:2.1.1.55	tRNA (adenine-N6-)-methyltransferase; S-adenosyl-L-methionine:tRNA (adenine-6-N-)-methyltransferase
 ec:2.1.1.56	mRNA (guanine-N7)-methyltransferase; RNMT (gene name); ABD1 (gene name); messenger ribonucleate guanine 7-methyltransferase; guanine-7-methyltransferase; messenger RNA guanine 7-methyltransferase; S-adenosyl-L-methionine:mRNA (guanine-7-N)-methyltransferase
-ec:2.1.1.57	methyltransferase cap1; messenger ribonucleate nucleoside 2'-methyltransferase; messenger RNA (nucleoside-2'-)-methyltransferase; MTR1; cap1-MTase; mRNA (nucleoside-2'-O)-methyltransferase (ambiguous); S-adenosyl-L-methionine:mRNA (nucleoside-2'-O)-methyltransferase
+ec:2.1.1.57	methyltransferase cap1; FTSJD2 (gene name); messenger ribonucleate nucleoside 2'-methyltransferase; messenger RNA (nucleoside-2'-)-methyltransferase; MTR1; cap1-MTase; mRNA (nucleoside-2'-O)-methyltransferase (ambiguous); S-adenosyl-L-methionine:mRNA (nucleoside-2'-O)-methyltransferase
 ec:2.1.1.58	Deleted entry
 ec:2.1.1.59	[cytochrome c]-lysine N-methyltransferase; cytochrome c (lysine) methyltransferase; cytochrome c methyltransferase; cytochrome c-specific protein methylase III; cytochrome c-specific protein-lysine methyltransferase; S-adenosyl-L-methionine:[cytochrome c]-L-lysine 6-N-methyltransferase
 ec:2.1.1.60	calmodulin-lysine N-methyltransferase; S-adenosylmethionine:calmodulin (lysine) N-methyltransferase; S-adenosyl-L-methionine:calmodulin-L-lysine 6-N-methyltransferase
-ec:2.1.1.61	tRNA (5-methylaminomethyl-2-thiouridylate)-methyltransferase; transfer ribonucleate 5-methylaminomethyl-2-thiouridylate 5-methyltransferase; tRNA 5-methylaminomethyl-2-thiouridylate 5'-methyltransferase
+ec:2.1.1.61	tRNA 5-(aminomethyl)-2-thiouridylate-methyltransferase; transfer ribonucleate 5-methylaminomethyl-2-thiouridylate 5-methyltransferase; tRNA 5-methylaminomethyl-2-thiouridylate 5'-methyltransferase; S-adenosyl-L-methionine:tRNA (5-methylaminomethyl-2-thio-uridylate)-methyltransferase; tRNA (5-methylaminomethyl-2-thiouridylate)-methyltransferase
 ec:2.1.1.62	mRNA (2'-O-methyladenosine-N6-)-methyltransferase; messenger ribonucleate 2'-O-methyladenosine NG-methyltransferase; S-adenosyl-L-methionine:mRNA (2'-O-methyladenosine-6-N-)-methyltransferase
 ec:2.1.1.63	methylated-DNA---[protein]-cysteine S-methyltransferase; ada (gene name); ogt (gene name); MGT1 (gene name); MGMT (gene name)
 ec:2.1.1.64	3-demethylubiquinol 3-O-methyltransferase; 5-demethylubiquinone-9 methyltransferase; OMHMB-methyltransferase; 2-octaprenyl-3-methyl-5-hydroxy-6-methoxy-1,4-benzoquinone methyltransferase; S-adenosyl-L-methionine:2-octaprenyl-3-methyl-5-hydroxy-6-methoxy-1,4-benzoquinone-O-methyltransferase; COQ3 (gene name); Coq3 O-methyltransferase; 3-demethylubiquinone-9 3-methyltransferase; ubiG (gene name, ambiguous)
@@ -2737,7 +2743,7 @@ ec:2.1.1.292	carminomycin 4-O-methyltransferase; DnrK; DauK
 ec:2.1.1.293	6-hydroxytryprostatin B O-methyltransferase; ftmD (gene name)
 ec:2.1.1.294	3-O-phospho-polymannosyl GlcNAc-diphospho-ditrans,octacis-undecaprenol 3-phospho-methyltransferase; WbdD; S-adenosyl-L-methionine:3-O-phospho-alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-alpha-D-Man-(1->3)-[alpha-D-Man-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-alpha-D-Man-(1->3)]n-alpha-D-Man-(1->3)-alpha-D-Man-(1->3)-alpha-D-GlcNAc-alpha-diphospho-ditrans,octacis-undecaprenol 3-phospho-methyltransferase
 ec:2.1.1.295	2-methyl-6-phytyl-1,4-hydroquinone methyltransferase; VTE3 (gene name); 2-methyl-6-solanyl-1,4-hydroquinone methyltransferase; MPBQ/MSBQ methyltransferase; MPBQ/MSBQ MT
-ec:2.1.1.296	methyltransferase cap2; MTR2; cap2-MTase; mRNA (nucleoside-2'-O)-methyltransferase (ambiguous)
+ec:2.1.1.296	methyltransferase cap2; CMTR2 (gene name); MTR2; cap2-MTase; mRNA (nucleoside-2'-O)-methyltransferase (ambiguous)
 ec:2.1.1.297	peptide chain release factor N5-glutamine methyltransferase; N5-glutamine S-adenosyl-L-methionine dependent methyltransferase; N5-glutamine MTase; HemK; PrmC
 ec:2.1.1.298	ribosomal protein L3 N5-glutamine methyltransferase; YfcB; PrmB
 ec:2.1.1.299	protein N-terminal monomethyltransferase; NRMT2 (gene name); METTL11B (gene name); N-terminal monomethylase
@@ -2817,6 +2823,10 @@ ec:2.1.1.372	[histone H4]-lysine20 N-trimethyltransferase; SET9 (gene name)
 ec:2.1.1.373	2-hydroxy-4-(methylsulfanyl)butanoate S-methyltransferase; dsyB (gene name); methylthiohydroxybutyrate methyltransferase; MTHB methyltransferase
 ec:2.1.1.374	2-heptyl-1-hydroxyquinolin-4(1H)-one methyltransferase; htm (gene name)
 ec:2.1.1.375	NNS virus cap methyltransferase
+ec:2.1.1.376	glycine betaine---corrinoid protein Co-methyltransferase; mtgB (gene name); glycine betaine methyltransferase
+ec:2.1.1.377	[methyl-Co(III) glycine betaine-specific corrinoid protein]---coenzyme M methyltransferase; mtaA (gene name)
+ec:2.1.1.378	[methyl-Co(III) glycine betaine-specific corrinoid protein]---tetrahydrofolate methyltransferase; mtgA (gene name); DSY3157 (locus name)
+ec:2.1.1.379	[methyl coenzyme M reductase]-L-arginine C-5-methyltransferase; methanogenesis marker protein 10; Mmp10
 ec:2.1.2.1	glycine hydroxymethyltransferase; serine aldolase; threonine aldolase; serine hydroxymethylase; serine hydroxymethyltransferase; allothreonine aldolase; L-serine hydroxymethyltransferase; L-threonine aldolase; serine hydroxymethyltransferase; serine transhydroxymethylase
 ec:2.1.2.2	phosphoribosylglycinamide formyltransferase 1; 2-amino-N-ribosylacetamide 5'-phosphate transformylase; GAR formyltransferase; GAR transformylase; glycinamide ribonucleotide transformylase; GAR TFase; 5,10-methenyltetrahydrofolate:2-amino-N-ribosylacetamide ribonucleotide transformylase; purN (gene name); ADE8 (gene name); GART (gene name); 5'-phosphoribosylglycinamide transformylase; phosphoribosylglycinamide formyltransferase (ambiguous)
 ec:2.1.2.3	phosphoribosylaminoimidazolecarboxamide formyltransferase; 5-amino-4-imidazolecarboxamide ribonucleotide transformylase; AICAR transformylase; 10-formyltetrahydrofolate:5'-phosphoribosyl-5-amino-4-imidazolecarboxamide formyltransferase; 5'-phosphoribosyl-5-amino-4-imidazolecarboxamide formyltransferase; 5-amino-1-ribosyl-4-imidazolecarboxamide 5'-phosphate transformylase; 5-amino-4-imidazolecarboxamide ribotide transformylase; AICAR formyltransferase; aminoimidazolecarboxamide ribonucleotide transformylase
@@ -2830,6 +2840,7 @@ ec:2.1.2.10	aminomethyltransferase; S-aminomethyldihydrolipoylprotein:(6S)-tetra
 ec:2.1.2.11	3-methyl-2-oxobutanoate hydroxymethyltransferase; alpha-ketoisovalerate hydroxymethyltransferase; dehydropantoate hydroxymethyltransferase; ketopantoate hydroxymethyltransferase; oxopantoate hydroxymethyltransferase; 5,10-methylene tetrahydrofolate:alpha-ketoisovalerate hydroxymethyltransferase
 ec:2.1.2.12	Deleted entry
 ec:2.1.2.13	UDP-4-amino-4-deoxy-L-arabinose formyltransferase; UDP-L-Ara4N formyltransferase; ArnAFT
+ec:2.1.2.14	GDP-perosamine N-formyltransferase; wbkC (gene name)
 ec:2.1.3.1	methylmalonyl-CoA carboxytransferase; transcarboxylase; methylmalonyl coenzyme A carboxyltransferase; methylmalonyl-CoA transcarboxylase; oxalacetic transcarboxylase; methylmalonyl-CoA carboxyltransferase; (S)-2-methyl-3-oxopropanoyl-CoA:pyruvate carboxyltransferase; (S)-2-methyl-3-oxopropanoyl-CoA:pyruvate carboxytransferase carboxytransferase [incorrect]
 ec:2.1.3.2	aspartate carbamoyltransferase; carbamylaspartotranskinase; aspartate transcarbamylase; aspartate carbamyltransferase; aspartic acid transcarbamoylase; aspartic carbamyltransferase; aspartic transcarbamylase; carbamylaspartotranskinase; L-aspartate transcarbamoylase; L-aspartate transcarbamylase; carbamoylaspartotranskinase; aspartate transcarbamylase; aspartate transcarbamoylase; ATCase
 ec:2.1.3.3	ornithine carbamoyltransferase; citrulline phosphorylase; ornithine transcarbamylase; OTC; carbamylphosphate-ornithine transcarbamylase; L-ornithine carbamoyltransferase; L-ornithine carbamyltransferase; L-ornithine transcarbamylase; ornithine carbamyltransferase
@@ -3053,7 +3064,7 @@ ec:2.3.1.187	acetyl-S-ACP:malonate ACP transferase; acetyl-S-ACP:malonate ACP-SH
 ec:2.3.1.188	omega-hydroxypalmitate O-feruloyl transferase; hydroxycinnamoyl-CoA omega-hydroxypalmitic acid O-hydroxycinnamoyltransferase; HHT
 ec:2.3.1.189	mycothiol synthase; MshD
 ec:2.3.1.190	acetoin dehydrogenase system; acetoin dehydrogenase complex; acetoin dehydrogenase enzyme system; AoDH ES; acetoin dehydrogenase
-ec:2.3.1.191	UDP-3-O-(3-hydroxymyristoyl)glucosamine N-acyltransferase; UDP-3-O-acyl-glucosamine N-acyltransferase; UDP-3-O-(R-3-hydroxymyristoyl)-glucosamine N-acyltransferase; acyltransferase LpxD; acyl-ACP:UDP-3-O-(3-hydroxyacyl)-GlcN N-acyltransferase; firA (gene name); lpxD (gene name); (3R)-3-hydroxymyristoyl-[acyl-carrier protein]:UDP-3-O-[(3R)-3-hydroxymyristoyl]-alpha-D-glucosamine N-acetyltransferase
+ec:2.3.1.191	UDP-3-O-(3-hydroxyacyl)glucosamine N-acyltransferase; lpxD (gene name); UDP-3-O-acyl-glucosamine N-acyltransferase; UDP-3-O-(R-3-hydroxymyristoyl)-glucosamine N-acyltransferase; acyltransferase LpxD; acyl-ACP:UDP-3-O-(3-hydroxyacyl)-GlcN N-acyltransferase; firA (gene name); (3R)-3-hydroxymyristoyl-[acyl-carrier protein]:UDP-3-O-[(3R)-3-hydroxymyristoyl]-alpha-D-glucosamine N-acetyltransferase; UDP-3-O-(3-hydroxymyristoyl)glucosamine N-acyltransferase; (3R)-3-hydroxytetradecanoyl-[acyl-carrier protein]:UDP-3-O-[(3R)-3-hydroxytetradecanoyl]-alpha-D-glucosamine N-acetyltransferase
 ec:2.3.1.192	glycine N-phenylacetyltransferase; arylacetyl-CoA N-acyltransferase; arylacetyltransferase; GAT (gene name)
 ec:2.3.1.193	tRNAMet cytidine acetyltransferase; YpfI; TmcA
 ec:2.3.1.194	acetoacetyl-CoA synthase; NphT7
@@ -3159,13 +3170,14 @@ ec:2.3.1.293	meromycolic acid 3-oxoacyl-(acyl carrier protein) synthase I; kasA 
 ec:2.3.1.294	meromycolic acid 3-oxoacyl-(acyl carrier protein) synthase II; kasB (gene name); beta-ketoacyl-acyl carrier protein synthase KasB
 ec:2.3.1.295	mycoketide-CoA synthase; pks12 (gene name)
 ec:2.3.1.296	omega-hydroxyceramide transacylase; PNPLA1 (gene name)
-ec:2.3.1.297	very-long-chain ceramide synthase; sphingoid base N-very-long-chain fatty acyl-coA transferase; mammalian ceramide synthase 2; CERS3 (gene name); LASS3 (gene name); LAG1 (gene name); LAC1 (gene name); LOH1 (gene name); LOH3 (gene name)
-ec:2.3.1.298	ultra-long-chain ceramide synthase; mammalian ceramide synthase 3; sphingoid base N-ultra-long-chain fatty acyl-coA transferase; CERS3 (gene name)
+ec:2.3.1.297	very-long-chain ceramide synthase; sphingoid base N-very-long-chain fatty acyl-CoA transferase; mammalian ceramide synthase 2; CERS3 (gene name); LASS3 (gene name); LAG1 (gene name); LAC1 (gene name); LOH1 (gene name); LOH3 (gene name)
+ec:2.3.1.298	ultra-long-chain ceramide synthase; mammalian ceramide synthase 3; sphingoid base N-ultra-long-chain fatty acyl-CoA transferase; CERS3 (gene name)
 ec:2.3.1.299	sphingoid base N-stearoyltransferase; mammalian ceramide synthase 1; LASS1 (gene name); UOG1 (gene name); CERS1 (gene name)
 ec:2.3.1.300	branched-chain beta-ketoacyl-[acyl-carrier-protein] synthase
 ec:2.3.1.301	mycobacterial beta-ketoacyl-[acyl carrier protein] synthase III; fabH (gene name) (ambiguous); mycobacterial 3-oxoacyl-[acyl carrier protein] synthase III
 ec:2.3.1.302	hydroxycinnamoyl-CoA:5-hydroxyanthranilate N-hydroxycinnamoyltransferase; HHT1 (gene name); HHT4 (gene name)
 ec:2.3.1.303	alpha-L-Rha-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-alpha-D-Gal-PP-Und 2IV-O-acetyltransferase; rfbL (gene name); wbaL (gene name)
+ec:2.3.1.304	poly[(R)-3-hydroxyalkanoate] polymerase; PHA synthase; phaC (gene name); PhaE
 ec:2.3.2.1	D-glutamyltransferase; D-glutamyl transpeptidase; D-gamma-glutamyl transpeptidase
 ec:2.3.2.2	gamma-glutamyltransferase; glutamyl transpeptidase; alpha-glutamyl transpeptidase; gamma-glutamyl peptidyltransferase; gamma-glutamyl transpeptidase (ambiguous); gamma-GPT; gamma-GT; gamma-GTP; L-gamma-glutamyl transpeptidase; L-gamma-glutamyltransferase; L-glutamyltransferase; GGT (ambiguous); gamma-glutamyltranspeptidase (ambiguous)
 ec:2.3.2.3	lysyltransferase; L-lysyl-tRNA:phosphatidylglycerol 3-O-lysyltransferase
@@ -3403,7 +3415,7 @@ ec:2.4.1.178	hydroxymandelonitrile glucosyltransferase; cyanohydrin glucosyltran
 ec:2.4.1.179	lactosylceramide beta-1,3-galactosyltransferase; uridine diphosphogalactose-lactosylceramide beta1->3-galactosyltransferase; UDP-galactose:D-galactosyl-1,4-beta-D-glucosyl-R beta-1,3-galactosyltransferase; UDP-galactose:D-galactosyl-(1->4)-beta-D-glucosyl-R 3-beta-galactosyltransferase; UDP-alpha-D-galactose:D-galactosyl-(1->4)-beta-D-glucosyl-R 3-beta-galactosyltransferase
 ec:2.4.1.180	lipopolysaccharide N-acetylmannosaminouronosyltransferase; ManNAcA transferase; uridine diphosphoacetylmannosaminuronate-acetylglucosaminylpyrophosphorylundecaprenol acetylmannosaminuronosyltransferase; UDP-N-acetyl-beta-D-mannosaminouronate:lipid I N-acetyl-beta-D-mannosaminouronosyltransferase (incorrect)
 ec:2.4.1.181	hydroxyanthraquinone glucosyltransferase; uridine diphosphoglucose-anthraquinone glucosyltransferase; anthraquinone-specific glucosyltransferase
-ec:2.4.1.182	lipid-A-disaccharide synthase; UDP-2,3-bis(3-hydroxytetradecanoyl)glucosamine:2,3-bis-(3-hydroxytetradecanoyl)-beta-D-glucosaminyl-1-phosphate 2,3-bis(3-hydroxytetradecanoyl)-glucosaminyltransferase (incorrect)
+ec:2.4.1.182	lipid-A-disaccharide synthase; lpxB (gene name); UDP-2,3-bis(3-hydroxytetradecanoyl)glucosamine:2,3-bis-(3-hydroxytetradecanoyl)-beta-D-glucosaminyl-1-phosphate 2,3-bis(3-hydroxytetradecanoyl)-glucosaminyltransferase (incorrect)
 ec:2.4.1.183	alpha-1,3-glucan synthase; uridine diphosphoglucose-1,3-alpha-glucan glucosyltransferase; 1,3-alpha-D-glucan synthase; UDP-glucose:alpha-D-(1-3)-glucan 3-alpha-D-glucosyltransferase
 ec:2.4.1.184	galactolipid galactosyltransferase; galactolipid-galactolipid galactosyltransferase; galactolipid:galactolipid galactosyltransferase; interlipid galactosyltransferase; GGGT; DGDG synthase (ambiguous); digalactosyldiacylglycerol synthase (ambiguous); 3-(beta-D-galactosyl)-1,2-diacyl-sn-glycerol:mono-3-(beta-D-galactosyl)-1,2-diacyl-sn-glycerol beta-D-galactosyltransferase; 3-(beta-D-galactosyl)-1,2-diacyl-sn-glycerol:3-(beta-D-galactosyl)-1,2-diacyl-sn-glycerol beta-D-galactosyltransferase; SFR2 (gene name)
 ec:2.4.1.185	flavanone 7-O-beta-glucosyltransferase; uridine diphosphoglucose-flavanone 7-O-glucosyltransferase; naringenin 7-O-glucosyltransferase; hesperetin 7-O-glucosyl-transferase
@@ -3602,9 +3614,10 @@ ec:2.4.1.377	dTDP-Rha:alpha-D-Gal-diphosphoundecaprenol alpha-1,3-rhamnosyltrans
 ec:2.4.1.378	GDP-mannose:alpha-L-Rha-(1->3)-alpha-D-Gal-PP-Und alpha-1,4-mannosyltransferase; wbaU (gene name); rfbU (gene name)
 ec:2.4.1.379	GDP-Man:alpha-D-Gal-diphosphoundecaprenol alpha-1,3-mannosyltransferase; wbaZ (gene name); rfbZ (gene name)
 ec:2.4.1.380	GDP-Man:alpha-D-Man-(1->3)-alpha-D-Gal diphosphoundecaprenol alpha-1,2-mannosyltransferase; wbaW (gene name); rfbW (gene name)
-ec:2.4.1.381	dTDP-Rha:alpha-D-Man-(1->3)-alpha-D-Gal diphosphoundecaprenol alpha-1,2-rahmnosyltransferase; wbaQ (gene name); rfbQ (gene name)
+ec:2.4.1.381	dTDP-Rha:alpha-D-Man-(1->3)-alpha-D-Gal diphosphoundecaprenol alpha-1,2-rhamnosyltransferase; wbaQ (gene name); rfbQ (gene name)
 ec:2.4.1.382	CDP-abequose:alpha-L-Rha2OAc-(1->2)-alpha-D-Man-(1->2)-alpha-D-Man-(1->3)-alpha-D-Gal-PP-Und alpha-1,3-abequosyltransferase; wbaR (gene name); rfbR (gene name)
 ec:2.4.1.383	GDP-Man:alpha-L-Rha-(1->3)-alpha-D-Gal-PP-Und beta-1,4-mannosyltransferase; wbaO (gene name); rfbO (gene name)
+ec:2.4.1.384	NDP-glycosyltransferase; yjiC (gene name)
 ec:2.4.2.1	purine-nucleoside phosphorylase; inosine phosphorylase; PNPase (ambiguous); PUNPI; PUNPII; inosine-guanosine phosphorylase; purine deoxynucleoside phosphorylase; purine deoxyribonucleoside phosphorylase; purine nucleoside phosphorylase; purine ribonucleoside phosphorylase
 ec:2.4.2.2	pyrimidine-nucleoside phosphorylase; Py-NPase; pdp (gene name)
 ec:2.4.2.3	uridine phosphorylase; pyrimidine phosphorylase; UrdPase; UPH; UPase
@@ -3691,7 +3704,7 @@ ec:2.4.99.19	undecaprenyl-diphosphooligosaccharide---protein glycotransferase; P
 ec:2.4.99.20	2'-phospho-ADP-ribosyl cyclase/2'-phospho-cyclic-ADP-ribose transferase; diphosphopyridine nucleosidase (ambiguous); CD38 (gene name); BST1 (gene name)
 ec:2.4.99.21	dolichyl-phosphooligosaccharide-protein glycotransferase; AglB; archaeal oligosaccharyl transferase; dolichyl-monophosphooligosaccharide-protein glycotransferase
 ec:2.4.99.22	N-acetylglucosaminide alpha-(2,6)-sialyltransferase; alpha-N-acetylneuraminyl-2,3-beta-galactosyl-1,3-N-acetylglucosaminide 6-alpha-sialyltransferase; N-acetylglucosaminide (alpha 2->6)-sialyltransferase; ST6GlcNAc
-ec:2.5.1.1	dimethylallyltranstransferase; geranyl-diphosphate synthase; prenyltransferase; dimethylallyltransferase; DMAPP:IPP-dimethylallyltransferase; (2E,6E)-farnesyl diphosphate synthetase; diprenyltransferase; geranyl pyrophosphate synthase; geranyl pyrophosphate synthetase; trans-farnesyl pyrophosphate synthetase
+ec:2.5.1.1	dimethylallyltranstransferase; geranyl-diphosphate synthase; prenyltransferase; dimethylallyltransferase; DMAPP:IPP-dimethylallyltransferase; (2E,6E)-farnesyl diphosphate synthetase; diprenyltransferase; geranyl pyrophosphate synthase; geranyl pyrophosphate synthetase; trans-farnesyl pyrophosphate synthetase; dimethylallyl-diphosphate:isopentenyl-diphosphate dimethylallyltranstransferase
 ec:2.5.1.2	thiamine pyridinylase; pyrimidine transferase; thiaminase I; thiamin hydrolase; thiamin pyridinolase; thiaminase (ambiguous); thiamine pyridinolase; thiamin pyridinylase; thiamin:base 2-methyl-4-aminopyrimidine-5-methenyltransferase
 ec:2.5.1.3	thiamine phosphate synthase; thiamine phosphate pyrophosphorylase; thiamine monophosphate pyrophosphorylase; TMP-PPase; thiamine-phosphate diphosphorylase; thiE (gene name); TH1 (gene name); THI6 (gene name); 2-methyl-4-amino-5-hydroxymethylpyrimidine-diphosphate:4-methyl-5-(2-phosphoethyl)thiazole 2-methyl-4-aminopyrimidine-5-methenyltransferase; 4-amino-2-methyl-5-diphosphomethylpyrimidine:2-[(2R,5Z)-2-carboxy-4-methylthiazol-5(2H)-ylidene]ethyl phosphate 4-amino-2-methylpyrimidine-5-methenyltransferase (decarboxylating)
 ec:2.5.1.4	adenosylmethionine cyclotransferase; adenosylmethioninase
@@ -3718,15 +3731,15 @@ ec:2.5.1.24	discadenine synthase; discadenine synthetase; S-adenosyl-L-methionin
 ec:2.5.1.25	tRNA-uridine aminocarboxypropyltransferase; S-adenosyl-L-methionine:tRNA-uridine 3-(3-amino-3-carboxypropyl)transferase; tapT (gene name); DTWD1 (gene name); DTWD2 (gene name); S-adenosyl-L-methionine:uridine47 in tRNAPhe 3-[(3S)-3-amino-3-carboxypropyl]transferase
 ec:2.5.1.26	alkylglycerone-phosphate synthase; alkyldihydroxyacetonephosphate synthase; alkyldihydroxyacetone phosphate synthetase; alkyl DHAP synthetase; alkyl-DHAP; dihydroxyacetone-phosphate acyltransferase (ambiguous); DHAP-AT
 ec:2.5.1.27	adenylate dimethylallyltransferase; cytokinin synthase (ambiguous); isopentenyltransferase (ambiguous); 2-isopentenyl-diphosphate:AMP Delta2-isopentenyltransferase; adenylate isopentenyltransferase (ambiguous); IPT
-ec:2.5.1.28	dimethylallylcistransferase; neryl-diphosphate synthase
+ec:2.5.1.28	dimethylallylcistransferase; neryl-diphosphate synthase; dimethylallyl-diphosphate:isopentenyl-diphosphate dimethylallylcistransferase
 ec:2.5.1.29	geranylgeranyl diphosphate synthase; geranylgeranyl-diphosphate synthase; geranylgeranyl pyrophosphate synthetase; geranylgeranyl-PP synthetase; farnesyltransferase; geranylgeranyl pyrophosphate synthase; farnesyltranstransferase (obsolete)
 ec:2.5.1.30	heptaprenyl diphosphate synthase; all-trans-heptaprenyl-diphosphate synthase; heptaprenyl pyrophosphate synthase; heptaprenyl pyrophosphate synthetase; HepPP synthase; HepPS; heptaprenylpyrophosphate synthetase
 ec:2.5.1.31	ditrans,polycis-undecaprenyl-diphosphate synthase [(2E,6E)-farnesyl-diphosphate specific]; di-trans,poly-cis-undecaprenyl-diphosphate synthase; undecaprenyl-diphosphate synthase; bactoprenyl-diphosphate synthase; UPP synthetase; undecaprenyl diphosphate synthetase; undecaprenyl pyrophosphate synthetase; di-trans,poly-cis-decaprenylcistransferase
 ec:2.5.1.32	15-cis-phytoene synthase; PSY (gene name); crtB (gene name); prephytoene-diphosphate synthase; phytoene synthetase; PSase; geranylgeranyl-diphosphate geranylgeranyltransferase
 ec:2.5.1.33	Transferred to 2.5.1.82 and 2.5.1.83
 ec:2.5.1.34	4-dimethylallyltryptophan synthase; dimethylallylpyrophosphate:L-tryptophan dimethylallyltransferase; dimethylallyltryptophan synthetase; dimethylallylpyrophosphate:tryptophan dimethylallyl transferase; DMAT synthetase; 4-(gamma,gamma-dimethylallyl)tryptophan synthase; tryptophan dimethylallyltransferase
-ec:2.5.1.35	aspulvinone dimethylallyltransferase; dimethylallyl pyrophosphate:aspulvinone dimethylallyltransferase
-ec:2.5.1.36	trihydroxypterocarpan dimethylallyltransferase; glyceollin synthase; dimethylallylpyrophosphate:3,6a,9-trihydroxypterocarpan dimethylallyltransferase; dimethylallylpyrophosphate:trihydroxypterocarpan dimethylallyl transferase; dimethylallyl-diphosphate:(6aS,11aS)-3,6a,9-trihydroxypterocarpan dimethyltransferase
+ec:2.5.1.35	aspulvinone dimethylallyltransferase; dimethylallyl pyrophosphate:aspulvinone dimethylallyltransferase; dimethylallyl-diphosphate:aspulvinone-E dimethylallyltransferase
+ec:2.5.1.36	trihydroxypterocarpan dimethylallyltransferase; glyceollin synthase; dimethylallylpyrophosphate:3,6a,9-trihydroxypterocarpan dimethylallyltransferase; dimethylallylpyrophosphate:trihydroxypterocarpan dimethylallyl transferase; dimethylallyl-diphosphate:(6aS,11aS)-3,6a,9-trihydroxypterocarpan dimethyltransferase; dimethylallyl-diphosphate:(6aS,11aS)-3,6a,9-trihydroxypterocarpan dimethylallyltransferase
 ec:2.5.1.37	Transferred to 4.4.1.20
 ec:2.5.1.38	isonocardicin synthase; nocardicin aminocarboxypropyltransferase; S-adenosyl-L-methionine:nocardicin-E 3-amino-3-carboxypropyltransferase
 ec:2.5.1.39	4-hydroxybenzoate polyprenyltransferase; nonaprenyl-4-hydroxybenzoate transferase; 4-hydroxybenzoate transferase; p-hydroxybenzoate dimethylallyltransferase; p-hydroxybenzoate polyprenyltransferase; p-hydroxybenzoic acid-polyprenyl transferase; p-hydroxybenzoic-polyprenyl transferase; 4-hydroxybenzoate nonaprenyltransferase
@@ -3757,11 +3770,11 @@ ec:2.5.1.63	adenosyl-fluoride synthase; fluorinase
 ec:2.5.1.64	Transferred to 2.2.1.9 and 4.2.99.20
 ec:2.5.1.65	O-phosphoserine sulfhydrylase; O-phosphoserine(thiol)-lyase
 ec:2.5.1.66	N2-(2-carboxyethyl)arginine synthase; CEAS; N2-(2-carboxyethyl)arginine synthetase; CEA synthetase; glyceraldehyde-3-phosphate:L-arginine 2-N-(2-hydroxy-3-oxopropyl) transferase (2-carboxyethyl-forming)
-ec:2.5.1.67	chrysanthemyl diphosphate synthase; CPPase
+ec:2.5.1.67	chrysanthemyl diphosphate synthase; CPPase; dimethylallyl-diphosphate:dimethylallyl-diphosphate dimethylallyltransferase (chrysanthemyl-diphosphate-forming)
 ec:2.5.1.68	(2Z,6E)-farnesyl diphosphate synthase; (Z)-farnesyl diphosphate synthase; Z-farnesyl diphosphate synthase
-ec:2.5.1.69	lavandulyl diphosphate synthase; FDS-5
-ec:2.5.1.70	naringenin 8-dimethylallyltransferase; N8DT
-ec:2.5.1.71	leachianone-G 2''-dimethylallyltransferase; LG 2''-dimethylallyltransferase; leachianone G 2''-dimethylallyltransferase; LGDT
+ec:2.5.1.69	lavandulyl diphosphate synthase; FDS-5; dimethylallyl-diphosphate:dimethylallyl-diphosphate dimethylallyltransferase (lavandulyl-diphosphate-forming)
+ec:2.5.1.70	naringenin 8-dimethylallyltransferase; N8DT; dimethylallyl-diphosphate:naringenin 8-dimethylallyltransferase
+ec:2.5.1.71	leachianone-G 2''-dimethylallyltransferase; LG 2''-dimethylallyltransferase; leachianone G 2''-dimethylallyltransferase; LGDT; dimethylallyl-diphosphate:leachianone-G 2''-dimethylallyltransferase
 ec:2.5.1.72	quinolinate synthase; NadA; QS; quinolinate synthetase
 ec:2.5.1.73	O-phospho-L-seryl-tRNA:Cys-tRNA synthase; SepCysS; Sep-tRNA:Cys-tRNA synthase
 ec:2.5.1.74	1,4-dihydroxy-2-naphthoate polyprenyltransferase
@@ -3770,10 +3783,10 @@ ec:2.5.1.76	cysteate synthase; sulfite:O-phospho-L-serine sulfotransferase (phos
 ec:2.5.1.77	Transferred to 2.5.1.147 and 4.3.1.32
 ec:2.5.1.78	6,7-dimethyl-8-ribityllumazine synthase; lumazine synthase; 6,7-dimethyl-8-ribityllumazine synthase 2; 6,7-dimethyl-8-ribityllumazine synthase 1; lumazine synthase 2; lumazine synthase 1; type I lumazine synthase; type II lumazine synthase; RIB4; MJ0303; RibH; Pbls; MbtLS; RibH1 protein; RibH2 protein; RibH1; RibH2
 ec:2.5.1.79	thermospermine synthase; TSPMS; ACL5; SAC51; S-adenosyl 3-(methylthio)propylamine:spermidine 3-aminopropyltransferase (thermospermine synthesizing)
-ec:2.5.1.80	7-dimethylallyltryptophan synthase; 7-DMATS
+ec:2.5.1.80	7-dimethylallyltryptophan synthase; 7-DMATS; dimethylallyl-diphosphate:L-tryptophan 7-dimethylallyltransferase
 ec:2.5.1.81	geranylfarnesyl diphosphate synthase; FGPP synthase; (all-E) geranylfarnesyl diphosphate synthase; GFPS; Fgs
-ec:2.5.1.82	hexaprenyl diphosphate synthase [geranylgeranyl-diphosphate specific]; HexPS(ambiguous); (all-E) hexaprenyl diphosphate synthase; (all-trans) hexaprenyl diphosphate synthase; hexaprenyl pyrophosphate synthase (ambiguous); HexPPs (ambiguous); hexaprenyl diphosphate synthase (ambiguous)
-ec:2.5.1.83	hexaprenyl diphosphate synthase [(2E,6E)-farnesyl-diphosphate specific]; HexPS (ambiguous); hexaprenyl pyrophosphate synthetase (ambiguous); hexaprenyl diphosphate synthase (ambiguous)
+ec:2.5.1.82	hexaprenyl diphosphate synthase [geranylgeranyl-diphosphate specific]; HexPS(ambiguous); (all-E) hexaprenyl diphosphate synthase; (all-trans) hexaprenyl diphosphate synthase; hexaprenyl pyrophosphate synthase (ambiguous); HexPPs (ambiguous); hexaprenyl diphosphate synthase (ambiguous); geranylgeranyl-diphosphate:isopentenyl-diphosphate transferase (adding 2 isopentenyl units)
+ec:2.5.1.83	hexaprenyl diphosphate synthase [(2E,6E)-farnesyl-diphosphate specific]; HexPS (ambiguous); hexaprenyl pyrophosphate synthetase (ambiguous); hexaprenyl diphosphate synthase (ambiguous); (2E,6E)-farnesyl-diphosphate:isopentenyl-diphosphate farnesyltranstransferase (adding 3 isopentenyl units)
 ec:2.5.1.84	all-trans-nonaprenyl diphosphate synthase [geranyl-diphosphate specific]; nonaprenyl diphosphate synthase (ambiguous); solanesyl diphosphate synthase (ambiguous); SolPP synthase (ambiguous); SPP-synthase (ambiguous); SPP synthase (ambiguous); solanesyl-diphosphate synthase (ambiguous); OsSPS2
 ec:2.5.1.85	all-trans-nonaprenyl diphosphate synthase [geranylgeranyl-diphosphate specific]; nonaprenyl diphosphate synthase (ambiguous); solanesyl diphosphate synthase (ambiguous); At-SPS2; At-SPS1; SPS1; SPS2
 ec:2.5.1.86	trans,polycis-decaprenyl diphosphate synthase; Rv2361c; (2Z,6Z,10Z,14Z,18Z,22Z,26Z,30Z,34E)-decaprenyl diphosphate synthase
@@ -3790,19 +3803,19 @@ ec:2.5.1.96	4,4'-diapophytoene synthase; dehydrosqualene synthase; DAP synthase;
 ec:2.5.1.97	pseudaminic acid synthase; PseI; NeuB3
 ec:2.5.1.98	Rhizobium leguminosarum exopolysaccharide glucosyl ketal-pyruvate-transferase; PssM; phosphoenolpyruvate:[D-GlcA-beta-(1->4)-2-O-Ac-D-GlcA-beta-(1->4)-D-Glc-beta-(1->4)-[3-O-CH3-CH2CH(OH)C(O)-D-Gal-beta-(1->4)-D-Glc-beta-(1->4)-D-Glc-beta-(1->4)-D-Glc-beta-(1->6)]-2(or 3)-O-Ac-D-Glc-alpha-(1->6)]n 4,6-O-(1-carboxyethan-1,1-diyl)transferase
 ec:2.5.1.99	Deleted entry
-ec:2.5.1.100	fumigaclavine A dimethylallyltransferase; FgaPT1
+ec:2.5.1.100	fumigaclavine A dimethylallyltransferase; FgaPT1; dimethylallyl-diphosphate:fumigaclavine A dimethylallyltransferase
 ec:2.5.1.101	N,N'-diacetyllegionaminate synthase; neuB (gene name); legI (gene name)
 ec:2.5.1.102	geranyl-pyrophosphate---olivetolic acid geranyltransferase; GOT (ambiguous)
 ec:2.5.1.103	presqualene diphosphate synthase; SSL-1 (gene name); hpnD (gene name)
 ec:2.5.1.104	N1-aminopropylagmatine synthase; agmatine/cadaverine aminopropyl transferase; ACAPT; PF0127 (gene name); triamine/agmatine aminopropyltransferase; SpeE (ambiguous); agmatine aminopropyltransferase; S-adenosyl 3-(methylthio)propylamine:agmatine 3-aminopropyltransferase
 ec:2.5.1.105	7,8-dihydropterin-6-yl-methyl-4-(beta-D-ribofuranosyl)aminobenzene 5'-phosphate synthase; MJ0301 (gene name); dihydropteroate synthase (ambiguous)
-ec:2.5.1.106	tryprostatin B synthase; ftmPT1 (gene name); brevianamide F prenyltransferase (ambiguous)
+ec:2.5.1.106	tryprostatin B synthase; ftmPT1 (gene name); brevianamide F prenyltransferase (ambiguous); dimethylallyl-diphosphate:brevianamide-F dimethylallyl-C-2-transferase
 ec:2.5.1.107	verruculogen prenyltransferase; FtmPT3
 ec:2.5.1.108	2-(3-amino-3-carboxypropyl)histidine synthase; Dph2
 ec:2.5.1.109	brevianamide F prenyltransferase (deoxybrevianamide E-forming); NotF; BrePT; brevianamide F reverse prenyltransferase; dimethylallyl-diphosphate:brevianamide-F tert-dimethylallyl-C-2-transferase
-ec:2.5.1.110	12alpha,13alpha-dihydroxyfumitremorgin C prenyltransferase; ftmH (gene name); FtmPT2
+ec:2.5.1.110	12alpha,13alpha-dihydroxyfumitremorgin C prenyltransferase; ftmH (gene name); FtmPT2; dimethylallyl-diphosphate:12alpha,13alpha-dihydroxyfumitremorgin C dimethylallyl-N-1-transferase
 ec:2.5.1.111	4-hydroxyphenylpyruvate 3-dimethylallyltransferase; CloQ; 4HPP dimethylallyltransferase; NovQ; dimethylallyl diphosphate:4-hydroxyphenylpyruvate 3-dimethylallyltransferase
-ec:2.5.1.112	adenylate dimethylallyltransferase (ADP/ATP-dependent); cytokinin synthase (ambiguous); isopentenyltransferase (ambiguous); 2-isopentenyl-diphosphate:ADP/ATP Delta2-isopentenyltransferase; adenylate isopentenyltransferase (ambiguous); dimethylallyl diphosphate:ATP/ADP isopentenyltransferase: IPT
+ec:2.5.1.112	adenylate dimethylallyltransferase (ADP/ATP-dependent); cytokinin synthase (ambiguous); isopentenyltransferase (ambiguous); 2-isopentenyl-diphosphate:ADP/ATP Delta2-isopentenyltransferase; adenylate isopentenyltransferase (ambiguous); dimethylallyl diphosphate:ATP/ADP isopentenyltransferase: IPT; dimethylallyl-diphosphate:ADP/ATP dimethylallyltransferase
 ec:2.5.1.113	[CysO sulfur-carrier protein]-thiocarboxylate-dependent cysteine synthase; CysM
 ec:2.5.1.114	tRNAPhe (4-demethylwyosine37-C7) aminocarboxypropyltransferase; TYW2; tRNA-yW synthesizing enzyme-2; TRM12 (gene name); taw2 (gene name)
 ec:2.5.1.115	homogentisate phytyltransferase; HPT; VTE2 (gene name)
@@ -3811,15 +3824,15 @@ ec:2.5.1.117	homogentisate solanesyltransferase; HST; PDS2 (gene name)
 ec:2.5.1.118	beta-(isoxazolin-5-on-2-yl)-L-alanine synthase
 ec:2.5.1.119	beta-(isoxazolin-5-on-4-yl)-L-alanine synthase
 ec:2.5.1.120	aminodeoxyfutalosine synthase; MqnE; AFL synthase; aminofutalosine synthase; S-adenosyl-L-methionine:3-[(1-carboxyvinyl)-oxy]benzoate adenosyltransferase (bicarbonate-hydrolysing, 6-amino-6-deoxyfutalosine-forming)
-ec:2.5.1.121	5,10-dihydrophenazine-1-carboxylate 9-dimethylallyltransferase; PpzP; dihydrophenazine-1-carboxylate dimethylallyltransferase; 5,10-dihydrophenazine 1-carboxylate dimethylallyltransferase
-ec:2.5.1.122	4-O-dimethylallyl-L-tyrosine synthase; SirD
+ec:2.5.1.121	5,10-dihydrophenazine-1-carboxylate 9-dimethylallyltransferase; PpzP; dihydrophenazine-1-carboxylate dimethylallyltransferase; 5,10-dihydrophenazine 1-carboxylate dimethylallyltransferase; dimethylallyl diphosphate:5,10-dihydrophenazine-1-carboxylate 9-dimethylallyltransferase
+ec:2.5.1.122	4-O-dimethylallyl-L-tyrosine synthase; SirD; dimethylallyl diphosphate:L-tyrosine 4-O-dimethylallyltransferase
 ec:2.5.1.123	flaviolin linalyltransferase; Fnq26
 ec:2.5.1.124	6-linalyl-2-O,3-dimethylflaviolin synthase; Fur7; 6-(3,7-dimethylocta-1,6-dien-3-yl)-5,7-dihydroxy-2-methoxy-3-methylnaphthalene-1,4-dione synthase
 ec:2.5.1.125	7-geranyloxy-5-hydroxy-2-methoxy-3-methylnaphthalene-1,4-dione synthase; Fur7
 ec:2.5.1.126	norspermine synthase; long-chain polyamine synthase (ambiguous)
 ec:2.5.1.127	caldopentamine synthase; long-chain polyamine synthase (ambiguous)
 ec:2.5.1.128	N4-bis(aminopropyl)spermidine synthase
-ec:2.5.1.129	flavin prenyltransferase; ubiX (gene name); PAD1 (gene name)
+ec:2.5.1.129	flavin prenyltransferase; ubiX (gene name); PAD1 (gene name); dimethylallyl-phosphate:FMNH2 prenyltransferase
 ec:2.5.1.130	2-carboxy-1,4-naphthoquinone phytyltransferase; menA (gene name); ABC4 (gene name); 1,4-dioxo-2-naphthoate phytyltransferase; 1,4-diketo-2-naphthoate phytyltransferase
 ec:2.5.1.131	(4-{4-[2-(gamma-L-glutamylamino)ethyl]phenoxymethyl}furan-2-yl)methanamine synthase; MfnF
 ec:2.5.1.132	3-deoxy-D-glycero-D-galacto-nonulopyranosonate 9-phosphate synthase; 3-deoxy-D-glycero-D-galacto-nononate 9-phosphate synthase; 2-keto-3-deoxy-D-glycero-D-galacto-9-phosphonononic acid synthase; Kdn 9-P synthase
@@ -3839,8 +3852,8 @@ ec:2.5.1.145	phosphatidylglycerol---prolipoprotein diacylglyceryl transferase; l
 ec:2.5.1.146	3-geranyl-3-[(Z)-2-isocyanoethenyl]indole synthase; famD2 (gene name)
 ec:2.5.1.147	5-amino-6-(D-ribitylamino)uracil---L-tyrosine 4-hydroxyphenyl transferase; cofH (gene name); cbiF (gene name) (ambiguous)
 ec:2.5.1.148	lycopaoctaene synthase; LOS (gene name)
-ec:2.5.1.149	lycopene elongase/hydratase (flavuxanthin-forming); crtEb (gene name)
-ec:2.5.1.150	lycopene elongase/hydratase (dihydrobisanhydrobacterioruberin-forming); lbtA (gene name); lyeJ (gene name)
+ec:2.5.1.149	lycopene elongase/hydratase (flavuxanthin-forming); crtEb (gene name); dimethylallyl-diphosphate:all-trans-lycopene dimethylallyltransferase (hydrating, flavuxanthin-forming)
+ec:2.5.1.150	lycopene elongase/hydratase (dihydrobisanhydrobacterioruberin-forming); lbtA (gene name); lyeJ (gene name); dimethylallyl-diphosphate:all-trans-lycopene dimethylallyltransferase (hydrating, dihydrobisanhydrobacterioruberin-forming)
 ec:2.5.1.151	alkylcobalamin dealkylase; MMACHC (gene name)
 ec:2.5.1.152	D-histidine 2-aminobutanoyltransferase; cntL (gene name)
 ec:2.5.1.153	adenosine tuberculosinyltransferase; Rv3378c (locus name)
@@ -4201,6 +4214,7 @@ ec:2.7.1.229	deoxyribokinase; deoK (gene name)
 ec:2.7.1.230	amicoumacin kinase; amiN (gene name); yerI (gene name)
 ec:2.7.1.231	3-oxoisoapionate kinase; oiaK (gene name)
 ec:2.7.1.232	levoglucosan kinase
+ec:2.7.1.233	apulose kinase; aplK (gene name)
 ec:2.7.2.1	acetate kinase; acetokinase; AckA; AK; acetic kinase; acetate kinase (phosphorylating)
 ec:2.7.2.2	carbamate kinase; CKase; carbamoyl phosphokinase; carbamyl phosphokinase
 ec:2.7.2.3	phosphoglycerate kinase; PGK; 3-PGK; ATP-3-phospho-D-glycerate-1-phosphotransferase; ATP:D-3-phosphoglycerate 1-phosphotransferase; 3-phosphoglycerate kinase; 3-phosphoglycerate phosphokinase; 3-phosphoglyceric acid kinase; 3-phosphoglyceric acid phosphokinase; 3-phosphoglyceric kinase; glycerate 3-phosphate kinase; glycerophosphate kinase; phosphoglyceric acid kinase; phosphoglyceric kinase; phosphoglycerokinase
@@ -4218,6 +4232,7 @@ ec:2.7.2.14	branched-chain-fatty-acid kinase; isobutyrate kinase
 ec:2.7.2.15	propionate kinase; PduW; TdcD; propionate/acetate kinase
 ec:2.7.2.16	2-phosphoglycerate kinase; pgk2 (gene name)
 ec:2.7.2.17	[amino-group carrier protein]-L-2-aminoadipate 6-kinase; lysZ (gene name); [amino group carrier protein]-C-terminal-N-(1,4-dicarboxybutan-1-yl)-L-glutamine 5-O-kinase; [amino group carrier protein]-L-2-aminoadipate 6-kinase
+ec:2.7.2.18	fatty acid kinase; fakAB (gene names)
 ec:2.7.3.1	guanidinoacetate kinase; glycocyamine kinase
 ec:2.7.3.2	creatine kinase; ATP:creatine phosphotransferase; CK; MM-CK; MB-CK; BB-CK; creatine phosphokinase; creatine phosphotransferase; phosphocreatine kinase; adenosine triphosphate-creatine transphosphorylase; Mi-CK; CK-BB; CK-MM; CK-MB; CKMiMi; MiMi-CK
 ec:2.7.3.3	arginine kinase; arginine phosphokinase; adenosine 5'-triphosphate: L-arginine phosphotransferase; adenosine 5'-triphosphate-arginine phosphotransferase; ATP:L-arginine N-phosphotransferasel ATP:L-arginine omega-N-phosphotransferase
@@ -4256,7 +4271,7 @@ ec:2.7.4.22	UMP kinase; uridylate kinase; UMPK; uridine monophosphate kinase; Py
 ec:2.7.4.23	ribose 1,5-bisphosphate phosphokinase; ribose 1,5-bisphosphokinase; PhnN; ATP:ribose-1,5-bisphosphate phosphotransferase
 ec:2.7.4.24	diphosphoinositol-pentakisphosphate kinase; PP-IP5 kinase; diphosphoinositol pentakisphosphate kinase; ATP:5-diphospho-1D-myo-inositol-pentakisphosphate phosphotransferase; PP-InsP5 kinase; PPIP5K; PPIP5K1; PPIP5K2; VIP1; VIP2
 ec:2.7.4.25	(d)CMP kinase; cmk (gene name); prokaryotic cytidylate kinase; deoxycytidylate kinase (misleading); dCMP kinase (misleading); deoxycytidine monophosphokinase (misleading)
-ec:2.7.4.26	isopentenyl phosphate kinase
+ec:2.7.4.26	isopentenyl phosphate kinase; ATP:isopentenyl phosphate phosphotransferase
 ec:2.7.4.27	[pyruvate, phosphate dikinase]-phosphate phosphotransferase; PPDK regulatory protein (ambiguous); pyruvate, phosphate dikinase regulatory protein (ambiguous); bifunctional dikinase regulatory protein (ambiguous); PDRP1 (gene name)
 ec:2.7.4.28	[pyruvate, water dikinase]-phosphate phosphotransferase; PSRP (ambiguous)
 ec:2.7.4.29	Kdo2-lipid A phosphotransferase; lipid A undecaprenyl phosphotransferase; LpxT; YeiU
@@ -4334,7 +4349,7 @@ ec:2.7.7.54	Deleted entry
 ec:2.7.7.55	Deleted entry
 ec:2.7.7.56	tRNA nucleotidyltransferase; phosphate-dependent exonuclease; RNase PH; ribonuclease PH
 ec:2.7.7.57	N-methylphosphoethanolamine cytidylyltransferase; monomethylethanolamine phosphate cytidylyltransferase; CTP:P-MEA cytidylyltransferase
-ec:2.7.7.58	(2,3-dihydroxybenzoyl)adenylate synthase; 2,3-dihydroxybenzoate-AMP ligase
+ec:2.7.7.58	Transferred to 6.2.1.71
 ec:2.7.7.59	[protein-PII] uridylyltransferase; PII uridylyl-transferase; uridyl removing enzyme
 ec:2.7.7.60	2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase; MEP cytidylyltransferase
 ec:2.7.7.61	citrate lyase holo-[acyl-carrier protein] synthase; 2'-(5''-phosphoribosyl)-3'-dephospho-CoA transferase; 2'-(5''-triphosphoribosyl)-3'-dephospho-CoA:apo-citrate lyase; CitX; holo-ACP synthase (ambiguous); 2'-(5''-triphosphoribosyl)-3'-dephospho-CoA:apo-citrate lyase adenylyltransferase; 2'-(5''-triphosphoribosyl)-3'-dephospho-CoA:apo-citrate lyase 2'-(5''-triphosphoribosyl)-3'-dephospho-CoA transferase; 2'-(5''-triphosphoribosyl)-3'-dephospho-CoA:apo-citrate-lyase adenylyltransferase; holo-citrate lyase synthase (incorrect); 2'-(5-triphosphoribosyl)-3'-dephospho-CoA:apo-citrate-lyase 2'-(5-phosphoribosyl)-3'-dephospho-CoA-transferase
@@ -4533,6 +4548,7 @@ ec:2.8.2.36	desulfo-A47934 sulfotransferase; StaL; 3'-phosphoadenylyl-sulfate:de
 ec:2.8.2.37	trehalose 2-sulfotransferase; Stf0 sulfotransferase; 3'-phosphoadenylyl-sulfate:alpha,alpha-trehalose 2-sulfotransferase
 ec:2.8.2.38	aliphatic desulfoglucosinolate sulfotransferase; SOT17 (gene name); SOT18 (gene name); 3'-phosphoadenylyl-sulfate:aliphatic desulfoglucosinolate sulfotransferase
 ec:2.8.2.39	hydroxyjasmonate sulfotransferase; ST2A (gene name); 3'-phosphoadenylyl-sulfate:12-hydroxyjasmonate sulfotransferase
+ec:2.8.2.40	omega-hydroxy-beta-dihydromenaquinone-9 sulfotransferase; stf3 (gene name)
 ec:2.8.3.1	propionate CoA-transferase; propionate coenzyme A-transferase; propionate-CoA:lactoyl-CoA transferase; propionyl CoA:acetate CoA transferase; propionyl-CoA transferase
 ec:2.8.3.2	oxalate CoA-transferase; succinyl---beta-ketoacyl-CoA transferase; oxalate coenzyme A-transferase
 ec:2.8.3.3	malonate CoA-transferase; malonate coenzyme A-transferase
@@ -4687,6 +4703,7 @@ ec:3.1.1.114	methyl acetate hydrolase; acmB (gene name)
 ec:3.1.1.115	D-apionolactonase; apnL (gene name)
 ec:3.1.1.116	sn-1-specific diacylglycerol lipase; DAGLA (gene name); DAGLB (gene name)
 ec:3.1.1.117	(4-O-methyl)-D-glucuronate---lignin esterase; glucuronoyl esterase (ambiguous); 4-O-methyl-glucuronoyl methylesterase; glucuronoyl-lignin ester hydrolase
+ec:3.1.1.118	phospholipid sn-1 acylhydrolase; phospholipase DDHD1; phosphatidic acid-preferring phospholipase A1; PA-PLA1; DDHD1 (gene name)
 ec:3.1.2.1	acetyl-CoA hydrolase; acetyl-CoA deacylase; acetyl-CoA acylase; acetyl coenzyme A hydrolase; acetyl coenzyme A deacylase; acetyl coenzyme A acylase; acetyl-CoA thiol esterase
 ec:3.1.2.2	palmitoyl-CoA hydrolase; long-chain fatty-acyl-CoA hydrolase; palmitoyl coenzyme A hydrolase; palmitoyl thioesterase; palmitoyl coenzyme A hydrolase; palmitoyl-CoA deacylase; palmityl thioesterase; palmityl-CoA deacylase; fatty acyl thioesterase I; palmityl thioesterase I
 ec:3.1.2.3	succinyl-CoA hydrolase; succinyl-CoA acylase; succinyl coenzyme A hydrolase; succinyl coenzyme A deacylase
@@ -4889,7 +4906,7 @@ ec:3.1.4.59	cyclic-di-AMP phosphodiesterase; gdpP (gene name)
 ec:3.1.4.60	pApA phosphodiesterase; pde2 (gene name); pApA hydrolase
 ec:3.1.4.61	cyclic 2,3-diphosphoglycerate hydrolase
 ec:3.1.5.1	dGTPase; deoxy-GTPase; deoxyguanosine 5-triphosphate triphosphohydrolase; deoxyguanosine triphosphatase; deoxyguanosine triphosphate triphosphohydrolase
-ec:3.1.6.1	arylsulfatase; sulfatase; nitrocatechol sulfatase; phenolsulfatase; phenylsulfatase; p-nitrophenyl sulfatase; arylsulfohydrolase; 4-methylumbelliferyl sulfatase; estrogen sulfatase
+ec:3.1.6.1	arylsulfatase (type I); sulfatase; nitrocatechol sulfatase; phenolsulfatase; phenylsulfatase; p-nitrophenyl sulfatase; arylsulfohydrolase; 4-methylumbelliferyl sulfatase; estrogen sulfatase; type I sulfatase; arylsulfatase
 ec:3.1.6.2	steryl-sulfatase; arylsulfatase; steroid sulfatase; sterol sulfatase; dehydroepiandrosterone sulfate sulfatase; arylsulfatase C; steroid 3-sulfatase; steroid sulfate sulfohydrolase; dehydroepiandrosterone sulfatase; pregnenolone sulfatase; phenolic steroid sulfatase; 3-beta-hydroxysteroid sulfate sulfatase
 ec:3.1.6.3	glycosulfatase; glucosulfatase
 ec:3.1.6.4	N-acetylgalactosamine-6-sulfatase; chondroitin sulfatase; chondroitinase; galactose-6-sulfate sulfatase; acetylgalactosamine 6-sulfatase; N-acetylgalactosamine-6-sulfate sulfatase; N-acetylgalactosamine 6-sulfatase
@@ -4907,8 +4924,10 @@ ec:3.1.6.15	N-sulfoglucosamine-3-sulfatase; chondroitinsulfatase
 ec:3.1.6.16	monomethyl-sulfatase
 ec:3.1.6.17	D-lactate-2-sulfatase; (S)-2-O-sulfolactate 2-sulfohydrolase (incorrect stereochemistry)
 ec:3.1.6.18	glucuronate-2-sulfatase; glucurono-2-sulfatase
-ec:3.1.6.19	(R)-specific secondary-alkylsulfatase; S3 secondary alkylsulphohydrolase; Pisa1; secondary alkylsulphohydrolase; (R)-specific sec-alkylsulfatase; sec-alkylsulfatase
+ec:3.1.6.19	(R)-specific secondary-alkylsulfatase (type III); S3 secondary alkylsulphohydrolase; Pisa1; secondary alkylsulphohydrolase; (R)-specific sec-alkylsulfatase; sec-alkylsulfatase; (R)-specific secondary-alkylsulfatase; type III (R)-specific secondary-alkylsulfatase
 ec:3.1.6.20	S-sulfosulfanyl-L-cysteine sulfohydrolase; SoxB
+ec:3.1.6.21	linear primary-alkylsulfatase; sdsA1 (gene name); yjcS (gene name); type III linear primary-alkylsulfatase
+ec:3.1.6.22	branched primary-alkylsulfatase; DP1 (gene name); type III branched primary-alkylsulfatase
 ec:3.1.7.1	prenyl-diphosphatase; prenyl-pyrophosphatase; prenol pyrophosphatase; prenylphosphatase
 ec:3.1.7.2	guanosine-3',5'-bis(diphosphate) 3'-diphosphatase; guanosine-3',5'-bis(diphosphate) 3'-pyrophosphatase; PpGpp-3'-pyrophosphohydrolase; PpGpp phosphohydrolase
 ec:3.1.7.3	monoterpenyl-diphosphatase; bornyl pyrophosphate hydrolase; monoterpenyl-pyrophosphatase
@@ -4950,10 +4969,11 @@ ec:3.1.21.6	CC-preferring endodeoxyribonuclease; Streptomyces glaucescens exocyt
 ec:3.1.21.7	deoxyribonuclease V; endodeoxyribonuclease V; DNase V; Escherichia coli endodeoxyribonuclease V
 ec:3.1.21.8	T4 deoxyribonuclease II; T4 endonuclease II; EndoII (ambiguous); denA (gene name)
 ec:3.1.21.9	T4 deoxyribonuclease IV; T4 endonuclease IV; EndoIV (ambiguous); denB (gene name)
+ec:3.1.21.10	crossover junction endodeoxyribonuclease; Hje endonuclease; Holliday junction endonuclease CCE1; Holliday junction resolvase; Holliday junction-cleaving endonuclease; Holliday junction-resolving endoribonuclease; RusA Holliday junction resolvase; RusA endonuclease; RuvC endonuclease; SpCCe1 Holliday junction resolvase; crossover junction endoribonuclease; cruciform-cutting endonuclease; endo X3; endonuclease RuvC; endonuclease VII; endonuclease X3; resolving enzyme CCE1
 ec:3.1.22.1	deoxyribonuclease II; DNase II; pancreatic DNase II; deoxyribonucleate 3'-nucleotidohydrolase; DNase II; pancreatic DNase II; acid deoxyribonuclease; acid DNase
 ec:3.1.22.2	Aspergillus deoxyribonuclease K1; Aspergillus DNase K1
 ec:3.1.22.3	Transferred to 3.1.21.7
-ec:3.1.22.4	crossover junction endodeoxyribonuclease; Hje endonuclease; Holliday junction endonuclease CCE1; Holliday junction resolvase; Holliday junction-cleaving endonuclease; Holliday junction-resolving endoribonuclease; RusA Holliday junction resolvase; RusA endonuclease; RuvC endonuclease; SpCCe1 Holliday junction resolvase; crossover junction endoribonuclease; cruciform-cutting endonuclease; endo X3; endonuclease RuvC; endonuclease VII; endonuclease X3; resolving enzyme CCE1
+ec:3.1.22.4	Transferred to 3.1.21.10
 ec:3.1.22.5	deoxyribonuclease X; Escherichia coli endodeoxyribonuclease; Escherichia coli endodeoxyribonuclease X
 ec:3.1.23.1	Transferred to 3.1.21.4
 ec:3.1.23.2	Transferred to 3.1.21.4
@@ -5142,7 +5162,7 @@ ec:3.2.1.43	beta-L-rhamnosidase
 ec:3.2.1.44	Transferred to 3.2.1.211 and 3.2.1.212
 ec:3.2.1.45	glucosylceramidase; psychosine hydrolase; glucosphingosine glucosylhydrolase; GlcCer-beta-glucosidase; beta-D-glucocerebrosidase; glucosylcerebrosidase; beta-glucosylceramidase; ceramide glucosidase; glucocerebrosidase; glucosylsphingosine beta-glucosidase; glucosylsphingosine beta-D-glucosidase
 ec:3.2.1.46	galactosylceramidase; cerebroside galactosidase; galactocerebroside.beta-galactosidase; galactosylcerebrosidase; galactocerebrosidase; ceramide galactosidase; galactocerebroside galactosidase; galactosylceramide.beta-galactosidase; cerebroside beta-galactosidase; galactosylceramidase I; beta-galactosylceramidase; galactocerebroside-beta-D-galactosidase; lactosylceramidase I; beta-galactocerebrosidase; lactosylceramidase
-ec:3.2.1.47	galactosylgalactosylglucosylceramidase; trihexosyl ceramide galactosidase; ceramide trihexosidase; ceramidetrihexoside alpha-galactosidase; trihexosylceramide alpha-galactosidase; ceramidetrihexosidase
+ec:3.2.1.47	Deleted entry
 ec:3.2.1.48	sucrose alpha-glucosidase; sucrose alpha-glucohydrolase; sucrase; sucrase-isomaltase; sucrose.alpha.-glucohydrolase; intestinal sucrase; sucrase(invertase)
 ec:3.2.1.49	alpha-N-acetylgalactosaminidase; alpha-acetylgalactosaminidase; N-acetyl-alpha-D-galactosaminidase; N-acetyl-alpha-galactosaminidase; alpha-NAGAL; alpha-NAGA; alpha-GalNAcase
 ec:3.2.1.50	alpha-N-acetylglucosaminidase; alpha-acetylglucosaminidase; N-acetyl-alpha-D-glucosaminidase; N-acetyl-alpha-glucosaminidase; alpha-D-2-acetamido-2-deoxyglucosidase
@@ -5474,6 +5494,7 @@ ec:3.4.14.10	tripeptidyl-peptidase II; tripeptidyl aminopeptidase; tripeptidyl p
 ec:3.4.14.11	Xaa-Pro dipeptidyl-peptidase; X-prolyl dipeptidyl aminopeptidase; PepX; X-prolyl dipeptidyl peptidase; X-Pro dipeptidyl-peptidase
 ec:3.4.14.12	Xaa-Xaa-Pro tripeptidyl-peptidase; prolyltripeptidyl amino peptidase; prolyl tripeptidyl peptidase; prolyltripeptidyl aminopeptidase; PTP-A; TPP
 ec:3.4.14.13	gamma-D-glutamyl-L-lysine dipeptidyl-peptidase; YkfC
+ec:3.4.14.14	[mycofactocin precursor peptide] peptidase; mftE (gene name)
 ec:3.4.15.1	peptidyl-dipeptidase A; dipeptidyl carboxypeptidase I; peptidase P; dipeptide hydrolase (ambiguous); peptidyl dipeptidase; angiotensin converting enzyme; kininase II; angiotensin I-converting enzyme; carboxycathepsin; dipeptidyl carboxypeptidase; peptidyl dipeptidase I; peptidyl-dipeptide hydrolase; peptidyldipeptide hydrolase; endothelial cell peptidyl dipeptidase; ACE; peptidyl dipeptidase-4; PDH; peptidyl dipeptide hydrolase; DCP
 ec:3.4.15.2	Transferred to 3.4.19.2
 ec:3.4.15.3	Transferred to 3.4.15.5
@@ -6228,7 +6249,7 @@ ec:3.6.1.70	guanosine-5'-diphospho-5'-[DNA] diphosphatase; aprataxin; pp5'G5'DNA
 ec:3.6.1.71	adenosine-5'-diphospho-5'-[DNA] diphosphatase; aprataxin; 5'-App5'-DNA adenylate hydrolase; APTX (gene name); HNT3 (gene name)
 ec:3.6.1.72	DNA-3'-diphospho-5'-guanosine diphosphatase; aprataxin; DNA-3'pp5'G guanylate hydrolase; APTX (gene name); HNT3 (gene name)
 ec:3.6.1.73	inosine/xanthosine triphosphatase; yjjX (gene name)
-ec:3.6.1.74	mRNA 5'-phosphatase; 5'-polynucleotidase; polynucleotide 5'-phosphohydrolase; RNGTT (gene name); CET1 (gene name)
+ec:3.6.1.74	mRNA 5'-phosphatase; 5'-polynucleotidase; polynucleotide 5'-phosphohydrolase; RNGTT (gene name); CET1 (gene name); mRNA 5'-triphosphate monophosphatase
 ec:3.6.2.1	adenylylsulfatase; adenosine 5-phosphosulfate sulfohydrolase; adenylylsulfate sulfohydrolase
 ec:3.6.2.2	phosphoadenylylsulfatase; 3-phosphoadenylyl sulfatase; 3-phosphoadenosine 5-phosphosulfate sulfatase; PAPS sulfatase; 3'-phosphoadenylylsulfate sulfohydrolase
 ec:3.6.3.1	Transferred to 7.6.2.1
@@ -6332,6 +6353,7 @@ ec:3.7.1.24	2,4-diacetylphloroglucinol hydrolase; PhlG
 ec:3.7.1.25	2-hydroxy-6-oxohepta-2,4-dienoate hydrolase; todF (gene name)
 ec:3.7.1.26	2,4-didehydro-3-deoxy-L-rhamnonate hydrolase; L-2,4-diketo-3-deoxyrhamnonate hydrolase; lra6 (gene name)
 ec:3.7.1.27	neryl diphosphate diphosphatase; NES (gene name); nerol synthase
+ec:3.7.1.28	3-oxoisoapionate-4-phosphate transcarboxylase/hydrolase; oiaT (gene name)
 ec:3.8.1.1	Deleted entry
 ec:3.8.1.2	(S)-2-haloacid dehalogenase; 2-haloacid dehalogenase[ambiguous]; 2-haloacid halidohydrolase [ambiguous][ambiguous]; 2-haloalkanoic acid dehalogenase; 2-haloalkanoid acid halidohydrolase; 2-halocarboxylic acid dehalogenase II; DL-2-haloacid dehalogenase[ambiguous]; L-2-haloacid dehalogenase; L-DEX
 ec:3.8.1.3	haloacetate dehalogenase; monohaloacetate dehalogenase
@@ -6545,9 +6567,10 @@ ec:4.1.2.59	dihydroneopterin phosphate aldolase; H2NMP aldolase
 ec:4.1.2.60	dihydroneopterin triphosphate aldolase; PTPS-III
 ec:4.1.2.61	feruloyl-CoA hydratase/lyase; hydroxycinnamoyl-CoA hydratase lyase; enoyl-CoA hydratase/aldolase; HCHL; ferB (gene name); couA (gene name)
 ec:4.1.2.62	5-deoxyribulose 1-phosphate aldolase; 5-(methylthio)ribulose-1-phosphate aldolase; ald2 (gene name)
+ec:4.1.2.63	2-hydroxyacyl-CoA lyase; HACL1 (gene name); 2-hydroxyphytanoyl-CoA lyase; 2-HPCL
 ec:4.1.3.1	isocitrate lyase; isocitrase; isocitritase; isocitratase; threo-Ds-isocitrate glyoxylate-lyase; isocitrate glyoxylate-lyase
 ec:4.1.3.2	Transferred to 2.3.3.9
-ec:4.1.3.3	N-acetylneuraminate lyase; N-acetylneuraminic acid aldolase; acetylneuraminate lyase; sialic aldolase; sialic acid aldolase; sialate lyase; N-acetylneuraminic aldolase; neuraminic aldolase; N-acetylneuraminate aldolase; neuraminic acid aldolase; N-acetylneuraminic acid aldolase; neuraminate aldolase; N-acetylneuraminic lyase; N-acetylneuraminic acid lyase; NPL; NALase; NANA lyase; acetylneuraminate pyruvate-lyase; N-acetylneuraminate pyruvate-lyase
+ec:4.1.3.3	N-acetylneuraminate lyase; N-acetylneuraminic acid aldolase; acetylneuraminate lyase; sialic aldolase; sialic acid aldolase; sialate lyase; N-acetylneuraminic aldolase; neuraminic aldolase; N-acetylneuraminate aldolase; neuraminic acid aldolase; neuraminate aldolase; N-acetylneuraminic lyase; N-acetylneuraminic acid lyase; NPL; NALase; NANA lyase; acetylneuraminate pyruvate-lyase; N-acetylneuraminate pyruvate-lyase; NanA; N-acetylneuraminate pyruvate-lyase (N-acetyl-D-mannosamine-forming)
 ec:4.1.3.4	hydroxymethylglutaryl-CoA lyase; hydroxymethylglutaryl coenzyme A-cleaving enzyme; hydroxymethylglutaryl coenzyme A lyase; 3-hydroxy-3-methylglutaryl coenzyme A lyase; 3-hydroxy-3-methylglutaryl CoA cleaving enzyme; 3-hydroxy-3-methylglutaryl-CoA lyase; (S)-3-hydroxy-3-methylglutaryl-CoA acetoacetate-lyase
 ec:4.1.3.5	Transferred to 2.3.3.10
 ec:4.1.3.6	citrate (pro-3S)-lyase; citrase; citratase; citritase; citridesmolase; citrate aldolase; citric aldolase; citrate lyase; citrate oxaloacetate-lyase; citrate oxaloacetate-lyase [(pro-3S)-CH2COO-->acetate]
@@ -6792,6 +6815,8 @@ ec:4.2.1.172	trans-4-hydroxy-L-proline dehydratase
 ec:4.2.1.173	ent-8alpha-hydroxylabd-13-en-15-yl diphosphate synthase; SmCPS4
 ec:4.2.1.174	peregrinol diphosphate synthase; MvCPS1
 ec:4.2.1.175	(R)-3-(aryl)lactoyl-CoA dehydratase; fldBC (gene names); (R)-phenyllactoyl-CoA dehydratase; aryllactyl-CoA dehydratase
+ec:4.2.1.176	L-lyxonate dehydratase; lyxD (gene name)
+ec:4.2.1.177	(2S)-3-sulfopropanediol dehydratase; hpfG (gene name); (S)-DHPS dehydratase
 ec:4.2.2.1	hyaluronate lyase; hyaluronidase (ambiguous); glucuronoglycosaminoglycan lyase (ambiguous); spreading factor; mucinase (ambiguous)
 ec:4.2.2.2	pectate lyase; polygalacturonic transeliminase; pectic acid transeliminase; polygalacturonate lyase; endopectin methyltranseliminase; pectate transeliminase; endogalacturonate transeliminase; pectic acid lyase; pectic lyase; alpha-1,4-D-endopolygalacturonic acid lyase; PGA lyase; PPase-N; endo-alpha-1,4-polygalacturonic acid lyase; polygalacturonic acid lyase; pectin trans-eliminase; Polygalacturonic acid trans-eliminase
 ec:4.2.2.3	mannuronate-specific alginate lyase; alginate lyase I; alginate lyase; alginase I; alginase II; alginase; poly(beta-D-1,4-mannuronide) lyase; poly(beta-D-mannuronate) lyase; aly (gene name) (ambiguous); poly[(1->4)-beta-D-mannuronide] lyase
@@ -6845,7 +6870,7 @@ ec:4.2.3.23	germacrene-A synthase; germacrene A synthase; (+)-germacrene A synth
 ec:4.2.3.24	amorpha-4,11-diene synthase; amorphadiene synthase
 ec:4.2.3.25	S-linalool synthase; LIS; Lis; 3S-linalool synthase
 ec:4.2.3.26	R-linalool synthase; (3R)-linalool synthase; (-)-3R-linalool synthase
-ec:4.2.3.27	isoprene synthase; ISPC; ISPS
+ec:4.2.3.27	isoprene synthase; ISPC; ISPS; dimethylallyl-diphosphate diphosphate-lyase (isoprene-forming)
 ec:4.2.3.28	ent-cassa-12,15-diene synthase; OsDTC1; OsKS7
 ec:4.2.3.29	ent-sandaracopimaradiene synthase; OsKS10; ent-sandaracopimara-8(14),15-diene synthase
 ec:4.2.3.30	ent-pimara-8(14),15-diene synthase; OsKS5
@@ -7138,6 +7163,10 @@ ec:4.4.1.34	isoprene-epoxide---glutathione S-transferase; isoI (gene name)
 ec:4.4.1.35	L-cystine beta-lyase; CORI3 (gene name)
 ec:4.4.1.36	hercynylcysteine S-oxide lyase; egtE (gene name)
 ec:4.4.1.37	pyridinium-3,5-bisthiocarboxylic acid mononucleotide synthase; LarE; P2CMN sulfurtransferase; pyridinium-3,5-biscarboxylic acid mononucleotide sulfurtransferase; P2TMN synthase
+ec:4.4.1.38	isethionate sulfite-lyase; islA (gene name)
+ec:4.4.1.39	C-phycoerythrin alpha-cysteine-82 phycoerythrobilin lyase; cpeY (gene name)
+ec:4.4.1.40	C-phycoerythrin beta-cysteine-48/59 phycoerythrobilin lyase; cpeY (gene name)
+ec:4.4.1.41	(2S)-3-sulfopropanediol sulfolyase; DHPS sulfolyase; hpsG (gene name)
 ec:4.5.1.1	DDT-dehydrochlorinase; DDT-ase; 1,1,1-trichloro-2,2-bis(4-chlorophenyl)ethane chloride-lyase; DDTase
 ec:4.5.1.2	3-chloro-D-alanine dehydrochlorinase; beta-chloro-D-alanine dehydrochlorinase; 3-chloro-D-alanine chloride-lyase (deaminating)
 ec:4.5.1.3	dichloromethane dehalogenase; dichloromethane chloride-lyase (chloride-hydrolysing)
@@ -7235,7 +7264,7 @@ ec:5.1.3.20	ADP-glyceromanno-heptose 6-epimerase
 ec:5.1.3.21	maltose epimerase
 ec:5.1.3.22	L-ribulose-5-phosphate 3-epimerase; L-xylulose 5-phosphate 3-epimerase; UlaE; SgaU
 ec:5.1.3.23	UDP-2,3-diacetamido-2,3-dideoxyglucuronic acid 2-epimerase; UDP-GlcNAc3NAcA 2-epimerase; UDP-alpha-D-GlcNAc3NAcA 2-epimerase; 2,3-diacetamido-2,3-dideoxy-alpha-D-glucuronic acid 2-epimerase; WbpI; WlbD
-ec:5.1.3.24	N-acetylneuraminate epimerase; sialic acid epimerase; N-acetylneuraminate mutarotase; YjhT
+ec:5.1.3.24	N-acetylneuraminate epimerase; sialic acid epimerase; N-acetylneuraminate mutarotase; NanM; NanQ
 ec:5.1.3.25	dTDP-L-rhamnose 4-epimerase; dTDP-4-L-rhamnose 4-epimerase; wbiB (gene name)
 ec:5.1.3.26	N-acetyl-alpha-D-glucosaminyl-diphospho-ditrans,octacis-undecaprenol 4-epimerase; GlcNAc-P-P-Und epimerase; GlcNAc-P-P-Und 4-epimerase; gne (gene name)
 ec:5.1.3.27	dTDP-4-dehydro-6-deoxy-D-glucose 3-epimerase; dTDP-deoxyglucose 3-epimerase; dTDP-4-keto-6-deoxy-D-glucose 3-epimerase; dTDP-4-keto-6-deoxyglucose 3-epimerase; gerF (gene name); tylJ (gene name); chmJ (gene name); mydH (gene name)
@@ -7323,7 +7352,7 @@ ec:5.3.2.6	2-hydroxymuconate tautomerase; 4-oxalocrotonate tautomerase (misleadi
 ec:5.3.2.7	ascopyrone tautomerase; ascopyrone isomerase; ascopyrone intramolecular oxidoreductase; 1,5-anhydro-D-glycero-hex-3-en-2-ulose tautomerase; APM tautomerase; ascopyrone P tautomerase; APTM
 ec:5.3.2.8	4-oxalomesaconate tautomerase; GalD
 ec:5.3.3.1	steroid Delta-isomerase; hydroxysteroid isomerase; steroid isomerase; Delta5-ketosteroid isomerase; Delta5(or Delta4)-3-keto steroid isomerase; Delta5-steroid isomerase; 3-oxosteroid isomerase; Delta5-3-keto steroid isomerase; Delta5-3-oxosteroid isomerase
-ec:5.3.3.2	isopentenyl-diphosphate Delta-isomerase; isopentenylpyrophosphate Delta-isomerase; methylbutenylpyrophosphate isomerase; isopentenylpyrophosphate isomerase
+ec:5.3.3.2	isopentenyl-diphosphate Delta-isomerase; isopentenylpyrophosphate Delta-isomerase; methylbutenylpyrophosphate isomerase; isopentenylpyrophosphate isomerase; isopentenyl-diphosphate Delta3-Delta2-isomerase
 ec:5.3.3.3	vinylacetyl-CoA Delta-isomerase; vinylacetyl coenzyme A Delta-isomerase; vinylacetyl coenzyme A isomerase; Delta3-cis-Delta2-trans-enoyl-CoA isomerase
 ec:5.3.3.4	muconolactone Delta-isomerase; muconolactone isomerase; 5-oxo-4,5-dihydrofuran-2-acetate Delta3-Delta2-isomerase
 ec:5.3.3.5	cholestenol Delta-isomerase
@@ -7609,6 +7638,12 @@ ec:6.2.1.65	salicylate---CoA ligase; sdgA (gene name)
 ec:6.2.1.66	glyine---[glycyl-carrier protein] ligase; dhbF (gene name); sfmB (gene name)
 ec:6.2.1.67	L-alanine---[L-alanyl-carrier protein] ligase; ambB (gene name); phsB (gene name)
 ec:6.2.1.68	L-glutamate---[L-glutamyl-carrier protein] ligase; ambE (gene name)
+ec:6.2.1.69	L-cysteine---[L-cysteinyl-carrier protein] ligase; pchE (gene name); pchF (gene name); angR (gene name)
+ec:6.2.1.70	L-threonine---[L-threonyl-carrier protein] ligase; dhbF (gene name); pmsD (gene name); syrB1 (gene name)
+ec:6.2.1.71	2,3-dihydroxybenzoate---[aryl-carrier protein] ligase; entE (gene name); vibE (gene name); dhbE (gene name); angE (gene name)
+ec:6.2.1.72	L-serine---[L-seryl-carrier protein] ligase; entF (gene name); zmaJ (gene name); gdnB (gene name); serine-activating enzyme
+ec:6.2.1.73	L-tryptophan---[L-tryptophyl-carrier protein] ligase; ecm13 (gene name); swb11 (gene name)
+ec:6.2.1.74	3-amino-5-hydroxybenzoate---[acyl-carrier protein] ligase; rifA (gene name); mitE (gene name)
 ec:6.2.2.1	thioglycine synthase; ycaO (gene name) (ambiguous)
 ec:6.2.2.2	oxazoline synthase; cyanobactin heterocyclase; cyanobactin cyclodehydratase; patD (gene name); balhD (gene name); micD (gene name)
 ec:6.2.2.3	thiazoline synthase
@@ -7626,7 +7661,7 @@ ec:6.3.1.11	glutamate---putrescine ligase; gamma-glutamylputrescine synthetase; 
 ec:6.3.1.12	D-aspartate ligase; Aslfm; UDP-MurNAc-pentapeptide:D-aspartate ligase; D-aspartic acid-activating enzyme
 ec:6.3.1.13	L-cysteine:1D-myo-inositol 2-amino-2-deoxy-alpha-D-glucopyranoside ligase; MshC; MshC ligase; Cys:GlcN-Ins ligase; mycothiol ligase
 ec:6.3.1.14	diphthine---ammonia ligase; diphthamide synthase; diphthamide synthetase; DPH6 (gene name); ATPBD4 (gene name); diphthine:ammonia ligase (AMP-forming)
-ec:6.3.1.15	8-demethylnovobiocic acid synthase; novL (gene name); novobiocin ligase; novobiocic acid synthetase (misleading); 8-desmethyl-novobiocic acid synthetase; 8-demethylnovobiocic acid synthetase
+ec:6.3.1.15	8-demethylnovobiocic acid synthase; novL (gene name); novobiocin ligase; novobiocic acid synthetase (misleading); 8-desmethyl-novobiocic acid synthetase; 8-demethylnovobiocic acid synthetase; 3-dimethylallyl-4-hydroxybenzoate:3-amino-4,7-dihydroxycoumarin ligase (AMP-forming)
 ec:6.3.1.16	Transferred to 6.3.3.6
 ec:6.3.1.17	beta-citrylglutamate synthase; NAAG synthetase I; NAAGS-I; RIMKLB (gene name) (ambiguous)
 ec:6.3.1.18	gamma-glutamylanilide synthase; atdA1 (gene name); tdnQ (gene name); dcaQ (gene name)
@@ -7724,6 +7759,7 @@ ec:6.3.4.21	nicotinate phosphoribosyltransferase; niacin ribonucleotidase; nicot
 ec:6.3.4.22	tRNAIle2-agmatinylcytidine synthase; TiaS; AF2259; tRNAIle-2-agmatinylcytidine synthetase; tRNAIle-agm2C synthetase; tRNAIle-agmatidine synthetase
 ec:6.3.4.23	formate---phosphoribosylaminoimidazolecarboxamide ligase; 5-formaminoimidazole-4-carboxamide ribonucleotide synthetase; 5-formaminoimidazole-4-carboxamide-1-beta-D-ribofuranosyl 5'-monophosphate synthetase; purP (gene name)
 ec:6.3.4.24	tyramine---L-glutamate ligase; mfnD (gene name)
+ec:6.3.4.25	2-amino-2'-deoxyadenylo-succinate synthase; purZ (gene name)
 ec:6.3.5.1	NAD+ synthase (glutamine-hydrolysing); NAD synthetase (glutamine-hydrolysing); nicotinamide adenine dinucleotide synthetase (glutamine); desamidonicotinamide adenine dinucleotide amidotransferase; DPN synthetase
 ec:6.3.5.2	GMP synthase (glutamine-hydrolysing); GMP synthetase (glutamine-hydrolysing); guanylate synthetase (glutamine-hydrolyzing); guanosine monophosphate synthetase (glutamine-hydrolyzing); xanthosine 5'-phosphate amidotransferase; guanosine 5'-monophosphate synthetase
 ec:6.3.5.3	phosphoribosylformylglycinamidine synthase; phosphoribosylformylglycinamidine synthetase; formylglycinamide ribonucleotide amidotransferase; phosphoribosylformylglycineamidine synthetase; FGAM synthetase; FGAR amidotransferase; 5'-phosphoribosylformylglycinamide:L-glutamine amido-ligase (ADP-forming); 2-N-formyl-1-N-(5-phospho-D-ribosyl)glycinamide:L-glutamine amido-ligase (ADP-forming)
@@ -7767,9 +7803,11 @@ ec:7.1.1.7	quinol oxidase (electrogenic, proton-motive force generating); cydAB 
 ec:7.1.1.8	quinol---cytochrome-c reductase; ubiquinol---cytochrome-c reductase; coenzyme Q-cytochrome c reductase; dihydrocoenzyme Q-cytochrome c reductase; reduced ubiquinone-cytochrome c reductase; complex III (mitochondrial electron transport); ubiquinone-cytochrome c reductase; ubiquinol-cytochrome c oxidoreductase; reduced coenzyme Q-cytochrome c reductase; ubiquinone-cytochrome c oxidoreductase; reduced ubiquinone-cytochrome c oxidoreductase; mitochondrial electron transport complex III; ubiquinol-cytochrome c-2 oxidoreductase; ubiquinone-cytochrome b-c1 oxidoreductase; ubiquinol-cytochrome c2 reductase; ubiquinol-cytochrome c1 oxidoreductase; CoQH2-cytochrome c oxidoreductase; ubihydroquinol:cytochrome c oxidoreductase; coenzyme QH2-cytochrome c reductase; QH2:cytochrome c oxidoreductase; ubiquinol:ferricytochrome-c oxidoreductase
 ec:7.1.1.9	cytochrome-c oxidase; cytochrome aa3; cytochrome caa3; cytochrome bb3; cytochrome cbb3; cytochrome ba3; cytochrome a3; Warburg's respiratory enzyme; indophenol oxidase; indophenolase; complex IV (mitochondrial electron transport); ferrocytochrome c oxidase; cytochrome oxidase (ambiguous); NADH cytochrome c oxidase (incorrect)
 ec:7.1.1.10	ferredoxin---quinone oxidoreductase (H+-translocating); NDH-1L complex; NDH-1L' complex; NDH11 complex; NDH12 complex
+ec:7.1.1.11	ferredoxin---NAD+ oxidoreductase (H+-transporting); Rnf complex (ambiguous); H+-translocating ferredoxin:NAD+ oxidoreductase
 ec:7.1.2.1	P-type H+-exporting transporter; proton-translocating ATPase; yeast plasma membrane H+-ATPase; yeast plasma membrane ATPase; ATP phosphohydrolase (ambiguous); proton-exporting ATPase; proton transport ATPase; proton-translocating P-type ATPase; H+-transporting ATPase
 ec:7.1.2.2	H+-transporting two-sector ATPase; ATP synthase; F1-ATPase; FoF1-ATPase; H+-transporting ATPase; mitochondrial ATPase; coupling factors (Fo, F1 and CF1); chloroplast ATPase; bacterial Ca2+/Mg2+ ATPase
 ec:7.1.3.1	H+-exporting diphosphatase; H+-PPase; proton-pumping pyrophosphatase; vacuolar H+-pyrophosphatase; hydrogen-translocating pyrophosphatase; proton-pumping dihosphatase
+ec:7.1.3.2	Na+-exporting diphosphatase; Na+-translocating membrane pyrophosphatase; sodium-translocating pyrophosphatase
 ec:7.2.1.1	NADH:ubiquinone reductase (Na+-transporting); Na+-translocating NADH-quinone reductase; Na+-NQR
 ec:7.2.1.2	ferredoxin---NAD+ oxidoreductase (Na+-transporting); Rnf complex (ambiguous); Na+-translocating ferredoxin:NAD+ oxidoreductase
 ec:7.2.1.3	ascorbate ferrireductase (transmembrane); cytochrome b561 (ambiguous)

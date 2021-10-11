@@ -444,3 +444,10 @@ md:M00936	Melatonin biosynthesis, plants, tryptophan => serotonin => melatonin
 md:M00937	Aflatoxin biosynthesis, malonyl-CoA => aflatoxin B1
 md:M00938	Pyrimidine deoxyribonuleotide biosynthesis, UDP => dTTP
 md:M00939	Pyrimidine degradation, uracil => 3-hydroxypropanoate
+md:M00940	Flavanone biosynthesis, p-coumaroyl-CoA => liquiritigenin
+md:M00941	Isoflavone biosynthesis, liquiritigenin => daidzein / naringenin => genistein
+md:M00942	Pterocarpan biosynthesis, daidzein => medicarpin
+md:M00943	Reticuline biosynthesis, dopamine + 4HPAA => (S)-reticuline
+md:M00944	Morphine biosynthesis, (S)-reticuline => morphine
+md:M00945	Sanguinarine biosynthesis, (S)-reticuline => sanguinarine
+md:M00946	Noscapine biosynthesis, (S)-reticuline => noscapine
