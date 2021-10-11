@@ -153,3 +153,24 @@ write_tsv(
   annotated_interactions,
   gzfile("results/ortholog_ec_module_interactions.tab.gz")
 )
+
+# Save Excel file
+library(openxlsx)
+
+wb = createWorkbook()
+modifyBaseFont(wb, fontSize = 11, fontColour = "black", fontName = "Arial")
+addWorksheet(wb, "Ortholog EC module interactions")
+writeData(
+  wb, "Ortholog EC module interactions",
+  annotated_interactions,
+  headerStyle = createStyle(textDecoration = "bold"),
+  keepNA=T, na.string="NA"
+)
+setColWidths(
+  wb, "Ortholog EC module interactions",
+  cols=1:ncol(annotated_interactions), widths = "auto"
+)
+freezePane(wb, "Ortholog EC module interactions", firstRow = TRUE)
+saveWorkbook(
+  wb, file="results/ortholog_ec_module_interactions.xlsx", overwrite=T
+)

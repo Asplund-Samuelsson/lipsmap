@@ -266,6 +266,7 @@ source/tables.R
 
 ```
 results/ortholog_ec_module_interactions.tab.gz
+results/ortholog_ec_module_interactions.xlsx
 ```
 
 <a name="calvin"></a>
