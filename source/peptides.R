@@ -51,7 +51,10 @@ metabolites = ungroup(plot_data) %>%
 plot_data = plot_data %>%
   # Sort Metabolite by number of Interactions
   ungroup() %>%
-  mutate(Metabolite = factor(Metabolite, levels = metabolites))
+  mutate(
+    Metabolite = factor(Metabolite, levels = metabolites),
+    Conc = ifelse(Conc == "High", "High concentration", "Low concentration")
+  )
 
 # Plot it
 gp = ggplot(
@@ -74,5 +77,51 @@ gp = gp + theme(
   axis.text.x = element_text(angle=90, hjust=1, vjust=0.5),
   legend.position = "top"
 )
+gp = gp + ylab("Peptides per protein")
 
-ggsave("results/peptides.pdf", gp, w=10, h=12)
+ggsave("results/peptides_per_protein.pdf", gp, w=9, h=11)
+
+
+# Count number of detected peptides per experiment
+tot_peptides = peptides %>%
+  group_by(Organism, Metabolite, Conc) %>%
+  summarise(Peptides = sum(Peptides))
+
+# Count number of significant peptides per experiment
+tot_significant = tot_peptides %>%
+  select(-Peptides) %>%
+  left_join(
+    lipsmap %>%
+      group_by(Organism, Metabolite, Conc) %>%
+      summarise(Peptides = sum(Sign == "sign")) %>%
+      mutate(Conc = ifelse(Conc == 1, "Low", "High"))
+  ) %>%
+  mutate(Organism = factor(Organism, levels=organisms))
+
+# Organism colours
+organcols = rev(c("#762a83", "#9970ab","#5aae61","#1b7837"))
+
+# Plot it
+gp = ggplot(
+  tot_peptides,
+  aes(y=Peptides, x=Metabolite, fill=Organism, group=Conc, alpha=Conc)
+)
+gp = gp + geom_col(position="dodge")
+gp = gp + geom_point(
+  data=tot_significant, shape=21, alpha=1, position=position_dodge(width=1),
+  fill="white", colour="black", size=1
+)
+gp = gp + scale_fill_manual(values=organcols, guide=F)
+gp = gp + scale_alpha_manual(values=c(1,0.5), name="Concentration")
+gp = gp + theme_bw()
+gp = gp + facet_grid(Organism ~ .)
+gp = gp + theme(
+  axis.ticks = element_line(colour="black"),
+  axis.text = element_text(colour="black"),
+  axis.text.x = element_text(angle=90, hjust=1, vjust=0.5),
+  strip.background = element_blank(),
+  legend.position="top"
+)
+gp = gp + ylab("Number of detected peptides (circles indicate significant)")
+
+ggsave("results/peptides_per_experiment.pdf", gp, w=6, h=6)

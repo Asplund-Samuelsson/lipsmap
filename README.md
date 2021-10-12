@@ -338,12 +338,19 @@ source/peptides.R
 ...yielding this graphic:
 
 ```
-results/peptides.pdf
+results/peptides_per_protein.pdf
 ```
 
 **Example:** Detected peptides per protein compared to occurrence of interaction in _Synechocystis_
 
 ![alt text](data/examples/peptides.png "Detected peptides and interaction in Synechocystis")
+
+Furthermore, the script counted the number of detected peptides in each experiment:
+
+```
+results/peptides_per_experiment.pdf
+```
+
 
 <a name="author"></a>
 ## 3. Author
