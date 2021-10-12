@@ -6,31 +6,31 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
 
 1. [Data preparation](#prep)
 
-  1.1. [Concatenation](#cat)
+  1. [Concatenation](#cat)
 
-  1.2. [Additional annotations](#annotations)
+  2. [Additional annotations](#annotations)
 
-  1.3. [Phylogenetic analysis](#phylogenetics)
+  3. [Phylogenetic analysis](#phylogenetics)
 
 2. [Analysis pipeline](#analysis)
 
-  2.1 [Interaction with enzymes](#enzymes)
+  1. [Interaction with enzymes](#enzymes)
 
-  2.2. [Functional categories](#functions)
+  2. [Functional categories](#functions)
 
-  2.3. [Comparison of orthologs](#orthologs)
+  3. [Comparison of orthologs](#orthologs)
 
-  2.4. [Comparison of KEGG modules](#modules)
+  4. [Comparison of KEGG modules](#modules)
 
-  2.5. [Phylogenetic trees](#trees)
+  5. [Phylogenetic trees](#trees)
 
-  2.6. [Supplementary tables](#tables)
+  6. [Supplementary tables](#tables)
 
-  2.7. [Calvin cycle and sinks](#calvin)
+  7. [Calvin cycle and sinks](#calvin)
 
-  2.8. [Carbon concentration mechanisms](#ccm)
+  8. [Carbon concentration mechanisms](#ccm)
 
-  2.9. [Number of detected peptides](#peptides)
+  9. [Number of detected peptides](#peptides)
 
 3. [Author](#author)
 
