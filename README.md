@@ -4,39 +4,40 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
 
 ### Contents
 
-**1. [Data preparation](#prep)**
+1. [Data preparation](#prep)
 
-**2. [Interaction with enzymes](#enzymes)**
+  1.1. [Concatenation](#cat);
+  1.2. [Additional annotations](#annotations);
+  1.3. [Phylogenetic analysis](#phylogenetics)
 
-**3. [Functional categories](#functions)**
+2. [Analysis pipeline](#analysis)
 
-**4. [Comparison of orthologs](#orthologs)**
+  2.1 [Interaction with enzymes](#enzymes);
+  2.2. [Functional categories](#functions);
+  2.3. [Comparison of orthologs](#orthologs);
+  2.4. [Comparison of KEGG modules](#modules);
+  2.5. [Phylogenetic trees](#trees);
+  2.6. [Supplementary tables](#tables);
+  2.7. [Calvin cycle and sinks](#calvin);
+  2.8. [Carbon concentration mechanisms](#ccm);
+  2.9. [Number of detected peptides](#peptides)
 
-**5. [Comparison of KEGG modules](#modules)**
-
-**6. [Phylogenetic trees](#phylogenetics)**
-
-**7. [Supplementary tables](#tables)**
-
-**8. [Calvin cycle and sinks](#calvin)**
-
-**9. [Carbon concentration mechanisms](#ccm)**
-
-**10. [Number of detected peptides](#peptides)**
-
-**A. [Author](#author)**
+3. [Author](#author)
 
 <a name="prep"></a>
 ## 1. Data preparation
 
-### Concatenation
+Data were prepared for analysis by concatenating input files, by gathering annotations for the organisms in question, and by performing a phylogenetic analysis. These data preparation steps were less prone to changes and updates compared to the analysis pipeline, and were therefore held separate.
+
+<a name="cat"></a>
+### 1.1. Concatenation
 
 Data were concatenated from the original source:
 ```
 source/concatenate_input_data.R
 ```
 
-Missing loci were amended:
+Missing loci were amended by the concatenation R script:
 ```
 data/missing_locus_uniprot_IDs.txt
 data/uniprot_locus_missing.tab
@@ -47,7 +48,8 @@ The R script finally produced concatenated LiP-SMap results:
 data/annotated_comparison_results.tab.gz
 ```
 
-### Additional annotations
+<a name="annotations"></a>
+### 1.2. Additional annotations
 
 #### KEGG annotations
 
@@ -112,19 +114,35 @@ data/uniprot_gene.tab
 data/uniprot_locus_complete.tab
 ```
 
-### Phylogenetic analysis
+<a name="phylogenetics"></a>
+### 1.3. Phylogenetic analysis
 
 A phylogenetic analysis was performed on Calvin cycle enzymes from the corresponding KEGG module ([M00165](https://www.genome.jp/kegg-bin/show_module?M00165)), supplemented with transaldolase (K00616, K13810), triose-phosphate isomerase (K01803), and ribulose-phosphate epimerase (K01783). Sequences were downloaded from UniProt, filtered with CD-HIT, aligned with MAFFT, and used to make trees with FastTreeMP:
 ```
 source/Calvin_cycle_phylogenetics.sh
 ```
 
-The NCBI taxonomy was consulted to give organism labels to all proteins in the tree using the helper script `source/taxid-to-taxonomy.py`.
+Within the phylogenetic analysis script, the NCBI taxonomy was consulted to give organism labels to all proteins in the tree using the helper script `source/taxid-to-taxonomy.py`. Furthermore, UniProt sequences were acquired based on KEGG orthologs using the helper script `source/uniprot_sequences_from_KO.sh`.
 
-UniProt sequences were acquired based on KEGG orthologs using the helper script `source/uniprot_sequences_from_KO.sh`.
+<a name="analysis"></a>
+## 2. Analysis pipeline
+
+A series of R scripts were used to test hypotheses, and to generate data visualizations and tables. All scripts can be run in order by invoking the analysis shell script:
+
+```
+./analysis.sh
+```
+
+Output (`stdout` and `stderr`) from the scripts is logged in this file:
+
+```
+analysis.log
+```
+
+The individual steps of the analysis are described below.
 
 <a name="enzymes"></a>
-## 2. Interactions with enzymes
+### 2.1. Interactions with enzymes
 
 Metabolite interactions with enzymes and non-enzymes were compared using Fisher's exact test:
 ```
@@ -137,7 +155,7 @@ results/Fisher_exact_test_for_enzyme_interactions.tab
 ```
 
 <a name="functions"></a>
-## 3. Functional categories
+### 2.2. Functional categories
 
 Proteins were grouped by various functional categories (EC, GO, KEGG module, pathway) and tested for enrichment of interactions:
 
@@ -154,7 +172,7 @@ results/Fisher_exact_test_for_pathway_interactions.tab
 ```
 
 <a name="orthologs"></a>
-## 4. Comparison of orthologs
+### 2.3. Comparison of orthologs
 
 Interaction patterns with orthologs were compared within and between organisms:
 ```
@@ -209,7 +227,7 @@ results/ortholog_category_heatmap.norm.pdf
 ```
 
 <a name="modules"></a>
-## 5. Comparison of KEGG modules
+### 2.4. Comparison of KEGG modules
 
 KEGG modules are groups of enzymes constituting complete or partial pathways. Proteins were grouped by these modules and interactions were summarized and compared:
 ```
@@ -236,8 +254,8 @@ results/category_module_overlap.pdf
 
 ![alt text](data/examples/module_interactions.png "KEGG module metabolite interactions (top modules)")
 
-<a name="phylogenetics"></a>
-## 6. Phylogenetic trees
+<a name="trees"></a>
+### 2.5. Phylogenetic trees
 
 Phylogenetic trees of Calvin cycle genes were plotted using _phytools_ and _ggtree_ in R:
 ```
@@ -254,7 +272,7 @@ results/cbb_ko_trees.pdf
 ![alt text](data/examples/cbb_ko_trees.png "PRK phylogenetic tree")
 
 <a name="tables"></a>
-## 7. Supplementary tables
+### 2.6. Supplementary tables
 
 KEGG EC and module annotations were combined with eggNOG orthologs and categories to give context to metabolite-protein interactions for low and high concentration:
 
@@ -270,7 +288,7 @@ results/ortholog_ec_module_interactions.xlsx
 ```
 
 <a name="calvin"></a>
-## 8. Calvin cycle and sinks
+### 2.7. Calvin cycle and sinks
 
 Calvin (CBB) cycle enzymes and related sink (or "drain") enzymes were investigated for interactions with the tested metabolites:
 
@@ -292,7 +310,7 @@ data/cbb_drains.tab
 ```
 
 <a name="ccm"></a>
-## 9. Carbon concentration mechanisms
+### 2.8. Carbon concentration mechanisms
 
 Carbon concentration mechanism (CCM) interactions in _Synechocystis_ were plotted using this script:
 
@@ -313,7 +331,7 @@ data/CCM_regulatory_proteins.csv
 ```
 
 <a name="peptides"></a>
-## 10. Number of detected peptides
+### 2.9. Number of detected peptides
 
 The number of detected peptides for proteins where none (Interaction FALSE) or at least one peptide (Interaction TRUE) showed significant interaction with a metabolite was plotted for each organism and concentration:
 
@@ -332,5 +350,5 @@ results/peptides.pdf
 ![alt text](data/examples/peptides.png "Detected peptides and interaction in Synechocystis")
 
 <a name="author"></a>
-## A. Author
+## 3. Author
 Johannes Asplund-Samuelsson, KTH (johannes.asplund.samuelsson@scilifelab.se)

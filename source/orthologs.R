@@ -1113,6 +1113,9 @@ cluster_organism = function(organism, grouping, n_clusters){
 
 }
 
+# Avoid creating "Rplots.pdf"
+pdf(NULL)
+
 # Plot each organism by Metabolite
 cluster_organism("Hydrogenophaga", "Metabolite", 3)
 cluster_organism("Cupriavidus", "Metabolite", 4)
