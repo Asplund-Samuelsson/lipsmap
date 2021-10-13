@@ -1,5 +1,6 @@
 options(width=110)
 library(tidyverse)
+library(scales)
 
 # Load data
 lipsmap = bind_rows(
@@ -82,8 +83,58 @@ gp = gp + ggtitle(
 ggsave("results/accoa_min_q_cor.pdf", gp, h=3.5, w=7)
 
 # Investigate interactions
-interactions = lipsmap %>%
-  full_join(tibble(Threshold = c(0.01, 0.001, 0.0001))) %>%
-  group_by(Date, UniProt_entry, Conc) %>%
-  # Interacting proteins have
-  summarise(Interaction = sum(adj.pvalue < 0.01) > 0)
+interaction = q_comparison %>%
+  # Add some different cutoff alternatives
+  uncount(5) %>%
+  group_by(Conc, UniProt_entry) %>%
+  mutate(Cutoff = 10**c(-5:-1)) %>%
+  ungroup() %>%
+  # Determine what the two dates are agreeing upon
+  mutate(
+    Interaction = case_when(
+      is.na(New) | is.na(Old) ~ "Single",
+      New < Cutoff & Old < Cutoff ~ "Yes",
+      New >= Cutoff & Old >= Cutoff ~ "No",
+      T ~ "Split"
+    )
+  ) %>%
+  # Remove single proteins (detected in only one experiment)
+  filter(Interaction != "Single") %>%
+  # Summarise Interaction decision
+  group_by(Conc, Cutoff, Interaction) %>%
+  summarise(Proteins = length(UniProt_entry)) %>%
+  # Order Interaction class
+  mutate(
+    Interaction = factor(Interaction, levels=c("Yes", "Split", "No"))
+  ) %>%
+  # Add missing values
+  complete(Interaction, fill=list(Proteins = 0)) %>%
+  # Calculate percent of each Interaction type
+  group_by(Conc, Cutoff) %>%
+  mutate(
+    Percent = percent(Proteins / sum(Proteins)),
+    Percent = ifelse(Proteins / sum(Proteins) < 0.1, "", Percent),
+    Conc = paste(Conc, "concentration", sep=" ")
+  )
+
+# Plot it
+gp = ggplot(
+  interaction,
+  aes(x=Cutoff, y=Proteins, fill=Interaction, label=Percent)
+)
+gp = gp + geom_col(color="black", position=position_dodge(width=0.7), width=0.7)
+gp = gp + geom_text(
+  position=position_dodge(width=0.7), angle=90, hjust=1.1, vjust=0.5, size=2.5
+)
+gp = gp + theme_bw()
+gp = gp + facet_grid(.~Conc)
+gp = gp + scale_x_log10()
+gp = gp + scale_fill_brewer(palette="PuOr")
+gp = gp + theme(
+  axis.text = element_text(color="black"),
+  axis.ticks = element_line(color="black"),
+  strip.background = element_blank()
+)
+gp = gp + xlab("q value cutoff")
+
+ggsave("results/accoa_date_agreement.pdf", gp, h=3, w=7)
