@@ -117,14 +117,55 @@ interaction = q_comparison %>%
     Conc = paste(Conc, "concentration", sep=" ")
   )
 
+# Determine frequency of interaction at different Conc and Cutoff
+exp_int = q_comparison %>%
+  # Add the cutoffs
+  uncount(5) %>%
+  group_by(Conc, UniProt_entry) %>%
+  mutate(Cutoff = 10**c(-5:-1)) %>%
+  # Classify interaction
+  mutate(New = New < Cutoff, Old = Old < Cutoff) %>%
+  # Calculate fraction interaction
+  gather(Date, Interaction, -Conc, -UniProt_entry, -Cutoff) %>%
+  filter(!is.na(Interaction)) %>%
+  group_by(Conc, Cutoff, Date) %>%
+  summarise(Interaction = sum(Interaction)/length(Interaction)) %>%
+  # Spread dates into columns
+  spread(Date, Interaction) %>%
+  # Clarify Conc
+  mutate(Conc = paste(Conc, "concentration", sep=" ")) %>%
+  # Add protein counts
+  left_join(
+    interaction %>%
+      group_by(Conc, Cutoff) %>%
+      summarise(Proteins = sum(Proteins))
+  ) %>%
+  # Calculate expected agreements if randomly sampled
+  mutate(
+    Yes = New * Old * Proteins,
+    No = (1-New) * (1-Old) * Proteins,
+    Split = Proteins - Yes - No
+  ) %>%
+  # Gather into long format
+  select(-Proteins, -New, -Old) %>%
+  gather(Interaction, Proteins, -Conc, -Cutoff) %>%
+  # Order Interaction
+  mutate(Interaction = factor(Interaction, levels=c("Yes", "Split", "No")))
+
 # Plot it
 gp = ggplot(
   interaction,
-  aes(x=Cutoff, y=Proteins, fill=Interaction, label=Percent)
+  aes(x=Cutoff, y=Proteins, fill=Interaction)
 )
 gp = gp + geom_col(color="black", position=position_dodge(width=0.7), width=0.7)
+gp = gp + geom_point(
+  data=exp_int, shape=21, alpha=1, position=position_dodge(width=0.7),
+  fill="white", colour="black", size=1, mapping=aes(group=Interaction)
+)
+
 gp = gp + geom_text(
-  position=position_dodge(width=0.7), angle=90, hjust=1.1, vjust=0.5, size=2.5
+  position=position_dodge(width=0.7), angle=90, hjust=1.1, vjust=0.5, size=2.5,
+  mapping=aes(label=Percent)
 )
 gp = gp + theme_bw()
 gp = gp + facet_grid(.~Conc)
@@ -136,5 +177,6 @@ gp = gp + theme(
   strip.background = element_blank()
 )
 gp = gp + xlab("q value cutoff")
+gp = gp + ylab("Proteins (circle = random)")
 
 ggsave("results/accoa_date_agreement.pdf", gp, h=3, w=7)
