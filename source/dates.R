@@ -4,38 +4,33 @@ library(scales)
 
 # Load data
 lipsmap = bind_rows(
-  read_csv("data/accoa_20210127.csv") %>% mutate(Date = "Old"),
-  read_csv("data/accoa_20210527.csv") %>% mutate(Date = "New")
+  read_csv("data/accoa_20210127.csv") %>%
+    mutate(Metabolite = "AcCoA", Date = "Old"),
+  read_csv("data/accoa_20210527.csv") %>%
+    mutate(Metabolite = "AcCoA", Date = "New"),
+  read_csv("data/atp_20200612.csv") %>%
+    mutate(Metabolite = "ATP", Date = "Old"),
+  read_csv("data/atp_20200819.csv") %>%
+    mutate(Metabolite = "ATP", Date = "New")
 ) %>%
-  select(Peptide_ID, Conc, adj.pvalue, log2FC, Date, UniProt_entry) %>%
-  mutate(Conc = ifelse(Conc == 1, "Low", "High"))
+  select(
+    Peptide_ID, Conc, adj.pvalue, log2FC,
+    Date, Metabolite, UniProt_entry
+  ) %>%
+  mutate(
+    Conc = case_when(
+      Conc == 2 ~ "High",
+      Conc == 1 & Metabolite == "ATP" ~ "High",
+      T ~ "Low"
+    )
+  )
 
 # Correlate q value between Old and New
 q_comparison = lipsmap %>%
-  group_by(Conc, Date, UniProt_entry) %>%
+  group_by(Metabolite, Conc, Date, UniProt_entry) %>%
   summarise(q = min(adj.pvalue)) %>%
-  spread(Date, q)
-
-# Low correlation
-r_low = cor(
-  filter(q_comparison, Conc == "Low")$New,
-  filter(q_comparison, Conc == "Low")$Old,
-  use="complete", method="spearman"
-)
-
-# High correlation
-r_high = cor(
-  filter(q_comparison, Conc == "High")$New,
-  filter(q_comparison, Conc == "High")$Old,
-  use="complete", method="spearman"
-)
-
-# Full correlation
-r_full = cor(
-  q_comparison$New,
-  q_comparison$Old,
-  use="complete", method="spearman"
-)
+  spread(Date, q) %>%
+  mutate(Condition = paste(Metabolite, " (", Conc, " concentration)", sep=""))
 
 # Determine limits
 q_lims = c(
@@ -43,26 +38,29 @@ q_lims = c(
   10**ceiling(log10(max(c(q_comparison$Old, q_comparison$New), na.rm=T)))
 )
 
+# Correlate data
+q_correlation = q_comparison %>%
+  group_by(Metabolite, Conc) %>%
+  summarise(Correlation = cor(New, Old, use="complete", method="spearman")) %>%
+  left_join(
+    q_comparison %>%
+      select(Metabolite, Conc, Condition) %>%
+      distinct()
+  ) %>%
+  ungroup() %>%
+  mutate(
+    Old = rep(q_lims[1]*10, length(Correlation)),
+    New = rep(q_lims[1]*5, length(Correlation)),
+    Label = paste("R = ", round(Correlation, 3), sep=""),
+  )
+
 # Plot q value comparison
-gp = ggplot(
-  mutate(q_comparison, Conc = paste(Conc, " concentration", sep="")),
-  aes(x=Old, y=New)
-)
-gp = gp + geom_point(alpha=0.5, stroke=0, size=1, colour="#1b7837")
-gp = gp + geom_text(
-  data=tibble(
-    Label = c(
-      paste("R = ", round(r_low, 3), sep=""),
-      paste("R = ", round(r_high, 3), sep="")
-    ),
-    Conc = c("Low concentration", "High concentration"),
-    Old = c(1e-6, 1e-6),
-    New = c(5e-7, 5e-7)
-  ),
-  mapping=aes(label=Label)
-)
+gp = ggplot(q_comparison, aes(x=Old, y=New))
+gp = gp + geom_point(mapping=aes(colour=Condition), alpha=0.5, stroke=0, size=1)
+gp = gp + scale_color_manual(values=c("#1b7837", "#1b7837", "#9970ab"), guide=F)
+gp = gp + geom_text(data=q_correlation, mapping=aes(label=Label))
 gp = gp + theme_bw()
-gp = gp + facet_grid(.~Conc)
+gp = gp + facet_grid(.~Condition)
 gp = gp + scale_x_log10(limits=q_lims)
 gp = gp + scale_y_log10(limits=q_lims)
 gp = gp + theme(
@@ -71,22 +69,16 @@ gp = gp + theme(
   strip.background = element_blank(),
   aspect.ratio = 1
 )
-gp = gp + xlab("min(q) on 2021-01-27")
-gp = gp + ylab("min(q) on 2021-05-27")
-gp = gp + ggtitle(
-  paste(
-    "Correlation of min(q) between dates (overall R = ",
-    round(r_full, 3), ")", sep=""
-  )
-)
+gp = gp + xlab("min(q) in early experiment")
+gp = gp + ylab("min(q) in later experiment")
 
-ggsave("results/accoa_min_q_cor.pdf", gp, h=3.5, w=7)
+ggsave("results/dates_min_q_cor.pdf", gp, h=3.2, w=8)
 
 # Investigate interactions
 interaction = q_comparison %>%
   # Add some different cutoff alternatives
   uncount(5) %>%
-  group_by(Conc, UniProt_entry) %>%
+  group_by(Condition, UniProt_entry) %>%
   mutate(Cutoff = 10**c(-5:-1)) %>%
   ungroup() %>%
   # Determine what the two dates are agreeing upon
@@ -101,7 +93,7 @@ interaction = q_comparison %>%
   # Remove single proteins (detected in only one experiment)
   filter(Interaction != "Single") %>%
   # Summarise Interaction decision
-  group_by(Conc, Cutoff, Interaction) %>%
+  group_by(Condition, Cutoff, Interaction) %>%
   summarise(Proteins = length(UniProt_entry)) %>%
   # Order Interaction class
   mutate(
@@ -110,34 +102,34 @@ interaction = q_comparison %>%
   # Add missing values
   complete(Interaction, fill=list(Proteins = 0)) %>%
   # Calculate percent of each Interaction type
-  group_by(Conc, Cutoff) %>%
+  group_by(Condition, Cutoff) %>%
   mutate(
     Percent = percent(Proteins / sum(Proteins)),
-    Percent = ifelse(Proteins / sum(Proteins) < 0.1, "", Percent),
-    Conc = paste(Conc, "concentration", sep=" ")
+    Percent = ifelse(Proteins < 150, "", Percent)
   )
 
 # Determine frequency of interaction at different Conc and Cutoff
 exp_int = q_comparison %>%
   # Add the cutoffs
   uncount(5) %>%
-  group_by(Conc, UniProt_entry) %>%
+  group_by(Condition, UniProt_entry) %>%
   mutate(Cutoff = 10**c(-5:-1)) %>%
   # Classify interaction
   mutate(New = New < Cutoff, Old = Old < Cutoff) %>%
   # Calculate fraction interaction
-  gather(Date, Interaction, -Conc, -UniProt_entry, -Cutoff) %>%
+  gather(
+    Date, Interaction,
+    -Metabolite, -Conc, -Condition, -UniProt_entry, -Cutoff
+  ) %>%
   filter(!is.na(Interaction)) %>%
-  group_by(Conc, Cutoff, Date) %>%
+  group_by(Condition, Date, Cutoff) %>%
   summarise(Interaction = sum(Interaction)/length(Interaction)) %>%
   # Spread dates into columns
   spread(Date, Interaction) %>%
-  # Clarify Conc
-  mutate(Conc = paste(Conc, "concentration", sep=" ")) %>%
-  # Add protein counts
+  # Add protein counts (only proteins that were detected on both dates)
   left_join(
     interaction %>%
-      group_by(Conc, Cutoff) %>%
+      group_by(Condition, Cutoff) %>%
       summarise(Proteins = sum(Proteins))
   ) %>%
   # Calculate expected agreements if randomly sampled
@@ -148,7 +140,7 @@ exp_int = q_comparison %>%
   ) %>%
   # Gather into long format
   select(-Proteins, -New, -Old) %>%
-  gather(Interaction, Proteins, -Conc, -Cutoff) %>%
+  gather(Interaction, Proteins, -Condition, -Cutoff) %>%
   # Order Interaction
   mutate(Interaction = factor(Interaction, levels=c("Yes", "Split", "No")))
 
@@ -162,21 +154,22 @@ gp = gp + geom_point(
   data=exp_int, shape=21, alpha=1, position=position_dodge(width=0.7),
   fill="white", colour="black", size=1, mapping=aes(group=Interaction)
 )
-
 gp = gp + geom_text(
   position=position_dodge(width=0.7), angle=90, hjust=1.1, vjust=0.5, size=2.5,
   mapping=aes(label=Percent)
 )
 gp = gp + theme_bw()
-gp = gp + facet_grid(.~Conc)
+gp = gp + facet_grid(.~Condition)
 gp = gp + scale_x_log10()
 gp = gp + scale_fill_brewer(palette="PuOr")
 gp = gp + theme(
   axis.text = element_text(color="black"),
   axis.ticks = element_line(color="black"),
-  strip.background = element_blank()
+  strip.background = element_blank(),
+  aspect.ratio = 1,
+  legend.position = "bottom"
 )
 gp = gp + xlab("q value cutoff")
 gp = gp + ylab("Proteins (circle = random)")
 
-ggsave("results/accoa_date_agreement.pdf", gp, h=3, w=7)
+ggsave("results/dates_agreement.pdf", gp, h=4.5, w=10.5)
