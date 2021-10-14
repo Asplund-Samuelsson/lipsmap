@@ -18,6 +18,7 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
    7. [Calvin cycle and sinks](#calvin)
    8. [Carbon concentration mechanisms](#ccm)
    9. [Number of detected peptides](#peptides)
+   10. [Post-translational modifications](#mod)
 3. [Author](#author)
 
 <a name="prep"></a>
@@ -351,6 +352,24 @@ Furthermore, the script counted the number of detected peptides in each experime
 results/peptides_per_experiment.pdf
 ```
 
+<a name="mod"></a>
+### 2.10. Post-translational modifications
+
+Interactions between _Synechocystis_ proteins and acetyl-CoA or GAP were compared to published [acetylome](https://pubs.acs.org/doi/10.1021/pr501275a) and [propionylome](https://www.mdpi.com/1422-0067/20/19/4792/html) data using Fisher's exact test followed by plotting:
+
+```
+source/modifications.R
+```
+
+...with this plot as the result:
+
+```
+results/modifications.pdf
+```
+
+**Example:** Overlap between post-translational modifications and interactions with acetyl-CoA or GAP in _Synechocystis_ (dashed lines indicate insignificant enrichment)
+
+![alt text](data/examples/modifications.png "Overlap between interaction and post-translational modifications")
 
 <a name="author"></a>
 ## 3. Author

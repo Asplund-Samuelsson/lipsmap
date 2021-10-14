@@ -39,3 +39,7 @@ Rscript source/ccm.R >> analysis.log 2>&1
 # 9. Number of detected peptides
 echo -en "\n9. Number of detected peptides\n" >> analysis.log
 Rscript source/peptides.R >> analysis.log 2>&1
+
+# 10. Post-translational modifications
+echo -en "\n10. Post-translational modifications\n" >> analysis.log
+Rscript source/modifications.R >> analysis.log 2>&1
