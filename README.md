@@ -31,15 +31,12 @@ Data were prepared for analysis by concatenating input files, by gathering annot
 
 Data were concatenated from the original source:
 ```
-source/concatenate_input_data.R
+Rscript source/concatenate_input_data.R ${INDIR} ${OUTFILE}
 ```
 
 Missing loci were amended by the concatenation R script with the intermediate files `intermediate/missing_locus_uniprot_IDs.txt` and `intermediate/uniprot_locus_missing.tab`.
 
-The R script finally produced concatenated LiP-SMap results:
-```
-data/annotated_comparison_results.tab.gz
-```
+The R script finally produced concatenated LiP-SMap in `OUTFILE`.
 
 <a name="annotations"></a>
 ### 1.2. Additional annotations

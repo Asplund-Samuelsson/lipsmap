@@ -3,8 +3,10 @@ library(tidyverse)
 library(foreach)
 library(doMC)
 
-# Define input path
-inpath = "/hdd/emil/LiP-SMap/data/comparison_results/annotated"
+# Read input file and output directory
+args = commandArgs(trailingOnly=TRUE)
+inpath = args[1]
+outfile = args[2]
 
 # List infiles
 infiles = tibble(
@@ -89,6 +91,4 @@ lipsmap = lipsmap %>%
   )
 
 # Save data to compressed archive
-write_tsv(
-  lipsmap, gzfile("data/annotated_comparison_results.tab.gz")
-)
+write_tsv(lipsmap, gzfile(outfile))
