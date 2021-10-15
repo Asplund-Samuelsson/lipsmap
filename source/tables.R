@@ -153,12 +153,6 @@ annotated_interactions = interactions %>%
     Ortholog, Ortholog_description, Ortholog_category
   )
 
-# Save table
-write_tsv(
-  annotated_interactions,
-  gzfile(file.path(outdir,"ortholog_ec_module_interactions.tab.gz"))
-)
-
 # Save Excel file
 library(openxlsx)
 

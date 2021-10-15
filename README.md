@@ -275,7 +275,6 @@ Rscript source/tables.R ${INFILE} ${OUTDIR}/tables
 ...yielding a long format supplementary table:
 
 ```
-ortholog_ec_module_interactions.tab.gz
 ortholog_ec_module_interactions.xlsx
 ```
 
