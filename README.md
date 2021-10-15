@@ -34,11 +34,7 @@ Data were concatenated from the original source:
 source/concatenate_input_data.R
 ```
 
-Missing loci were amended by the concatenation R script:
-```
-data/missing_locus_uniprot_IDs.txt
-data/uniprot_locus_missing.tab
-```
+Missing loci were amended by the concatenation R script with the intermediate files `intermediate/missing_locus_uniprot_IDs.txt` and `intermediate/uniprot_locus_missing.tab`.
 
 The R script finally produced concatenated LiP-SMap results:
 ```
@@ -127,13 +123,15 @@ Within the phylogenetic analysis script, the NCBI taxonomy was consulted to give
 A series of R scripts were used to test hypotheses, and to generate data visualizations and tables. All scripts can be run in order by invoking the analysis shell script:
 
 ```
-./analysis.sh
+./analysis.sh ${INFILE} ${OUTDIR}
 ```
 
-Output (`stdout` and `stderr`) from the scripts is logged in this file:
+...where `INFILE` is an output file from `source/concatenate_input_data.R`, and `OUTDIR` is a desired output directory, in which each script will have its own output subdirectory.
+
+Standard output ("`stdout`") and standard error ("`stderr`") reporting from the scripts is logged in this file:
 
 ```
-analysis.log
+${OUTDIR}/analysis.log
 ```
 
 The individual steps of the analysis are described below.
@@ -143,12 +141,12 @@ The individual steps of the analysis are described below.
 
 Metabolite interactions with enzymes and non-enzymes were compared using Fisher's exact test:
 ```
-source/enzymes.R
+Rscript source/enzymes.R ${INFILE} ${OUTDIR}/enzymes
 ```
 
 ...yielding the following results:
 ```
-results/Fisher_exact_test_for_enzyme_interactions.tab
+Fisher_exact_test_for_enzyme_interactions.tab
 ```
 
 <a name="functions"></a>
@@ -157,15 +155,15 @@ results/Fisher_exact_test_for_enzyme_interactions.tab
 Proteins were grouped by various functional categories (EC, GO, KEGG module, pathway) and tested for enrichment of interactions:
 
 ```
-source/functions.R
+Rscript source/functions.R ${INFILE} ${OUTDIR}/functions
 ```
 
 ...yielding the following results:
 ```
-results/Fisher_exact_test_for_EC_interactions.tab
-results/Fisher_exact_test_for_GO_interactions.tab
-results/Fisher_exact_test_for_module_interactions.tab
-results/Fisher_exact_test_for_pathway_interactions.tab
+Fisher_exact_test_for_EC_interactions.tab
+Fisher_exact_test_for_GO_interactions.tab
+Fisher_exact_test_for_module_interactions.tab
+Fisher_exact_test_for_pathway_interactions.tab
 ```
 
 <a name="orthologs"></a>
@@ -173,28 +171,28 @@ results/Fisher_exact_test_for_pathway_interactions.tab
 
 Interaction patterns with orthologs were compared within and between organisms:
 ```
-source/orthologs.R
+Rscript source/orthologs.R ${INFILE} ${OUTDIR}/orthologs
 ```
 
 ...producing a range of comparison plots and tables.
 
 Overview and clustering of orthologs across the whole dataset:
 ```
-results/orthologs_interaction_comparison.png
-results/orthologs_interaction_clustering.pdf
-results/metabolite_function_interactions.pdf
+orthologs_interaction_comparison.png
+orthologs_interaction_clustering.pdf
+metabolite_function_interactions.pdf
 ```
 
 PCoA and PCA analysis at high and low concentration:
 ```
-results/Fig.orthologs_interaction_pcoa.high.pdf
-results/Fig.orthologs_interaction_pcoa.low.pdf
-results/orthologs_interaction_jaccard.high.tab
-results/orthologs_interaction_jaccard.low.tab
-results/orthologs_interaction_pca.high.pdf
-results/orthologs_interaction_pca.low.pdf
-results/orthologs_interaction_pcoa.high.pdf
-results/orthologs_interaction_pcoa.low.pdf
+Fig.orthologs_interaction_pcoa.high.pdf
+Fig.orthologs_interaction_pcoa.low.pdf
+orthologs_interaction_jaccard.high.tab
+orthologs_interaction_jaccard.low.tab
+orthologs_interaction_pca.high.pdf
+orthologs_interaction_pca.low.pdf
+orthologs_interaction_pcoa.high.pdf
+orthologs_interaction_pcoa.low.pdf
 ```
 
 **Example:** Ortholog metabolite interaction PCoA
@@ -203,14 +201,14 @@ results/orthologs_interaction_pcoa.low.pdf
 
 Clustering of metabolites or orthologs per organism:
 ```
-results/ortholog_clustering.Cupriavidus_by_Metabolite.pdf
-results/ortholog_clustering.Cupriavidus_by_Ortholog.pdf
-results/ortholog_clustering.Hydrogenophaga_by_Metabolite.pdf
-results/ortholog_clustering.Hydrogenophaga_by_Ortholog.pdf
-results/ortholog_clustering.Synechococcus_by_Metabolite.pdf
-results/ortholog_clustering.Synechococcus_by_Ortholog.pdf
-results/ortholog_clustering.Synechocystis_by_Metabolite.pdf
-results/ortholog_clustering.Synechocystis_by_Ortholog.pdf
+ortholog_clustering.Cupriavidus_by_Metabolite.pdf
+ortholog_clustering.Cupriavidus_by_Ortholog.pdf
+ortholog_clustering.Hydrogenophaga_by_Metabolite.pdf
+ortholog_clustering.Hydrogenophaga_by_Ortholog.pdf
+ortholog_clustering.Synechococcus_by_Metabolite.pdf
+ortholog_clustering.Synechococcus_by_Ortholog.pdf
+ortholog_clustering.Synechocystis_by_Metabolite.pdf
+ortholog_clustering.Synechocystis_by_Ortholog.pdf
 ```
 
 **Example:** Ortholog metabolite interaction clustering in _Cupriavidus_
@@ -219,8 +217,8 @@ results/ortholog_clustering.Synechocystis_by_Ortholog.pdf
 
 Clustered heatmap of interactions between metabolites and ortholog categories:
 ```
-results/ortholog_category_heatmap.abs.pdf
-results/ortholog_category_heatmap.norm.pdf
+ortholog_category_heatmap.abs.pdf
+ortholog_category_heatmap.norm.pdf
 ```
 
 <a name="modules"></a>
@@ -228,23 +226,23 @@ results/ortholog_category_heatmap.norm.pdf
 
 KEGG modules are groups of enzymes constituting complete or partial pathways. Proteins were grouped by these modules and interactions were summarized and compared:
 ```
-source/modules.R
+Rscript source/modules.R ${INFILE} ${OUTDIR}/modules
 ```
 
 ...yielding the following results:
 ```
-results/module_interaction_summary.tab
-results/module_interactions.pdf
+module_interaction_summary.tab
+module_interactions.pdf
 ```
 
 The overlap of modules and ortholog categories was examined:
 ```
-source/category_module_overlap.R
+Rscript source/category_module_overlap.R ${INFILE} ${OUTDIR}/modules
 ```
 
 ...producing the following plot:
 ```
-results/category_module_overlap.pdf
+category_module_overlap.pdf
 ```
 
 **Example:** KEGG module metabolite interactions (top modules by number of interactions)
@@ -256,12 +254,12 @@ results/category_module_overlap.pdf
 
 Phylogenetic trees of Calvin cycle genes were plotted using _phytools_ and _ggtree_ in R:
 ```
-source/phylogenetics.R
+Rscript source/phylogenetics.R ${INFILE} ${OUTDIR}/phylogenetics
 ```
 
 ...producing the following final PDF containing visualizations of all trees, highlighting interactions with metabolites:
 ```
-results/cbb_ko_trees.pdf
+cbb_ko_trees.pdf
 ```
 
 **Example:** PRK phylogenetic tree with LiP-SMap interactions
@@ -274,14 +272,14 @@ results/cbb_ko_trees.pdf
 KEGG EC and module annotations were combined with eggNOG orthologs and categories to give context to metabolite-protein interactions for low and high concentration:
 
 ```
-source/tables.R
+Rscript source/tables.R ${INFILE} ${OUTDIR}/tables
 ```
 
 ...yielding a long format supplementary table:
 
 ```
-results/ortholog_ec_module_interactions.tab.gz
-results/ortholog_ec_module_interactions.xlsx
+ortholog_ec_module_interactions.tab.gz
+ortholog_ec_module_interactions.xlsx
 ```
 
 <a name="calvin"></a>
@@ -290,21 +288,16 @@ results/ortholog_ec_module_interactions.xlsx
 Calvin (CBB) cycle enzymes and related sink (or "drain") enzymes were investigated for interactions with the tested metabolites:
 
 ```
-source/cbb_drains.R
+Rscript source/cbb.R ${INFILE} ${OUTDIR}/cbb
 ```
 
 ...by creating a plot of all interactions:
 
 ```
-results/cbb_drains.pdf
+cbb.pdf
 ```
 
-...with these enzymes, defined by EC number annotations from KEGG:
-
-```
-data/cbb_enzymes.tab
-data/cbb_drains.tab
-```
+...with enzymes defined by EC number annotations from KEGG in the files `data/cbb_enzymes.tab` and `data/cbb_drains.tab`.
 
 <a name="ccm"></a>
 ### 2.8. Carbon concentration mechanisms
@@ -312,20 +305,16 @@ data/cbb_drains.tab
 Carbon concentration mechanism (CCM) interactions in _Synechocystis_ were plotted using this script:
 
 ```
-source/ccm.R
+Rscript source/ccm.R ${INFILE} ${OUTDIR}/ccm
 ```
 
 ...generating this output:
 
 ```
-results/ccm.pdf
+ccm.pdf
 ```
 
-...based on this list of CCM and regulatory genes:
-
-```
-data/CCM_regulatory_proteins.csv
-```
+...based on CCM and regulatory genes listed in `data/CCM_regulatory_proteins.csv`.
 
 <a name="peptides"></a>
 ### 2.9. Number of detected peptides
@@ -333,13 +322,13 @@ data/CCM_regulatory_proteins.csv
 The number of detected peptides for proteins where none (Interaction FALSE) or at least one peptide (Interaction TRUE) showed significant interaction with a metabolite was plotted for each organism and concentration:
 
 ```
-source/peptides.R
+Rscript source/peptides.R ${INFILE} ${OUTDIR}/peptides
 ```
 
 ...yielding this graphic:
 
 ```
-results/peptides_per_protein.pdf
+peptides_per_protein.pdf
 ```
 
 **Example:** Detected peptides per protein compared to occurrence of interaction in _Synechocystis_
@@ -349,7 +338,7 @@ results/peptides_per_protein.pdf
 Furthermore, the script counted the number of detected peptides in each experiment:
 
 ```
-results/peptides_per_experiment.pdf
+peptides_per_experiment.pdf
 ```
 
 <a name="mod"></a>
@@ -358,13 +347,13 @@ results/peptides_per_experiment.pdf
 Interactions between _Synechocystis_ proteins and acetyl-CoA or GAP were compared to published [acetylome](https://pubs.acs.org/doi/10.1021/pr501275a) and [propionylome](https://www.mdpi.com/1422-0067/20/19/4792/html) data using Fisher's exact test followed by plotting:
 
 ```
-source/modifications.R
+Rscript source/modifications.R ${INFILE} ${OUTDIR}/modifications
 ```
 
 ...with this plot as the result:
 
 ```
-results/modifications.pdf
+modifications.pdf
 ```
 
 **Example:** Overlap between post-translational modifications and interactions with acetyl-CoA or GAP in _Synechocystis_ (dashed lines indicate insignificant enrichment)

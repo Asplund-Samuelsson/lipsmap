@@ -1,8 +1,13 @@
 options(width=110)
 library(tidyverse)
 
+# Read input file and output directory
+args = commandArgs(trailingOnly=TRUE)
+infile = args[1]
+outdir = args[2]
+
 # Load data
-lipsmap = read_tsv("data/annotated_comparison_results.tab.gz") %>%
+lipsmap = read_tsv(infile) %>%
   # Change significance
   mutate(Sign = ifelse(adj.pvalue < 0.01, "sign", "unsign"))
 
@@ -170,16 +175,24 @@ do_fisher = function(annotations) {
 
 # Analyze GO
 go_fisher = do_fisher(go_annotations)
-write_tsv(go_fisher, "results/Fisher_exact_test_for_GO_interactions.tab")
+write_tsv(
+  go_fisher, file.path(outdir, "Fisher_exact_test_for_GO_interactions.tab")
+)
 
 # Analyze EC
 ec_fisher = do_fisher(ec_annotations)
-write_tsv(ec_fisher, "results/Fisher_exact_test_for_EC_interactions.tab")
+write_tsv(
+  ec_fisher, file.path(outdir, "Fisher_exact_test_for_EC_interactions.tab")
+)
 
 # Analyze Pathway
 pw_fisher= do_fisher(pathway_annotations)
-write_tsv(pw_fisher, "results/Fisher_exact_test_for_pathway_interactions.tab")
+write_tsv(
+  pw_fisher, file.path(outdir, "Fisher_exact_test_for_pathway_interactions.tab")
+)
 
 # Analyze Module
 mo_fisher = do_fisher(module_annotations)
-write_tsv(mo_fisher, "results/Fisher_exact_test_for_module_interactions.tab")
+write_tsv(
+  mo_fisher, file.path(outdir, "Fisher_exact_test_for_module_interactions.tab")
+)

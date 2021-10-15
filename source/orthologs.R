@@ -8,8 +8,13 @@ library(vegan)
 library(ape)
 library(tidyverse)
 
+# Read input file and output directory
+args = commandArgs(trailingOnly=TRUE)
+infile = args[1]
+outdir = args[2]
+
 # Load data
-lipsmap = read_tsv("data/annotated_comparison_results.tab.gz") %>%
+lipsmap = read_tsv(infile) %>%
   # Change significance
   mutate(Sign = ifelse(adj.pvalue < 0.01, "sign", "unsign"))
 
@@ -187,7 +192,10 @@ gp = gp + theme(
   strip.text.y = element_text(angle=0, hjust=0)
 )
 
-ggsave("results/orthologs_interaction_comparison.png", gp, w=16, h=10)
+ggsave(
+  file.path(outdir, "orthologs_interaction_comparison.png"),
+  gp, w=16, h=10
+)
 
 # Function to plot PCA results
 pc_plots = function(interaction_comparison, conc){
@@ -258,7 +266,9 @@ pc_plots = function(interaction_comparison, conc){
   gp2 = gp2 + facet_wrap(~Organism, ncol=1)
 
 
-  outfile = paste("results/orthologs_interaction_pca.", conc, ".pdf", sep="")
+  outfile = file.path(
+    outdir, paste("orthologs_interaction_pca.", conc, ".pdf", sep="")
+  )
   pdf(outfile, width=11, height=8.5, onefile=FALSE)
   print(ggarrange(
     gp2,
@@ -333,8 +343,8 @@ pc_plots = function(interaction_comparison, conc){
   gp2 = get_pca_fig_plot()
 
   # Save plot in PDF
-  outfile = paste(
-    "results/Fig.orthologs_interaction_pca.", conc, ".pdf", sep=""
+  outfile = file.path(
+    outdir, paste("Fig.orthologs_interaction_pca.", conc, ".pdf", sep="")
   )
   pdf(outfile, width=180/25.4, height=120/25.4, onefile=FALSE)
   print(annotate_figure(
@@ -603,7 +613,7 @@ gp = gp + xlab("Ortholog category")
 gp3 = gp
 
 # Make combined plot
-outfile = "results/orthologs_interaction_clustering.pdf"
+outfile = file.path(outdir, "orthologs_interaction_clustering.pdf")
 pdf(outfile, width=12.5, height=8.5, onefile=FALSE)
 ggarrange(
   gp1,
@@ -688,7 +698,10 @@ gp = gp + scale_alpha_manual(values=c(1,0.25))
 gp = gp + scale_fill_manual(values=organcols)
 gp = gp + xlab("Ortholog category")
 
-ggsave("results/metabolite_function_interactions.pdf", gp, w=16, h=7)
+ggsave(
+  file.path(outdir, "metabolite_function_interactions.pdf"),
+  gp, w=16, h=7
+)
 
 # Now cluster based on metabolite or ortholog for each organism
 cluster_organism = function(organism, grouping, n_clusters){
@@ -1092,8 +1105,9 @@ cluster_organism = function(organism, grouping, n_clusters){
   plot_widths = c(1,4)
   plot_width = 11
 
-  outfile = paste(
-    "results/ortholog_clustering.", organism, "_by_", grouping, ".pdf", sep=""
+  outfile = file.path(
+    outdir,
+    paste("ortholog_clustering.", organism, "_by_", grouping, ".pdf", sep="")
   )
   pdf(outfile, width=plot_width, height=8.5, onefile=FALSE)
   print(
@@ -1349,7 +1363,9 @@ plot_heatmap = function(interactions_summary, nametag){
 
   gp_null = ggplot() + theme_void()
 
-  outfile = paste("results/ortholog_category_heatmap.", nametag, ".pdf", sep="")
+  outfile = file.path(
+    outdir, paste("ortholog_category_heatmap.", nametag, ".pdf", sep="")
+  )
   pdf(outfile, width=11.5, height=6.5, onefile=FALSE)
   print(ggarrange(
     gp_category,

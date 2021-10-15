@@ -1,8 +1,13 @@
 options(width=110)
 library(tidyverse)
 
+# Read input file and output directory
+args = commandArgs(trailingOnly=TRUE)
+infile = args[1]
+outdir = args[2]
+
 # Load data
-lipsmap = read_tsv("data/annotated_comparison_results.tab.gz") %>%
+lipsmap = read_tsv(infile) %>%
   # Change significance
   mutate(Sign = ifelse(adj.pvalue < 0.01, "sign", "unsign"))
 
@@ -80,7 +85,7 @@ write_tsv(
   interaction_counts %>%
     arrange(-Interactions) %>%
     inner_join(module_description),
-  "results/module_interaction_summary.tab"
+  file.path(outdir, "module_interaction_summary.tab")
 )
 
 # Add missing data
@@ -161,4 +166,4 @@ gp = gp + scale_alpha_manual(values=c(1,0.25))
 gp = gp + scale_fill_manual(values=organcols)
 gp = gp + scale_linetype_manual(values=c(3,1))
 
-ggsave("results/module_interactions.pdf", gp, w=15, h=16)
+ggsave(file.path(outdir, "module_interactions.pdf"), gp, w=15, h=16)

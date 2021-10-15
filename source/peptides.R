@@ -1,8 +1,13 @@
 options(width=110)
 library(tidyverse)
 
+# Read input file and output directory
+args = commandArgs(trailingOnly=TRUE)
+infile = args[1]
+outdir = args[2]
+
 # Load data
-lipsmap = read_tsv("data/annotated_comparison_results.tab.gz") %>%
+lipsmap = read_tsv(infile) %>%
   # Change significance
   mutate(Sign = ifelse(adj.pvalue < 0.01, "sign", "unsign"))
 
@@ -79,7 +84,7 @@ gp = gp + theme(
 )
 gp = gp + ylab("Peptides per protein")
 
-ggsave("results/peptides_per_protein.pdf", gp, w=9, h=11)
+ggsave(file.path(outdir,"peptides_per_protein.pdf"), gp, w=9, h=11)
 
 
 # Count number of detected peptides per experiment
@@ -124,4 +129,4 @@ gp = gp + theme(
 )
 gp = gp + ylab("Number of detected peptides (circles indicate significant)")
 
-ggsave("results/peptides_per_experiment.pdf", gp, w=6, h=6)
+ggsave(file.path(outdir, "peptides_per_experiment.pdf"), gp, w=6, h=6)

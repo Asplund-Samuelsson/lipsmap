@@ -1,8 +1,13 @@
 options(width=110)
 library(tidyverse)
 
+# Read input file and output directory
+args = commandArgs(trailingOnly=TRUE)
+infile = args[1]
+outdir = args[2]
+
 # Load data
-lipsmap = read_tsv("data/annotated_comparison_results.tab.gz") %>%
+lipsmap = read_tsv(infile) %>%
   # Change significance
   mutate(Sign = ifelse(adj.pvalue < 0.01, "sign", "unsign"))
 
@@ -151,7 +156,7 @@ annotated_interactions = interactions %>%
 # Save table
 write_tsv(
   annotated_interactions,
-  gzfile("results/ortholog_ec_module_interactions.tab.gz")
+  gzfile(file.path(outdir,"ortholog_ec_module_interactions.tab.gz"))
 )
 
 # Save Excel file
@@ -172,5 +177,6 @@ setColWidths(
 )
 freezePane(wb, "Ortholog EC module interactions", firstRow = TRUE)
 saveWorkbook(
-  wb, file="results/ortholog_ec_module_interactions.xlsx", overwrite=T
+  wb, file=file.path(outdir, "ortholog_ec_module_interactions.xlsx"),
+  overwrite=T
 )

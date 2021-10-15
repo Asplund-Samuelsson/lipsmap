@@ -1,6 +1,11 @@
 options(width=110)
 library(tidyverse)
 
+# Read input file and output directory
+args = commandArgs(trailingOnly=TRUE)
+infile = args[1]
+outdir = args[2]
+
 # Define organisms and colors
 organisms = c("Hydrogenophaga", "Cupriavidus", "Synechococcus", "Synechocystis")
 organcols = c("#762a83", "#9970ab","#5aae61","#1b7837")
@@ -37,7 +42,7 @@ taxonomy = bind_rows(
   )
 )
 
-lipsmap = read_tsv("data/annotated_comparison_results.tab.gz") %>%
+lipsmap = read_tsv(infile) %>%
   # Change significance
   mutate(Sign = ifelse(adj.pvalue < 0.01, "sign", "unsign"))
 
@@ -295,11 +300,9 @@ plot_tree = function (ko) {
 
   # Write to outfile
   pdf(
-    paste(
-      "results/ko_trees/",
-      filter(ko_name, Ortholog == ko)$Name,
-      "_", ko,
-      ".pdf", sep=""
+    file.path(
+      outdir, "ko_trees",
+      paste(filter(ko_name, Ortholog == ko)$Name, "_", ko, ".pdf", sep="")
     ),
     w=12, h=10, onefile=F
   )
@@ -342,14 +345,18 @@ system(
         function(x){
           grep(
             x,
-            grep("pdf", list.files("results/ko_trees", full.names=T), value=T),
+            grep(
+              "pdf",
+              list.files(file.path(outdir, "ko_trees"), full.names=T),
+              value=T
+            ),
             value=T
           )
         }
       )),
       collapse=" "
     ),
-    "results/cbb_ko_trees.pdf",
+    file.path(outdir, "cbb_ko_trees.pdf"),
     sep=" "
   )
 )

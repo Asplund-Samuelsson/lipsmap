@@ -1,8 +1,13 @@
 options(width=110)
 library(tidyverse)
 
+# Read input file and output directory
+args = commandArgs(trailingOnly=TRUE)
+infile = args[1]
+outdir = args[2]
+
 # Load data
-lipsmap = read_tsv("data/annotated_comparison_results.tab.gz") %>%
+lipsmap = read_tsv(infile) %>%
   # Change significance
   mutate(Sign = ifelse(adj.pvalue < 0.01, "sign", "unsign"))
 
@@ -122,4 +127,4 @@ gp = gp + theme(
   panel.border=element_blank()
 )
 
-ggsave("results/modifications.pdf", gp, w=7, h=7)
+ggsave(file.path(outdir, "modifications.pdf"), gp, w=7, h=7)

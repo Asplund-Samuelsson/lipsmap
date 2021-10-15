@@ -44,20 +44,20 @@ lipsmap = lipsmap %>%
 # Save UniProt IDs of peptides with missing loci
 write(
   filter(lipsmap, is.na(Locus)) %>% pull(UniProt_entry) %>% unique(),
-  "data/missing_locus_uniprot_IDs.txt"
+  "intermediate/missing_locus_uniprot_IDs.txt"
 )
 
 # Download missing loci
 system(paste(c(
-"cat data/missing_locus_uniprot_IDs.txt | parallel --no-notice --jobs 16 '",
+"cat intermediate/missing_locus_uniprot_IDs.txt | parallel --no-notice --jobs 16 '",
 'wget -qO - "https://www.uniprot.org/uniprot/{}.txt" |',
 'grep "^DR   KEGG" | tr ";:" "\t" | cut -f 3 | sed -e "s/^/{}\t/"',
-"' > data/uniprot_locus_missing.tab"
+"' > intermediate/uniprot_locus_missing.tab"
 ), collapse=""))
 
 # Load missing locus IDs
 uniprot_locus = read_tsv(
-  "data/uniprot_locus_missing.tab",
+  "intermediate/uniprot_locus_missing.tab",
   col_names = c("UniProt_entry", "Locus")
 )
 
