@@ -34,6 +34,7 @@ module_description = read_tsv(
 # Define organisms and colors
 organisms = c("Hydrogenophaga", "Cupriavidus", "Synechococcus", "Synechocystis")
 organcols = c("#762a83", "#9970ab","#5aae61","#1b7837")
+names(organcols) = organisms
 
 # Clean up strings
 module_compound = module_reaction %>%

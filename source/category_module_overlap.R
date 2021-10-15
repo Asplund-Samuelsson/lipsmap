@@ -19,6 +19,7 @@ eggnog_annotations = read_tsv("data/eggNOG_annotations.tab")
 # Define organisms and colors
 organisms = c("Hydrogenophaga", "Cupriavidus", "Synechococcus", "Synechocystis")
 organcols = c("#762a83", "#9970ab","#5aae61","#1b7837")
+names(organcols) = organisms
 
 # Determine eggNOG annotations
 eggnog_annotations_unique = eggnog_annotations %>%

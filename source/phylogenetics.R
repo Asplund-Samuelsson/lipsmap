@@ -9,6 +9,7 @@ outdir = args[2]
 # Define organisms and colors
 organisms = c("Hydrogenophaga", "Cupriavidus", "Synechococcus", "Synechocystis")
 organcols = c("#762a83", "#9970ab","#5aae61","#1b7837")
+names(organcols) = organisms
 
 # Load data
 uniprot_genename = read_tsv(

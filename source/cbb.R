@@ -112,6 +112,7 @@ missing_data = possible_data %>%
 # Order organisms
 organisms = c("Hydrogenophaga", "Cupriavidus", "Synechococcus", "Synechocystis")
 organcols = c("#762a83", "#9970ab","#5aae61","#1b7837")
+names(organcols) = organisms
 
 # Prepare heatmap table
 interactions_heat = plot_data %>%

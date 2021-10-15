@@ -105,6 +105,7 @@ tot_significant = tot_peptides %>%
 
 # Organism colours
 organcols = rev(c("#762a83", "#9970ab","#5aae61","#1b7837"))
+names(organcols) = organisms
 
 # Plot it
 gp = ggplot(
