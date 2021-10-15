@@ -712,15 +712,6 @@ cluster_organism = function(organism, grouping, n_clusters){
     "#a50026", "#d73027", "#f46d43", "#fdae61",
     "#abd9e9", "#74add1", "#4575b4", "#313695"
   )
-  custom_palette = c(
-    available_colors[c(
-      1:(ceiling(n_clusters/2)),
-      (
-        length(available_colors) - floor(n_clusters/2) + 1
-      ):length(available_colors)
-    )],
-    "#4d4d4d"
-  )
 
   # Prepare distance matrix
   jaccard_dist = interaction_comparison_concs_wide %>%
@@ -753,10 +744,31 @@ cluster_organism = function(organism, grouping, n_clusters){
 
   # Cluster based on distance
   clustering = hclust(jaccard_dist, method = "ward.D2")
-  clusters = cutree(clustering, k=n_clusters)
+
+  # Lower number of clusters until there are no clusters with a single member
+  for (n in rev(1:n_clusters)) {
+    clusters = cutree(clustering, k=n)
+    if (min(table(clusters)) > 1) {
+      n_clusters = n
+      break
+    }
+  }
+
+  # Create clusters table
   clusters = tibble(
     label = names(clusters),
     Cluster = as.character(clusters)
+  )
+
+  # Set custom palette based on number of clusters
+  custom_palette = c(
+    available_colors[c(
+      1:(ceiling(n_clusters/2)),
+      (
+        length(available_colors) - floor(n_clusters/2) + 1
+      ):length(available_colors)
+    )],
+    "#4d4d4d"
   )
 
   # Create tree from clustering
@@ -1131,17 +1143,23 @@ cluster_organism = function(organism, grouping, n_clusters){
 # Avoid creating "Rplots.pdf"
 pdf(NULL)
 
-# Plot each organism by Metabolite
-cluster_organism("Hydrogenophaga", "Metabolite", 3)
-cluster_organism("Cupriavidus", "Metabolite", 4)
-cluster_organism("Synechocystis", "Metabolite", 6)
-cluster_organism("Synechococcus", "Metabolite", 6)
-
-# Plot each organism by Ortholog
-cluster_organism("Hydrogenophaga", "Ortholog", 7)
-cluster_organism("Cupriavidus", "Ortholog", 7)
-cluster_organism("Synechocystis", "Ortholog", 7)
-cluster_organism("Synechococcus", "Ortholog", 7)
+for (org in unique(interaction_comparison_concs_wide$Organism)){
+  # Plot each organism by Metabolite
+  cluster_organism(
+    org,
+    "Metabolite",
+    case_when(
+      # Use three clusters for Hydrogenophaga
+      org == "Hydrogenophaga" ~ 3,
+      # Use four clusters for Cupriavidus
+      org == "Cupriavidus" ~ 4,
+      # Use six clusters for other organisms
+      T ~ 6
+    )
+  )
+  # Plot each organism by Ortholog
+  cluster_organism(org, "Ortholog", 7)
+}
 
 # Make a heatmap
 interactions_summary_full = ortholog_interactions %>%
