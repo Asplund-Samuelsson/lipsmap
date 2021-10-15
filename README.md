@@ -237,12 +237,12 @@ module_interactions.pdf
 
 The overlap of modules and ortholog categories was examined:
 ```
-Rscript source/category_module_overlap.R ${INFILE} ${OUTDIR}/modules
+Rscript source/category_module_overlap.R
 ```
 
 ...producing the following plot:
 ```
-category_module_overlap.pdf
+results/category_module_overlap.pdf
 ```
 
 **Example:** KEGG module metabolite interactions (top modules by number of interactions)

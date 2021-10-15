@@ -30,8 +30,7 @@ Rscript source/orthologs.R $INFILE ${OUTDIR}/orthologs >> $LOGFILE 2>&1
 echo -en "\n4. Comparison of KEGG modules\n" >> $LOGFILE
 mkdir -p ${OUTDIR}/modules
 Rscript source/modules.R $INFILE ${OUTDIR}/modules >> $LOGFILE 2>&1
-Rscript source/category_module_overlap.R $INFILE ${OUTDIR}/modules \
->> $LOGFILE 2>&1
+Rscript source/category_module_overlap.R >> $LOGFILE 2>&1
 
 # 5. Phylogenetic trees
 echo -en "\n5. Phylogenetic trees\n" >> $LOGFILE
