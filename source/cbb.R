@@ -151,6 +151,10 @@ interactions_heat = plot_data %>%
     )
   )
 
+# Define shape scale
+shape_scale = c(NA, 1, 4, 0)
+names(shape_scale) = c("", "Undetected", "Unmeasured", "Inexistent")
+
 # Plot heatmap
 make_heatmap = function(interactions_heat_sub, ytext=T, xtext=T){
   gp = ggplot(
@@ -164,7 +168,7 @@ make_heatmap = function(interactions_heat_sub, ytext=T, xtext=T){
   gp = gp + scale_fill_manual(values=organcols)
   gp = gp + scale_color_manual(values=organcols)
   gp = gp + scale_alpha_manual(values=c(0,1))
-  gp = gp + scale_shape_manual(values=c(NA, 1, 4, 0), drop=F)
+  gp = gp + scale_shape_manual(values=shape_scale, drop=F)
   gp = gp + theme(
     strip.background = element_blank(),
     aspect.ratio = 1,

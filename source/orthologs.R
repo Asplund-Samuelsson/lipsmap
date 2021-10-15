@@ -1354,10 +1354,15 @@ plot_heatmap = function(interactions_summary, nametag){
   gp = gp + xlim(0, max(gp$data$x)*1.5)
   gp_category = gp
 
+  # Define shape scale
+  shape_scale = c(NA, 1, 4, 0)
+  names(shape_scale) = c("", "Undetected", "Unmeasured", "Inexistent")
 
   gp = ggplot(
     interactions_heat,
-    aes(x=Friendship, y=Metabolism, fill=Organism, alpha=Interactions, shape=Data)
+    aes(
+      x=Friendship, y=Metabolism, fill=Organism, alpha=Interactions, shape=Data
+    )
   )
   gp = gp + geom_tile()
   gp = gp + geom_point(mapping = aes(color=Organism), alpha=0.5)
@@ -1366,7 +1371,7 @@ plot_heatmap = function(interactions_summary, nametag){
   gp = gp + scale_fill_manual(values=organcols)
   gp = gp + scale_color_manual(values=organcols)
   gp = gp + scale_alpha_continuous(trans="log10")
-  gp = gp + scale_shape_manual(values=c(NA, 1, 4, 0))
+  gp = gp + scale_shape_manual(values=shape_scale, drop=F)
   gp = gp + theme(
     strip.background = element_blank(),
     aspect.ratio = 1,
