@@ -19,8 +19,12 @@ acetylation = scan("data/synechocystis_acetylation.txt", character())
 propionylation = scan("data/synechocystis_propionylation.txt", character())
 
 interaction = lipsmap %>%
-# Consider interactions only in Synechocystis, with AcCoA and GAP
-  filter(Organism == "Synechocystis", Metabolite %in% c("GAP", "AcCoA")) %>%
+  filter(
+    # Consider interactions only in Synechocystis
+    Organism == "Synechocystis",
+    # ...with AcCoA and GAP, as well as some comparison metabolites
+    Metabolite %in% c("GAP", "AcCoA", "ATP", "Cit", "NADPH", "RuBP")
+  ) %>%
   # Determine significant proteins
   group_by(Metabolite, Conc, UniProt_entry) %>%
   summarise(Interaction = "sign" %in% Sign) %>%
@@ -127,4 +131,4 @@ gp = gp + theme(
   panel.border=element_blank()
 )
 
-ggsave(file.path(outdir, "modifications.pdf"), gp, w=7, h=7)
+ggsave(file.path(outdir, "modifications.pdf"), gp, w=7, h=10)
