@@ -88,7 +88,7 @@ gp = gp + theme(
 gp = gp + xlab("min(q) in early experiment")
 gp = gp + ylab("min(q) in later experiment")
 
-ggsave("results/dates_min_q_cor.pdf", gp, h=6.4, w=8)
+ggsave("results/dates_min_q_cor.pdf", gp, h=5.5, w=8)
 
 # Investigate interactions
 interaction = q_comparison %>%
@@ -192,4 +192,4 @@ gp = gp + theme(
 gp = gp + xlab("q value cutoff")
 gp = gp + ylab("Proteins (circle = random)")
 
-ggsave("results/dates_agreement.pdf", gp, h=9, w=10.5)
+ggsave("results/dates_agreement.pdf", gp, h=8, w=10.5)
