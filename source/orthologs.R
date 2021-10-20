@@ -87,6 +87,9 @@ eggnog_annotations_unique = eggnog_annotations %>%
   select(-Version) %>%
   distinct()
 
+# Determine unique organisms
+unique_organisms = unique(lipsmap$Organism)
+
 # Determine ortholog interactions
 ortholog_interactions = lipsmap %>%
   # Determine metabolite-interacting proteins; at least one significant peptide
@@ -95,7 +98,10 @@ ortholog_interactions = lipsmap %>%
   # Add ortholog information
   inner_join(orthologs) %>%
   # Clarify concentration description
-  mutate(Conc = ifelse(Conc == 1, "Low", "High"))
+  mutate(Conc = ifelse(Conc == 1, "Low", "High")) %>%
+  # Filter orthologs to those that are present in all organisms
+  group_by(Ortholog) %>%
+  filter(sum(unique_organisms %in% Organism) == length(unique_organisms))
 
 # Count number of interactions
 number_interactions = ortholog_interactions %>%
@@ -201,12 +207,17 @@ ggsave(
 # Function to plot PCA results
 pc_plots = function(interaction_comparison, conc){
 
+  # Function to expand limits a bit...
+  expand_lims = function (x, f=0.05) {
+    w = x[2]-x[1]
+    c(x[1]-w*f, x[2]+w*f)
+  }
+
   # Spread interactions data into wide format to allow making matrices
   interaction_comparison_wide = interaction_comparison %>%
     group_by(Organism, Metabolite) %>%
     spread(Ortholog, Interaction) %>%
     ungroup()
-
 
   # Create matrix from interaction comparison data
   interaction_comparison_wide_m = interaction_comparison_wide %>%
@@ -233,11 +244,6 @@ pc_plots = function(interaction_comparison, conc){
   ortholog_pca_plot = ortholog_pca_plot %>%
     mutate(Organism = factor(Organism, levels = organisms))
 
-  # Function to get 3 breaks
-  three_breaks = function(break_data){
-    labeling::extended(min(break_data), max(break_data), m=3)
-  }
-
   # Basic plot structure
   gp = ggplot(
     ortholog_pca_plot,
@@ -256,8 +262,8 @@ pc_plots = function(interaction_comparison, conc){
     strip.background = element_blank(),
     aspect.ratio = 1
   )
-  gp = gp + scale_x_continuous(breaks=three_breaks(gp$data$PC1))
-  gp = gp + scale_y_continuous(breaks=three_breaks(gp$data$PC2))
+  gp = gp + scale_x_continuous(n.breaks=3, limits=expand_lims)
+  gp = gp + scale_y_continuous(n.breaks=3, limits=expand_lims)
 
   # Make plot split by Metabolite
   gp1 = gp + facet_wrap(~Metabolite, ncol=5)
@@ -270,14 +276,14 @@ pc_plots = function(interaction_comparison, conc){
   outfile = file.path(
     outdir, paste("orthologs_interaction_pca.", conc, ".pdf", sep="")
   )
-  pdf(outfile, width=11, height=8.5, onefile=FALSE)
+  pdf(outfile, width=9.8, height=8.5, onefile=FALSE)
   print(ggarrange(
     gp2,
     gp1,
     nrow = 1,
     ncol = 2,
     labels = c("A", "B"),
-    widths = c(1, 2),
+    widths = c(0.8, 2),
     common.legend = T,
     label.x = 0, label.y = 1
   ))
@@ -315,7 +321,7 @@ pc_plots = function(interaction_comparison, conc){
       # Otherwise plot facets by Organism
       gp = gp + facet_wrap(~Organism, ncol=length(unique(plot_data$Organism)))
       # ...and include labels
-      gp = gp + geom_text_repel(force=3, size=2.5,alpha=0.9)
+      gp = gp + geom_text_repel(force=3, size=2.5, alpha=0.9)
     }
 
     # Finish plot
@@ -331,8 +337,8 @@ pc_plots = function(interaction_comparison, conc){
       # Use consistent size range
       limits=size_range
     )
-    gp = gp + scale_x_continuous(breaks=three_breaks(gp$data$PC1))
-    gp = gp + scale_y_continuous(breaks=three_breaks(gp$data$PC2))
+    gp = gp + scale_x_continuous(n.breaks=3, limits=expand_lims)
+    gp = gp + scale_y_continuous(n.breaks=3, limits=expand_lims)
 
     # Return plot
     return(gp)
