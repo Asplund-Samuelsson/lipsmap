@@ -373,7 +373,7 @@ modifications.pdf
 
 Quality of the experiments was assessed by checking persistence of significant low concentration interactions in high concentration ([Fig 7](#fig7)), as well as correlating peptide fold changes in low and high concentration:
 ```
-source/qc.R
+Rscript source/qc.R ${INFILE} ${OUTDIR}/qc
 ```
 
 ...which resulted in the following visualizations:
