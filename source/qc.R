@@ -140,9 +140,6 @@ peptides = lipsmap %>%
 
 # Make comparison of log2FC in Low and High
 peptide_fc = peptides %>%
-  group_by(Organism, Metabolite, Conc, UniProt_entry, Peptide) %>%
-  mutate(Significant = (T %in% Significant)) %>%
-  ungroup() %>%
   select(-q) %>%
   spread(Conc, log2FC) %>%
   filter(!(is.na(High) | is.na(Low)))

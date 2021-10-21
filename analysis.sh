@@ -61,3 +61,8 @@ Rscript source/peptides.R $INFILE ${OUTDIR}/peptides >> $LOGFILE 2>&1
 echo -en "\n10. Post-translational modifications\n" >> $LOGFILE
 mkdir -p ${OUTDIR}/modifications
 Rscript source/modifications.R $INFILE ${OUTDIR}/modifications >> $LOGFILE 2>&1
+
+# 11. Quality control
+echo -en "\n11. Quality control\n" >> $LOGFILE
+mkdir -p ${OUTDIR}/qc
+Rscript source/qc.R $INFILE ${OUTDIR}/qc >> $LOGFILE 2>&1

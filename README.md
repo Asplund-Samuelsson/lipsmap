@@ -8,6 +8,7 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
    1. [Concatenation](#cat)
    2. [Additional annotations](#annotations)
    3. [Phylogenetic analysis](#phylogenetics)
+   4. [Repeated experiments](#rep)
 2. [Analysis pipeline](#analysis)
    1. [Interaction with enzymes](#enzymes)
    2. [Functional categories](#functions)
@@ -19,6 +20,7 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
    8. [Carbon concentration mechanisms](#ccm)
    9. [Number of detected peptides](#peptides)
    10. [Post-translational modifications](#mod)
+   11. [Quality control](#qc)
 3. [Author](#author)
 
 <a name="prep"></a>
@@ -114,11 +116,24 @@ source/Calvin_cycle_phylogenetics.sh
 
 Within the phylogenetic analysis script, the NCBI taxonomy was consulted to give organism labels to all proteins in the tree using the helper script `source/taxid-to-taxonomy.py`. Furthermore, UniProt sequences were acquired based on KEGG orthologs using the helper script `source/uniprot_sequences_from_KO.sh`.
 
+<a name="rep"></a>
+### 1.4. Repeated experiments
+
+Assessment of minimum _q_ value correlation and agreement on significant interactions between repeated experiments was performed with this script:
+```
+source/dates.R
+```
+
+...yielding the following plots:
+```
+results/dates_min_q_cor.pdf
+results/dates_agreement.pdf
+```
+
 <a name="analysis"></a>
 ## 2. Analysis pipeline
 
 A series of R scripts were used to test hypotheses, and to generate data visualizations and tables. All scripts can be run in order by invoking the analysis shell script:
-
 ```
 ./analysis.sh ${INFILE} ${OUTDIR}
 ```
@@ -126,7 +141,6 @@ A series of R scripts were used to test hypotheses, and to generate data visuali
 ...where `INFILE` is an output file from `source/concatenate_input_data.R`, and `OUTDIR` is a desired output directory, in which each script will have its own output subdirectory.
 
 Standard output ("`stdout`") and standard error ("`stderr`") reporting from the scripts is logged in this file:
-
 ```
 ${OUTDIR}/analysis.log
 ```
@@ -150,7 +164,6 @@ Fisher_exact_test_for_enzyme_interactions.tab
 ### 2.2. Functional categories
 
 Proteins were grouped by various functional categories (EC, GO, KEGG module, pathway) and tested for enrichment of interactions:
-
 ```
 Rscript source/functions.R ${INFILE} ${OUTDIR}/functions
 ```
@@ -267,13 +280,11 @@ cbb_ko_trees.pdf
 ### 2.6. Supplementary tables
 
 KEGG EC and module annotations were combined with eggNOG orthologs and categories to give context to metabolite-protein interactions for low and high concentration:
-
 ```
 Rscript source/tables.R ${INFILE} ${OUTDIR}/tables
 ```
 
 ...yielding a long format supplementary table:
-
 ```
 ortholog_ec_module_interactions.xlsx
 ```
@@ -282,13 +293,11 @@ ortholog_ec_module_interactions.xlsx
 ### 2.7. Calvin cycle and sinks
 
 Calvin (CBB) cycle enzymes and related sink (or "drain") enzymes were investigated for interactions with the tested metabolites:
-
 ```
 Rscript source/cbb.R ${INFILE} ${OUTDIR}/cbb
 ```
 
 ...by creating a plot of all interactions:
-
 ```
 cbb.pdf
 ```
@@ -299,13 +308,11 @@ cbb.pdf
 ### 2.8. Carbon concentration mechanisms
 
 Carbon concentration mechanism (CCM) interactions in _Synechocystis_ were plotted using this script:
-
 ```
 Rscript source/ccm.R ${INFILE} ${OUTDIR}/ccm
 ```
 
 ...generating this output:
-
 ```
 ccm.pdf
 ```
@@ -316,13 +323,11 @@ ccm.pdf
 ### 2.9. Number of detected peptides
 
 The number of detected peptides for proteins where none (Interaction FALSE) or at least one peptide (Interaction TRUE) showed significant interaction with a metabolite was plotted for each organism and concentration:
-
 ```
 Rscript source/peptides.R ${INFILE} ${OUTDIR}/peptides
 ```
 
 ...yielding this graphic:
-
 ```
 peptides_per_protein.pdf
 ```
@@ -332,7 +337,6 @@ peptides_per_protein.pdf
 ![alt text](data/examples/peptides.png "Detected peptides and interaction in Synechocystis")
 
 Furthermore, the script counted the number of detected peptides in each experiment:
-
 ```
 peptides_per_experiment.pdf
 ```
@@ -341,13 +345,11 @@ peptides_per_experiment.pdf
 ### 2.10. Post-translational modifications
 
 Interactions between _Synechocystis_ proteins and acetyl-CoA or GAP were compared to published [acetylome](https://pubs.acs.org/doi/10.1021/pr501275a) and [propionylome](https://www.mdpi.com/1422-0067/20/19/4792/html) data using Fisher's exact test followed by plotting:
-
 ```
 Rscript source/modifications.R ${INFILE} ${OUTDIR}/modifications
 ```
 
 ...with this plot as the result:
-
 ```
 modifications.pdf
 ```
@@ -355,6 +357,24 @@ modifications.pdf
 **Example:** Overlap between post-translational modifications and interactions with acetyl-CoA or GAP in _Synechocystis_ (dashed lines indicate insignificant enrichment)
 
 ![alt text](data/examples/modifications.png "Overlap between interaction and post-translational modifications")
+
+<a name="qc"></a>
+### 2.11. Quality control
+
+Quality of the experiments was assessed by checking persistence of significant low concentration interactions in high concentration, as well as correlating peptide fold changes in low and high concentration:
+```
+source/qc.R
+```
+
+...which resulted in the following visualizations:
+```
+persistence.pdf
+fc_correlation.png
+```
+
+**Example:** Fraction interactions found in low concentration experiments that persist in high concentration experiments
+
+![alt text](data/examples/persistence.png "Low concentration interactions found also in high concentration")
 
 <a name="author"></a>
 ## 3. Author
