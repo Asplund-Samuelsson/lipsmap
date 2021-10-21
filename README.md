@@ -193,23 +193,15 @@ orthologs_interaction_clustering.pdf
 metabolite_function_interactions.pdf
 ```
 
-PCoA and PCA analysis at high and low concentration:
+PCA analysis at high ([Fig 1](#fig1)) and low concentration:
 ```
-Fig.orthologs_interaction_pcoa.high.pdf
-Fig.orthologs_interaction_pcoa.low.pdf
-orthologs_interaction_jaccard.high.tab
-orthologs_interaction_jaccard.low.tab
+Fig.orthologs_interaction_pca.high.pdf
+Fig.orthologs_interaction_pca.low.pdf
 orthologs_interaction_pca.high.pdf
 orthologs_interaction_pca.low.pdf
-orthologs_interaction_pcoa.high.pdf
-orthologs_interaction_pcoa.low.pdf
 ```
 
-**Example:** Ortholog metabolite interaction PCoA
-
-![alt text](data/examples/orthologs_interaction_pcoa.png "Ortholog metabolite interaction PCoA example")
-
-Clustering of metabolites or orthologs per organism:
+Clustering of metabolites or orthologs per organism ([Fig 2](#fig2)):
 ```
 ortholog_clustering.Cupriavidus_by_Metabolite.pdf
 ortholog_clustering.Cupriavidus_by_Ortholog.pdf
@@ -221,15 +213,23 @@ ortholog_clustering.Synechocystis_by_Metabolite.pdf
 ortholog_clustering.Synechocystis_by_Ortholog.pdf
 ```
 
-**Example:** Ortholog metabolite interaction clustering in _Cupriavidus_
-
-![alt text](data/examples/ortholog_clustering.Cupriavidus_by_Metabolite.png "Ortholog metabolite interaction clustering example in Cupriavidus")
-
 Clustered heatmap of interactions between metabolites and ortholog categories:
 ```
 ortholog_category_heatmap.abs.pdf
 ortholog_category_heatmap.norm.pdf
 ```
+
+<a name="fig1"></a>
+
+| ![alt text](data/examples/orthologs_interaction_pca.png "Ortholog metabolite interaction PCA example") |
+| --- |
+| **Fig 1.** Ortholog metabolite interaction PCA, high concentration. |
+
+<a name="fig2"></a>
+
+| ![alt text](data/examples/ortholog_clustering.Cupriavidus_by_Metabolite.png "Ortholog metabolite interaction clustering example in Cupriavidus") |
+| --- |
+| **Fig 2.** Ortholog metabolite interaction clustering in _Cupriavidus_. |
 
 <a name="modules"></a>
 ### 2.4. Comparison of KEGG modules
@@ -250,14 +250,17 @@ The overlap of modules and ortholog categories was examined:
 Rscript source/category_module_overlap.R
 ```
 
-...producing the following plot:
+...producing the following plot ([Fig 3](#fig3)):
 ```
 results/category_module_overlap.pdf
 ```
 
-**Example:** KEGG module metabolite interactions (top modules by number of interactions)
+<a name="fig3"></a>
 
-![alt text](data/examples/module_interactions.png "KEGG module metabolite interactions (top modules)")
+| ![alt text](data/examples/module_interactions.png "KEGG module metabolite interactions (top modules)") |
+| --- |
+| **Fig 3.** KEGG module metabolite interactions (top modules by number of interactions). |
+
 
 <a name="trees"></a>
 ### 2.5. Phylogenetic trees
@@ -267,14 +270,17 @@ Phylogenetic trees of Calvin cycle genes were plotted using _phytools_ and _ggtr
 Rscript source/phylogenetics.R ${INFILE} ${OUTDIR}/phylogenetics
 ```
 
-...producing the following final PDF containing visualizations of all trees, highlighting interactions with metabolites:
+...producing the following final PDF containing visualizations of all trees, highlighting interactions with metabolites ([Fig 4](#fig4)):
 ```
 cbb_ko_trees.pdf
 ```
 
-**Example:** PRK phylogenetic tree with LiP-SMap interactions
+<a name="fig4"></a>
 
-![alt text](data/examples/cbb_ko_trees.png "PRK phylogenetic tree")
+
+| ![alt text](data/examples/cbb_ko_trees.png "PRK phylogenetic tree") |
+| --- |
+| **Fig 4.** PRK phylogenetic tree with LiP-SMap interactions. |
 
 <a name="tables"></a>
 ### 2.6. Supplementary tables
@@ -327,19 +333,21 @@ The number of detected peptides for proteins where none (Interaction FALSE) or a
 Rscript source/peptides.R ${INFILE} ${OUTDIR}/peptides
 ```
 
-...yielding this graphic:
+...yielding this graphic ([Fig 5](#fig5)):
 ```
 peptides_per_protein.pdf
 ```
-
-**Example:** Detected peptides per protein compared to occurrence of interaction in _Synechocystis_
-
-![alt text](data/examples/peptides.png "Detected peptides and interaction in Synechocystis")
 
 Furthermore, the script counted the number of detected peptides in each experiment:
 ```
 peptides_per_experiment.pdf
 ```
+
+<a name="fig5"></a>
+
+| ![alt text](data/examples/peptides.png "Detected peptides and interaction in Synechocystis") |
+| --- |
+| **Fig 5.** Detected peptides per protein compared to occurrence of interaction in _Synechocystis_. |
 
 <a name="mod"></a>
 ### 2.10. Post-translational modifications
@@ -349,19 +357,21 @@ Interactions between _Synechocystis_ proteins and acetyl-CoA or GAP were compare
 Rscript source/modifications.R ${INFILE} ${OUTDIR}/modifications
 ```
 
-...with this plot as the result:
+...with this plot as the result ([Fig 6](#fig6)):
 ```
 modifications.pdf
 ```
 
-**Example:** Overlap between post-translational modifications and interactions with acetyl-CoA or GAP in _Synechocystis_ (dashed lines indicate insignificant enrichment)
+<a name="fig6"></a>
 
-![alt text](data/examples/modifications.png "Overlap between interaction and post-translational modifications")
+| ![alt text](data/examples/modifications.png "Overlap between interaction and post-translational modifications") |
+| --- |
+| **Fig 6.** Overlap between post-translational modifications and interactions with acetyl-CoA or GAP in _Synechocystis_ (dashed lines indicate insignificant enrichment). |
 
 <a name="qc"></a>
 ### 2.11. Quality control
 
-Quality of the experiments was assessed by checking persistence of significant low concentration interactions in high concentration, as well as correlating peptide fold changes in low and high concentration:
+Quality of the experiments was assessed by checking persistence of significant low concentration interactions in high concentration ([Fig 7](#fig7)), as well as correlating peptide fold changes in low and high concentration:
 ```
 source/qc.R
 ```
@@ -372,9 +382,12 @@ persistence.pdf
 fc_correlation.png
 ```
 
-**Example:** Fraction interactions found in low concentration experiments that persist in high concentration experiments
+<a name="fig7"></a>
 
-![alt text](data/examples/persistence.png "Low concentration interactions found also in high concentration")
+
+| ![alt text](data/examples/persistence.png "Low concentration interactions found also in high concentration") |
+| --- |
+| **Fig 7.** Fraction interactions that persist from low to high concentration. |
 
 <a name="author"></a>
 ## 3. Author
