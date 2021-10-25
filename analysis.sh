@@ -66,3 +66,8 @@ Rscript source/modifications.R $INFILE ${OUTDIR}/modifications >> $LOGFILE 2>&1
 echo -en "\n11. Quality control\n" >> $LOGFILE
 mkdir -p ${OUTDIR}/qc
 Rscript source/qc.R $INFILE ${OUTDIR}/qc >> $LOGFILE 2>&1
+
+# 12. Metabolite interactions clustering
+echo -en "\n12. Metabolite interactions clustering\n" >> $LOGFILE
+mkdir -p ${OUTDIR}/metabolites
+Rscript source/metabolites.R $INFILE ${OUTDIR}/metabolites >> $LOGFILE 2>&1

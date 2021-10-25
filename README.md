@@ -21,6 +21,7 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
    9. [Number of detected peptides](#peptides)
    10. [Post-translational modifications](#mod)
    11. [Quality control](#qc)
+   12. [Metabolite interactions clustering](#metabolites)
 3. [Author](#author)
 
 <a name="prep"></a>
@@ -384,10 +385,31 @@ fc_correlation.png
 
 <a name="fig7"></a>
 
-
 | ![alt text](data/examples/persistence.png "Low concentration interactions found also in high concentration") |
 | --- |
 | **Fig 7.** Fraction interactions that persist from low to high concentration. |
+
+<a name="metabolites"></a>
+### 2.12. Metabolite interactions clustering
+
+Metabolite-protein interaction patterns were compared within organisms with PCA and Jaccard distance/Ward.D2 hierarchical clustering using only proteins that were detected in all experiments. This is different from the [ortholog interactions clustering](#orthologs) since it is based on all detected proteins in each organism and not only orthologs found in all organisms. The analysis in this step was invoked as such:
+
+```
+Rscript source/metabolites.R ${INFILE} ${OUTDIR}/metabolites
+```
+
+...and yielded a PCA plot and a hierarchical clustering plot ([Fig 8](#fig8)):
+
+```
+metabolites_pca.pdf
+metabolites_jaccard_ward_D2.pdf
+```
+
+<a name="fig8"></a>
+
+| ![alt text](data/examples/metabolites.png "Hierarchical clustering trees of metabolite-protein interactions") |
+| --- |
+| **Fig 8.** Clustering of metabolite-protein interaction patterns. Bars show number of proteins interacting with each metabolite. |
 
 <a name="author"></a>
 ## 3. Author
