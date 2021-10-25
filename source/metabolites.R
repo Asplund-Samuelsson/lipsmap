@@ -1,7 +1,12 @@
 options(width=110)
-library(tidyverse)
+library(ggtree)
+library(vegan)
+library(phytools)
+library(ape)
 library(scales)
 library(ggrepel)
+library(tidyverse)
+library(ggpubr)
 
 # Read input file and output directory
 args = commandArgs(trailingOnly=TRUE)
@@ -145,3 +150,166 @@ gp = gp + theme(
 )
 
 ggsave(file.path(outdir, "metabolites_pca.pdf"), gp, w=10, h=5)
+
+# Function to get hierarchical clustering results
+do_clust = function (tb) {
+
+  # Spread interactions into columns by protein
+  tb_wide = tb %>%
+    ungroup() %>%
+    select(Metabolite, UniProt_entry, Interaction) %>%
+    spread(UniProt_entry, Interaction)
+
+  # Make matrix
+  tb_matrix = tb_wide %>% select(-Metabolite) %>% as.matrix() * 1
+
+  # Add rownames (metabolites)
+  rownames(tb_matrix) = pull(tb_wide, Metabolite)
+
+  # Do hierarchical clustering
+  tb_dist = vegdist(tb_matrix, "jaccard")
+
+  # Replace missing values with maximum distance (1)
+  tb_dist_m = as.matrix(tb_dist)
+  tb_dist_m[!is.finite(tb_dist_m)] = 1
+  tb_dist = as.dist(tb_dist_m)
+
+  # Cluster based on distance
+  tb_clust = hclust(tb_dist, method = "ward.D2")
+
+  # Count interactions
+  tb_count = tb %>%
+    group_by(Metabolite) %>%
+    summarise(Interactions = sum(Interaction)) %>%
+    rename(label = Metabolite)
+
+  # Create tree from clustering
+  tb_tree = as.phylo(tb_clust)
+
+  # Plot tree
+  gp = ggtree(
+    tb_tree, aes(colour=Organism, fill=Organism), layout="rectangular"
+  )
+
+  # Add Organism to plot data
+  gp$data = gp$data %>% mutate(Organism = unique(tb$Organism))
+
+  # Configure tree
+  gp = gp + geom_tiplab(aes(label=label), size=2.5)
+  gp = gp + scale_color_manual(values=organcols, guide="none")
+  gp = gp + scale_fill_manual(values=organcols, guide="none")
+  gp = gp + scale_x_continuous(
+    expand = expansion(add = c(0.05, 0.5)), n.breaks=4
+  )
+
+  # Add bar plot with interaction counts
+  gp = gp + geom_facet(
+    panel = 'Interactions',
+    data = tb_count %>% select(label, Interactions),
+    geom = geom_col,
+    mapping = aes(x=Interactions),
+    orientation = 'y'
+  )
+
+  gp = gp + theme_tree2()
+  gp = gp + theme(
+    strip.background = element_blank(),
+    strip.text = element_blank(),
+    plot.margin = unit(c(0.3,0.3,0.3,0.3), "cm"),
+    axis.text.x = element_text(size=8)
+  )
+
+  # Return finished tree plot
+  return(gp)
+}
+
+# Do all hierarchical clustering
+clust_groups = filtered_interactions %>%
+  # Do PCA on each organism and concentration
+  mutate(
+    Organism = factor(Organism, levels=organisms),
+    Conc = factor(
+      paste(Conc, " concentration", sep=""),
+      levels = c("High concentration", "Low concentration")
+    )
+  ) %>%
+  group_by(Conc, Organism) %>%
+  group_split()
+
+# Pre-allocate list
+clust_results = vector("list", length(clust_groups))
+
+for (x in 1:length(clust_groups)) {
+  clust_results[[x]] = do_clust(clust_groups[[x]])
+}
+
+# Make label column and header
+make_title = function(title_text, axis) {
+  gp = ggplot(data.frame())
+  gp = gp + geom_blank()
+  gp = gp + theme_void()
+  if (axis == "x"){
+    gp = gp + xlab(title_text)
+    gp = gp + scale_x_continuous(position = "top")
+  } else {
+    gp = gp + ylab(title_text)
+    gp = gp + scale_y_continuous(position = "right")
+    gp = gp + theme(axis.title=element_text(angle=270))
+  }
+  gp = gp + theme(axis.title=element_text(color="black"))
+  return(gp)
+}
+
+# Create header with column titles
+plot_header = c(
+  lapply(
+    unique(unlist(lapply(
+      clust_groups, function(x){unique(pull(x, Organism))}
+    ))),
+    make_title,
+    axis="x"
+  ),
+  list(NULL)
+)
+
+# Create column with row titles
+plot_rows = lapply(
+  unique(unlist(lapply(
+    clust_groups, function(x){unique(pull(x, Conc))}
+  ))),
+  make_title,
+  axis="y"
+)
+
+# Make list of all plots in correct order
+plot_list = c(
+  plot_header,
+  unlist(lapply(
+    1:length(plot_rows),
+    function(x){c(
+      # Split actual plots into rows for each concentration
+      split(
+        clust_results,
+        cut(
+          seq_along(clust_results),
+          length(plot_rows),
+          labels = FALSE
+        )
+      )[[x]],
+      list(plot_rows[[x]])
+    )}
+  ), recursive = F)
+)
+
+# Plot it
+outfile = file.path(outdir, "metabolites_jaccard_ward_D2.pdf")
+pdf(outfile, width=10, height=7, onefile=FALSE)
+ggarrange(
+  plotlist=plot_list,
+  common.legend=T,
+  nrow = length(plot_rows) + 1,
+  ncol = length(plot_header),
+  widths = c(rep(1, length(plot_header)-1), 0.1),
+  heights = c(0.05, rep(1, length(plot_rows)))
+)
+dev.off()
