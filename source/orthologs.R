@@ -433,7 +433,11 @@ ortholog_jaccard_dist_t = as.dist(ortholog_jaccard_dist_t_m)
 ortholog_clustering = hclust(ortholog_jaccard_dist_t, method = "ward.D2")
 
 # Divide into clusters
-ortholog_clusters = cutree(ortholog_clustering, k=7)
+# Lower number of clusters until there are no clusters with a single member
+for (n in rev(1:7)) {
+  ortholog_clusters = cutree(ortholog_clustering, k=n)
+  if (min(table(ortholog_clusters)) > 1) {break}
+}
 
 # List clusters and Orthologs
 ortholog_clusters = tibble(
