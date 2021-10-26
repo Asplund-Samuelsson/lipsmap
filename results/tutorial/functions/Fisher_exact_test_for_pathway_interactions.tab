@@ -1,0 +1,913 @@
+Metabolite	Concentration	Annotation	Annotation_frac	Other_frac	p	q
+3PGA	Low	poly-(R)-3-hydroxybutanoate biosynthesis	0	0.007936507936507936	1	1
+3PGA	Low	Calvin cycle	0	0.007874015748031496	1	1
+3PGA	Low	acetoin degradation	0	0.007874015748031496	1	1
+3PGA	Low	glycolate biosynthesis	0	0.007874015748031496	1	1
+3PGA	Low	pentose phosphate pathway	0	0.008064516129032258	1	1
+3PGA	Low	L-arginine biosynthesis	0	0.008	1	1
+3PGA	Low	L-lysine biosynthesis via DAP pathway	0	0.007936507936507936	1	1
+3PGA	Low	chorismate biosynthesis	0	0.0078125	1	1
+3PGA	Low	peptidoglycan biosynthesis	0	0.008064516129032258	1	1
+3PGA	Low	L-proline biosynthesis	0	0.008130081300813009	1	1
+3PGA	Low	molybdopterin biosynthesis	0	0.008130081300813009	1	1
+3PGA	Low	fatty acid biosynthesis	0	0.008333333333333333	1	1
+3PGA	Low	polypeptide chain elongation	0	0.007936507936507936	1	1
+3PGA	Low	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.007936507936507936	1	1
+3PGA	Low	lipid IV(A) biosynthesis	0	0.008	1	1
+3PGA	Low	L-leucine biosynthesis	0	0.008264462809917356	1	1
+3PGA	Low	glycolysis	0	0.008333333333333333	1	1
+3PGA	Low	guanine degradation	0	0.0078125	1	1
+3PGA	Low	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.0078125	1	1
+3PGA	Low	NAD(+) biosynthesis	0	0.008	1	1
+3PGA	Low	L-isoleucine biosynthesis	0	0.008264462809917356	1	1
+3PGA	Low	L-valine biosynthesis	0	0.008064516129032258	1	1
+3PGA	Low	methylglyoxal degradation	0	0.007936507936507936	1	1
+3PGA	Low	pyridoxine 5'-phosphate biosynthesis	0	0.007874015748031496	1	1
+3PGA	High	poly-(R)-3-hydroxybutanoate biosynthesis	0	0.023809523809523808	1	1
+3PGA	High	Calvin cycle	0	0.023622047244094488	0.9999999999999999	1
+3PGA	High	acetoin degradation	0	0.023622047244094488	0.9999999999999999	1
+3PGA	High	glycolate biosynthesis	0	0.023622047244094488	0.9999999999999999	1
+3PGA	High	pentose phosphate pathway	0	0.024193548387096774	1	1
+3PGA	High	L-arginine biosynthesis	0	0.024	0.9999999999999999	1
+3PGA	High	L-lysine biosynthesis via DAP pathway	0	0.023809523809523808	1	1
+3PGA	High	chorismate biosynthesis	0	0.0234375	1	1
+3PGA	High	peptidoglycan biosynthesis	0	0.024193548387096774	1	1
+3PGA	High	L-proline biosynthesis	0	0.024390243902439025	1	1
+3PGA	High	molybdopterin biosynthesis	0	0.024390243902439025	1	1
+3PGA	High	fatty acid biosynthesis	0	0.025	1	1
+3PGA	High	polypeptide chain elongation	0	0.023809523809523808	1	1
+3PGA	High	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.023809523809523808	1	1
+3PGA	High	lipid IV(A) biosynthesis	0	0.024	0.9999999999999999	1
+3PGA	High	L-leucine biosynthesis	0	0.024793388429752067	1	1
+3PGA	High	glycolysis	0.2222222222222222	0.008333333333333333	0.012600714154916669	1
+3PGA	High	guanine degradation	0	0.0234375	1	1
+3PGA	High	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.0234375	1	1
+3PGA	High	NAD(+) biosynthesis	0	0.024	0.9999999999999999	1
+3PGA	High	L-isoleucine biosynthesis	0	0.024793388429752067	1	1
+3PGA	High	L-valine biosynthesis	0	0.024193548387096774	1	1
+3PGA	High	methylglyoxal degradation	0	0.023809523809523808	1	1
+3PGA	High	pyridoxine 5'-phosphate biosynthesis	0	0.023622047244094488	0.9999999999999999	1
+AcCoA	Low	poly-(R)-3-hydroxybutanoate biosynthesis	0.3333333333333333	0.1864406779661017	0.4718522119591638	1
+AcCoA	Low	Calvin cycle	0	0.19327731092436976	1	1
+AcCoA	Low	acetoin degradation	0	0.19327731092436976	1	1
+AcCoA	Low	glycolate biosynthesis	0	0.19327731092436976	1	1
+AcCoA	Low	pentose phosphate pathway	0.4	0.1810344827586207	0.24044804204325632	1
+AcCoA	Low	L-arginine biosynthesis	0	0.19658119658119658	1	1
+AcCoA	Low	L-lysine biosynthesis via DAP pathway	0	0.19327731092436976	1	1
+AcCoA	Low	chorismate biosynthesis	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	Low	peptidoglycan biosynthesis	0.2	0.1896551724137931	1	1
+AcCoA	Low	L-proline biosynthesis	0.3333333333333333	0.1826086956521739	0.3197116311222269	1
+AcCoA	Low	molybdopterin biosynthesis	0	0.19827586206896552	0.5820647121290645	1
+AcCoA	Low	fatty acid biosynthesis	0.1111111111111111	0.19642857142857142	1	1
+AcCoA	Low	polypeptide chain elongation	0	0.19491525423728814	1	1
+AcCoA	Low	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.19491525423728814	1	1
+AcCoA	Low	lipid IV(A) biosynthesis	0.3333333333333333	0.1864406779661017	0.4718522119591638	1
+AcCoA	Low	L-leucine biosynthesis	0.14285714285714285	0.19298245614035087	1	1
+AcCoA	Low	glycolysis	0.4444444444444444	0.16964285714285715	0.06545787052694772	1
+AcCoA	Low	guanine degradation	0	0.19327731092436976	1	1
+AcCoA	Low	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	Low	NAD(+) biosynthesis	0	0.19827586206896552	0.5820647121290645	1
+AcCoA	Low	L-isoleucine biosynthesis	0.25	0.18584070796460178	0.6463554471561797	1
+AcCoA	Low	L-valine biosynthesis	0.2	0.1896551724137931	1	1
+AcCoA	Low	methylglyoxal degradation	0	0.19327731092436976	1	1
+AcCoA	Low	pyridoxine 5'-phosphate biosynthesis	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	High	poly-(R)-3-hydroxybutanoate biosynthesis	1	0.4067796610169492	0.07231404958677681	1
+AcCoA	High	Calvin cycle	0.5	0.42016806722689076	1	1
+AcCoA	High	acetoin degradation	0.5	0.42016806722689076	1	1
+AcCoA	High	glycolate biosynthesis	0	0.42857142857142855	0.5082644628099173	1
+AcCoA	High	pentose phosphate pathway	0.4	0.4224137931034483	1	1
+AcCoA	High	L-arginine biosynthesis	0.75	0.41025641025641024	0.30893682588597837	1
+AcCoA	High	L-lysine biosynthesis via DAP pathway	0	0.42857142857142855	0.5082644628099173	1
+AcCoA	High	chorismate biosynthesis	0	0.425	1	1
+AcCoA	High	peptidoglycan biosynthesis	0.2	0.43103448275862066	0.39592379885137985	1
+AcCoA	High	L-proline biosynthesis	0.3333333333333333	0.4260869565217391	1	1
+AcCoA	High	molybdopterin biosynthesis	0.2	0.43103448275862066	0.39592379885137985	1
+AcCoA	High	fatty acid biosynthesis	0.4444444444444444	0.41964285714285715	1	1
+AcCoA	High	polypeptide chain elongation	0	0.4322033898305085	0.262396694214876	1
+AcCoA	High	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.4322033898305085	0.262396694214876	1
+AcCoA	High	lipid IV(A) biosynthesis	1	0.4067796610169492	0.07231404958677681	1
+AcCoA	High	L-leucine biosynthesis	0.2857142857142857	0.4298245614035088	0.6975887978624284	1
+AcCoA	High	glycolysis	0.6666666666666666	0.4017857142857143	0.164607045693234	1
+AcCoA	High	guanine degradation	0	0.42857142857142855	0.5082644628099173	1
+AcCoA	High	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.425	1	1
+AcCoA	High	NAD(+) biosynthesis	0.2	0.43103448275862066	0.39592379885137985	1
+AcCoA	High	L-isoleucine biosynthesis	0.5	0.415929203539823	0.7198717285462495	1
+AcCoA	High	L-valine biosynthesis	0.4	0.4224137931034483	1	1
+AcCoA	High	methylglyoxal degradation	0	0.42857142857142855	0.5082644628099173	1
+AcCoA	High	pyridoxine 5'-phosphate biosynthesis	0	0.425	1	1
+ATP	Low	poly-(R)-3-hydroxybutanoate biosynthesis	0.3333333333333333	0.06451612903225806	0.1993520809898763	1
+ATP	Low	Calvin cycle	0	0.072	1	1
+ATP	Low	acetoin degradation	0	0.072	1	1
+ATP	Low	glycolate biosynthesis	0	0.072	1	1
+ATP	Low	pentose phosphate pathway	0	0.07377049180327869	1	1
+ATP	Low	L-arginine biosynthesis	0.25	0.06504065040650407	0.2574636234986756	1
+ATP	Low	glycolysis	0	0.07692307692307693	0.9999999999999999	1
+ATP	Low	L-lysine biosynthesis via DAP pathway	0.3333333333333333	0.06451612903225806	0.1993520809898763	1
+ATP	Low	chorismate biosynthesis	0	0.07142857142857142	1	1
+ATP	Low	peptidoglycan biosynthesis	0	0.07377049180327869	1	1
+ATP	Low	L-proline biosynthesis	0	0.0743801652892562	1	1
+ATP	Low	molybdopterin biosynthesis	0	0.0743801652892562	1	1
+ATP	Low	fatty acid biosynthesis	0	0.07627118644067797	1	1
+ATP	Low	polypeptide chain elongation	0	0.07258064516129033	1	1
+ATP	Low	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.07258064516129033	1	1
+ATP	Low	lipid IV(A) biosynthesis	0	0.07258064516129033	1	1
+ATP	Low	L-leucine biosynthesis	0	0.07563025210084033	1	1
+ATP	Low	guanine degradation	0	0.07142857142857142	1	1
+ATP	Low	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.07142857142857142	1	1
+ATP	Low	NAD(+) biosynthesis	0	0.07317073170731707	1	1
+ATP	Low	L-isoleucine biosynthesis	0.25	0.058823529411764705	0.10021534348410364	1
+ATP	Low	L-valine biosynthesis	0.4	0.05737704918032787	0.04013590354706839	1
+ATP	Low	methylglyoxal degradation	0	0.07258064516129033	1	1
+ATP	Low	pyridoxine 5'-phosphate biosynthesis	0	0.07142857142857142	1	1
+ATP	High	poly-(R)-3-hydroxybutanoate biosynthesis	0.3333333333333333	0.43548387096774194	1	1
+ATP	High	Calvin cycle	0	0.44	0.5050618672665916	1
+ATP	High	acetoin degradation	0	0.44	0.5050618672665916	1
+ATP	High	glycolate biosynthesis	0	0.44	0.5050618672665916	1
+ATP	High	pentose phosphate pathway	0.4	0.4344262295081967	1	1
+ATP	High	L-arginine biosynthesis	0.75	0.42276422764227645	0.3153249392213071	1
+ATP	High	glycolysis	0.6	0.4188034188034188	0.3276406963964	1
+ATP	High	L-lysine biosynthesis via DAP pathway	0.3333333333333333	0.43548387096774194	1	1
+ATP	High	chorismate biosynthesis	0	0.4365079365079365	1	1
+ATP	High	peptidoglycan biosynthesis	0	0.45081967213114754	0.06871802315033192	1
+ATP	High	L-proline biosynthesis	0.5	0.4297520661157025	0.9999999999999999	1
+ATP	High	molybdopterin biosynthesis	0.3333333333333333	0.4380165289256198	0.6973223918459032	1
+ATP	High	fatty acid biosynthesis	0.5555555555555556	0.423728813559322	0.4994562860195474	1
+ATP	High	polypeptide chain elongation	0.6666666666666666	0.4274193548387097	0.5783127109111361	1
+ATP	High	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.4435483870967742	0.25759280089988756	1
+ATP	High	lipid IV(A) biosynthesis	0	0.4435483870967742	0.25759280089988756	1
+ATP	High	L-leucine biosynthesis	0.625	0.42016806722689076	0.29126006198070326	1
+ATP	High	guanine degradation	0	0.4365079365079365	1	1
+ATP	High	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.4365079365079365	1	1
+ATP	High	NAD(+) biosynthesis	0	0.44715447154471544	0.13254907652672457	1
+ATP	High	L-isoleucine biosynthesis	0.625	0.42016806722689076	0.29126006198070326	1
+ATP	High	L-valine biosynthesis	0.6	0.4262295081967213	0.6516352057094358	1
+ATP	High	methylglyoxal degradation	0.3333333333333333	0.43548387096774194	1	1
+ATP	High	pyridoxine 5'-phosphate biosynthesis	0	0.4365079365079365	1	1
+Cit	Low	poly-(R)-3-hydroxybutanoate biosynthesis	0	0	1	1
+Cit	Low	Calvin cycle	0	0	1	1
+Cit	Low	acetoin degradation	0	0	1	1
+Cit	Low	glycolate biosynthesis	0	0	1	1
+Cit	Low	pentose phosphate pathway	0	0	1	1
+Cit	Low	L-arginine biosynthesis	0	0	1	1
+Cit	Low	L-lysine biosynthesis via DAP pathway	0	0	1	1
+Cit	Low	chorismate biosynthesis	0	0	1	1
+Cit	Low	peptidoglycan biosynthesis	0	0	1	1
+Cit	Low	L-proline biosynthesis	0	0	1	1
+Cit	Low	molybdopterin biosynthesis	0	0	1	1
+Cit	Low	fatty acid biosynthesis	0	0	1	1
+Cit	Low	polypeptide chain elongation	0	0	1	1
+Cit	Low	isopentenyl diphosphate biosynthesis via DXP pathway	0	0	1	1
+Cit	Low	lipid IV(A) biosynthesis	0	0	1	1
+Cit	Low	L-leucine biosynthesis	0	0	1	1
+Cit	Low	glycolysis	0	0	1	1
+Cit	Low	guanine degradation	0	0	1	1
+Cit	Low	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0	1	1
+Cit	Low	NAD(+) biosynthesis	0	0	1	1
+Cit	Low	L-isoleucine biosynthesis	0	0	1	1
+Cit	Low	L-valine biosynthesis	0	0	1	1
+Cit	Low	methylglyoxal degradation	0	0	1	1
+Cit	Low	pyridoxine 5'-phosphate biosynthesis	0	0	1	1
+Cit	High	poly-(R)-3-hydroxybutanoate biosynthesis	0.6666666666666666	0.1732283464566929	0.08743291592128806	1
+Cit	High	Calvin cycle	1	0.171875	0.032915921288014315	1
+Cit	High	acetoin degradation	1	0.171875	0.032915921288014315	1
+Cit	High	glycolate biosynthesis	0	0.1875	1	1
+Cit	High	pentose phosphate pathway	0	0.192	0.5834859305377526	1
+Cit	High	L-arginine biosynthesis	0.25	0.18253968253968253	0.5626602270646401	1
+Cit	High	L-lysine biosynthesis via DAP pathway	0	0.1889763779527559	1	1
+Cit	High	chorismate biosynthesis	0	0.18604651162790697	1	1
+Cit	High	peptidoglycan biosynthesis	0.2	0.184	1	1
+Cit	High	L-proline biosynthesis	0.16666666666666666	0.18548387096774194	0.9999999999999999	1
+Cit	High	molybdopterin biosynthesis	0	0.1935483870967742	0.5921494231825671	1
+Cit	High	fatty acid biosynthesis	0.25	0.18032786885245902	0.6398906525171719	1
+Cit	High	polypeptide chain elongation	0	0.1889763779527559	1	1
+Cit	High	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.1889763779527559	1	1
+Cit	High	lipid IV(A) biosynthesis	0.25	0.18253968253968253	0.5626602270646401	1
+Cit	High	L-leucine biosynthesis	0.375	0.1721311475409836	0.16432124549766208	1
+Cit	High	glycolysis	0.4444444444444444	0.1652892561983471	0.05977146608912304	1
+Cit	High	guanine degradation	1	0.17829457364341086	0.1846153846153846	1
+Cit	High	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.18604651162790697	1	1
+Cit	High	NAD(+) biosynthesis	0	0.19047619047619047	1	1
+Cit	High	L-isoleucine biosynthesis	0.25	0.18032786885245902	0.6398906525171719	1
+Cit	High	L-valine biosynthesis	0.4	0.176	0.22944897149484214	1
+Cit	High	methylglyoxal degradation	0	0.1889763779527559	1	1
+Cit	High	pyridoxine 5'-phosphate biosynthesis	0	0.1875	1	1
+FBP	Low	poly-(R)-3-hydroxybutanoate biosynthesis	0	0	1	1
+FBP	Low	Calvin cycle	0	0	1	1
+FBP	Low	acetoin degradation	0	0	1	1
+FBP	Low	pentose phosphate pathway	0	0	1	1
+FBP	Low	L-arginine biosynthesis	0	0	1	1
+FBP	Low	glycolysis	0	0	1	1
+FBP	Low	L-lysine biosynthesis via DAP pathway	0	0	1	1
+FBP	Low	chorismate biosynthesis	0	0	1	1
+FBP	Low	peptidoglycan biosynthesis	0	0	1	1
+FBP	Low	L-proline biosynthesis	0	0	1	1
+FBP	Low	molybdopterin biosynthesis	0	0	1	1
+FBP	Low	fatty acid biosynthesis	0	0	1	1
+FBP	Low	polypeptide chain elongation	0	0	1	1
+FBP	Low	isopentenyl diphosphate biosynthesis via DXP pathway	0	0	1	1
+FBP	Low	lipid IV(A) biosynthesis	0	0	1	1
+FBP	Low	L-leucine biosynthesis	0	0	1	1
+FBP	Low	guanine degradation	0	0	1	1
+FBP	Low	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0	1	1
+FBP	Low	glycolate biosynthesis	0	0	1	1
+FBP	Low	NAD(+) biosynthesis	0	0	1	1
+FBP	Low	L-isoleucine biosynthesis	0	0	1	1
+FBP	Low	L-valine biosynthesis	0	0	1	1
+FBP	Low	methylglyoxal degradation	0	0	1	1
+FBP	Low	pyridoxine 5'-phosphate biosynthesis	0	0	1	1
+FBP	High	poly-(R)-3-hydroxybutanoate biosynthesis	0	0.05737704918032787	0.9999999999999999	1
+FBP	High	Calvin cycle	0	0.056910569105691054	1	1
+FBP	High	acetoin degradation	0	0.056910569105691054	1	1
+FBP	High	pentose phosphate pathway	0	0.058333333333333334	1	1
+FBP	High	L-arginine biosynthesis	0	0.05785123966942149	1.0000000000000002	1
+FBP	High	glycolysis	0	0.06086956521739131	1	1
+FBP	High	L-lysine biosynthesis via DAP pathway	0	0.05737704918032787	0.9999999999999999	1
+FBP	High	chorismate biosynthesis	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	peptidoglycan biosynthesis	0.25	0.049586776859504134	0.2081789219795952	1
+FBP	High	L-proline biosynthesis	0	0.058823529411764705	0.9999999999999999	1
+FBP	High	molybdopterin biosynthesis	0	0.058823529411764705	0.9999999999999999	1
+FBP	High	fatty acid biosynthesis	0.1111111111111111	0.05172413793103448	0.4152602833284487	1
+FBP	High	polypeptide chain elongation	0	0.05737704918032787	0.9999999999999999	1
+FBP	High	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.05737704918032787	0.9999999999999999	1
+FBP	High	lipid IV(A) biosynthesis	0	0.05737704918032787	0.9999999999999999	1
+FBP	High	L-leucine biosynthesis	0	0.05982905982905983	1	1
+FBP	High	guanine degradation	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	glycolate biosynthesis	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	NAD(+) biosynthesis	0	0.05785123966942149	1.0000000000000002	1
+FBP	High	L-isoleucine biosynthesis	0	0.05982905982905983	1	1
+FBP	High	L-valine biosynthesis	0	0.058333333333333334	1	1
+FBP	High	methylglyoxal degradation	0	0.05737704918032787	0.9999999999999999	1
+FBP	High	pyridoxine 5'-phosphate biosynthesis	0	0.056451612903225805	0.9999999999999999	1
+G6P	Low	poly-(R)-3-hydroxybutanoate biosynthesis	0	0.008333333333333333	1	1
+G6P	Low	Calvin cycle	0.5	0	0.016260162601626015	1
+G6P	Low	acetoin degradation	0	0.008264462809917356	1	1
+G6P	Low	glycolate biosynthesis	0	0.008264462809917356	1	1
+G6P	Low	pentose phosphate pathway	0	0.00847457627118644	1	1
+G6P	Low	L-arginine biosynthesis	0	0.008403361344537815	1	1
+G6P	Low	L-lysine biosynthesis via DAP pathway	0	0.008333333333333333	1	1
+G6P	Low	chorismate biosynthesis	0	0.00819672131147541	1	1
+G6P	Low	peptidoglycan biosynthesis	0	0.00847457627118644	1	1
+G6P	Low	L-proline biosynthesis	0	0.008547008547008548	1	1
+G6P	Low	molybdopterin biosynthesis	0	0.00847457627118644	1	1
+G6P	Low	fatty acid biosynthesis	0	0.008695652173913044	1	1
+G6P	Low	polypeptide chain elongation	0	0.008333333333333333	1	1
+G6P	Low	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.008333333333333333	1	1
+G6P	Low	lipid IV(A) biosynthesis	0	0.008333333333333333	1	1
+G6P	Low	L-leucine biosynthesis	0	0.008695652173913044	1	1
+G6P	Low	glycolysis	0.1111111111111111	0	0.07317073170731704	1
+G6P	Low	guanine degradation	0	0.00819672131147541	1	1
+G6P	Low	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.00819672131147541	1	1
+G6P	Low	NAD(+) biosynthesis	0	0.008403361344537815	1	1
+G6P	Low	L-isoleucine biosynthesis	0	0.008695652173913044	1	1
+G6P	Low	L-valine biosynthesis	0	0.00847457627118644	1	1
+G6P	Low	methylglyoxal degradation	0	0.008333333333333333	1	1
+G6P	Low	pyridoxine 5'-phosphate biosynthesis	0	0.00819672131147541	1	1
+G6P	High	poly-(R)-3-hydroxybutanoate biosynthesis	0.3333333333333333	0.175	0.4493111846170622	1
+G6P	High	Calvin cycle	1	0.1652892561983471	0.03078768492602959	1
+G6P	High	acetoin degradation	1	0.1652892561983471	0.03078768492602959	1
+G6P	High	glycolate biosynthesis	0	0.18181818181818182	1	1
+G6P	High	pentose phosphate pathway	0.2	0.17796610169491525	1	1
+G6P	High	L-arginine biosynthesis	0.25	0.17647058823529413	0.5502708007706009	1
+G6P	High	L-lysine biosynthesis via DAP pathway	0.3333333333333333	0.175	0.4493111846170622	1
+G6P	High	chorismate biosynthesis	1	0.1721311475409836	0.17886178861788612	1
+G6P	High	peptidoglycan biosynthesis	0.4	0.1694915254237288	0.21769794755894442	1
+G6P	High	L-proline biosynthesis	0.16666666666666666	0.1794871794871795	1	1
+G6P	High	molybdopterin biosynthesis	0.2	0.17796610169491525	1	1
+G6P	High	fatty acid biosynthesis	0.25	0.17391304347826086	0.6325844724368217	1
+G6P	High	polypeptide chain elongation	0	0.18333333333333332	1	1
+G6P	High	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.18333333333333332	1	1
+G6P	High	lipid IV(A) biosynthesis	0	0.18333333333333332	1	1
+G6P	High	L-leucine biosynthesis	0.125	0.1826086956521739	0.9999999999999999	1
+G6P	High	glycolysis	0.2222222222222222	0.17543859649122806	0.6621374605234251	1
+G6P	High	guanine degradation	1	0.1721311475409836	0.17886178861788612	1
+G6P	High	ADP-L-glycero-beta-D-manno-heptose biosynthesis	1	0.1721311475409836	0.17886178861788612	1
+G6P	High	NAD(+) biosynthesis	0	0.18487394957983194	1	1
+G6P	High	L-isoleucine biosynthesis	0.125	0.1826086956521739	0.9999999999999999	1
+G6P	High	L-valine biosynthesis	0.2	0.17796610169491525	1	1
+G6P	High	methylglyoxal degradation	0.3333333333333333	0.175	0.4493111846170622	1
+G6P	High	pyridoxine 5'-phosphate biosynthesis	0	0.18032786885245902	1	1
+GAP	Low	poly-(R)-3-hydroxybutanoate biosynthesis	0	0.024793388429752067	1	1
+GAP	Low	Calvin cycle	0.5	0.01639344262295082	0.047993705743508995	1
+GAP	Low	acetoin degradation	0	0.02459016393442623	1	1
+GAP	Low	glycolate biosynthesis	0	0.02459016393442623	1	1
+GAP	Low	pentose phosphate pathway	0	0.025210084033613446	1	1
+GAP	Low	L-arginine biosynthesis	0	0.025	1	1
+GAP	Low	L-lysine biosynthesis via DAP pathway	0	0.024793388429752067	1	1
+GAP	Low	chorismate biosynthesis	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	peptidoglycan biosynthesis	0	0.025210084033613446	1	1
+GAP	Low	L-proline biosynthesis	0.16666666666666666	0.01694915254237288	0.13932491519521226	1
+GAP	Low	molybdopterin biosynthesis	0	0.025423728813559324	0.9999999999999999	1
+GAP	Low	fatty acid biosynthesis	0	0.02586206896551724	1	1
+GAP	Low	polypeptide chain elongation	0	0.024793388429752067	1	1
+GAP	Low	isopentenyl diphosphate biosynthesis via DXP pathway	0.3333333333333333	0.01652892561983471	0.07140369658588185	1
+GAP	Low	lipid IV(A) biosynthesis	0	0.024793388429752067	1	1
+GAP	Low	L-leucine biosynthesis	0	0.02586206896551724	1	1
+GAP	Low	glycolysis	0.1111111111111111	0.017391304347826087	0.20385071777740527	1
+GAP	Low	guanine degradation	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	NAD(+) biosynthesis	0	0.025	1	1
+GAP	Low	L-isoleucine biosynthesis	0	0.02586206896551724	1	1
+GAP	Low	L-valine biosynthesis	0	0.025210084033613446	1	1
+GAP	Low	methylglyoxal degradation	0	0.024793388429752067	1	1
+GAP	Low	pyridoxine 5'-phosphate biosynthesis	0	0.024390243902439025	1.0000000000000002	1
+GAP	High	poly-(R)-3-hydroxybutanoate biosynthesis	1	0.5702479338842975	0.2635719905586153	1
+GAP	High	Calvin cycle	0.5	0.5819672131147541	1	1
+GAP	High	acetoin degradation	0	0.5901639344262295	0.17387883556254924	1
+GAP	High	glycolate biosynthesis	0	0.5901639344262295	0.17387883556254924	1
+GAP	High	pentose phosphate pathway	0.6	0.5798319327731093	1	1
+GAP	High	L-arginine biosynthesis	0.5	0.5833333333333334	1	1
+GAP	High	L-lysine biosynthesis via DAP pathway	0.6666666666666666	0.5785123966942148	1	1
+GAP	High	chorismate biosynthesis	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	peptidoglycan biosynthesis	0.4	0.5882352941176471	0.6487558002658707	1
+GAP	High	L-proline biosynthesis	0.6666666666666666	0.576271186440678	1	1
+GAP	High	molybdopterin biosynthesis	0.5	0.5847457627118644	0.6945060951892237	1
+GAP	High	fatty acid biosynthesis	0.5	0.5862068965517241	0.7191267590131257	1
+GAP	High	polypeptide chain elongation	0	0.5950413223140496	0.07126181785350379	1
+GAP	High	isopentenyl diphosphate biosynthesis via DXP pathway	0.3333333333333333	0.5867768595041323	0.5714230436857515	1
+GAP	High	lipid IV(A) biosynthesis	0.6666666666666666	0.5785123966942148	1	1
+GAP	High	L-leucine biosynthesis	0.625	0.5775862068965517	1	1
+GAP	High	glycolysis	0.6666666666666666	0.5739130434782609	0.7330493550103201	1
+GAP	High	guanine degradation	0	0.5853658536585366	0.4193548387096774	1
+GAP	High	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.5853658536585366	0.4193548387096774	1
+GAP	High	NAD(+) biosynthesis	0.5	0.5833333333333334	1	1
+GAP	High	L-isoleucine biosynthesis	0.625	0.5775862068965517	1	1
+GAP	High	L-valine biosynthesis	0.8	0.5714285714285714	0.39786708617006405	1
+GAP	High	methylglyoxal degradation	0.3333333333333333	0.5867768595041323	0.5714230436857515	1
+GAP	High	pyridoxine 5'-phosphate biosynthesis	0	0.5853658536585366	0.4193548387096774	1
+Glyx	Low	poly-(R)-3-hydroxybutanoate biosynthesis	0	0.024193548387096774	1	1
+Glyx	Low	Calvin cycle	0	0.024	1	1
+Glyx	Low	acetoin degradation	0	0.024	1	1
+Glyx	Low	pentose phosphate pathway	0	0.024390243902439025	1	1
+Glyx	Low	L-arginine biosynthesis	0.25	0.016260162601626018	0.0922504686914136	1
+Glyx	Low	glycolysis	0.1	0.017094017094017096	0.2197075365579302	1
+Glyx	Low	L-lysine biosynthesis via DAP pathway	0	0.024193548387096774	1	1
+Glyx	Low	chorismate biosynthesis	0	0.023809523809523808	1	1
+Glyx	Low	peptidoglycan biosynthesis	0	0.024390243902439025	1	1
+Glyx	Low	L-proline biosynthesis	0	0.024793388429752067	1	1
+Glyx	Low	molybdopterin biosynthesis	0	0.024793388429752067	1	1
+Glyx	Low	fatty acid biosynthesis	0	0.025423728813559324	1	1
+Glyx	Low	polypeptide chain elongation	0	0.024193548387096774	1	1
+Glyx	Low	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.024193548387096774	1	1
+Glyx	Low	lipid IV(A) biosynthesis	0	0.024193548387096774	1	1
+Glyx	Low	guanine degradation	0	0.024	1	1
+Glyx	Low	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.023809523809523808	1	1
+Glyx	Low	glycolate biosynthesis	0	0.023809523809523808	1	1
+Glyx	Low	NAD(+) biosynthesis	0	0.02459016393442623	1	1
+Glyx	Low	L-isoleucine biosynthesis	0	0.025	1	1
+Glyx	Low	L-leucine biosynthesis	0	0.025	1	1
+Glyx	Low	L-valine biosynthesis	0	0.02459016393442623	1	1
+Glyx	Low	methylglyoxal degradation	0	0.024193548387096774	1	1
+Glyx	High	poly-(R)-3-hydroxybutanoate biosynthesis	0.6666666666666666	0.20967741935483872	0.12207874015748026	1
+Glyx	High	Calvin cycle	0.5	0.216	0.3937007874015748	1
+Glyx	High	acetoin degradation	0.5	0.216	0.3937007874015748	1
+Glyx	High	pentose phosphate pathway	0.5	0.21138211382113822	0.2107940055880112	1
+Glyx	High	L-arginine biosynthesis	0.5	0.21138211382113822	0.2107940055880112	1
+Glyx	High	glycolysis	0.3	0.21367521367521367	0.6905472900674022	1
+Glyx	High	L-lysine biosynthesis via DAP pathway	0.3333333333333333	0.21774193548387097	0.5295118110236219	1
+Glyx	High	chorismate biosynthesis	0	0.2222222222222222	1	1
+Glyx	High	peptidoglycan biosynthesis	0	0.22764227642276422	0.5750429260858523	1
+Glyx	High	L-proline biosynthesis	0.16666666666666666	0.2231404958677686	1	1
+Glyx	High	molybdopterin biosynthesis	0	0.23140495867768596	0.3373320318811769	1
+Glyx	High	fatty acid biosynthesis	0.3333333333333333	0.211864406779661	0.41199001977380767	1
+Glyx	High	polypeptide chain elongation	0	0.22580645161290322	0.9999999999999999	1
+Glyx	High	isopentenyl diphosphate biosynthesis via DXP pathway	0.3333333333333333	0.21774193548387097	0.5295118110236219	1
+Glyx	High	lipid IV(A) biosynthesis	0.3333333333333333	0.21774193548387097	0.5295118110236219	1
+Glyx	High	guanine degradation	0	0.224	1	1
+Glyx	High	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.2222222222222222	1	1
+Glyx	High	glycolate biosynthesis	0	0.2222222222222222	1	1
+Glyx	High	NAD(+) biosynthesis	0.2	0.22131147540983606	1	1
+Glyx	High	L-isoleucine biosynthesis	0.42857142857142855	0.20833333333333334	0.17971643660636744	1
+Glyx	High	L-leucine biosynthesis	0.2857142857142857	0.21666666666666667	0.648880061986797	1
+Glyx	High	L-valine biosynthesis	0.4	0.21311475409836064	0.3040772657155069	1
+Glyx	High	methylglyoxal degradation	0	0.22580645161290322	0.9999999999999999	1
+Ru5P	Low	poly-(R)-3-hydroxybutanoate biosynthesis	0	0.011627906976744186	0.9999999999999999	1
+Ru5P	Low	Calvin cycle	0	0.011494252873563218	1	1
+Ru5P	Low	acetoin degradation	0	0.011494252873563218	1	1
+Ru5P	Low	glycolate biosynthesis	0	0.011494252873563218	1	1
+Ru5P	Low	pentose phosphate pathway	0	0.011764705882352941	1	1
+Ru5P	Low	L-arginine biosynthesis	0	0.011627906976744186	0.9999999999999999	1
+Ru5P	Low	L-lysine biosynthesis via DAP pathway	0	0.011494252873563218	1	1
+Ru5P	Low	chorismate biosynthesis	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	Low	peptidoglycan biosynthesis	0	0.011764705882352941	1	1
+Ru5P	Low	L-proline biosynthesis	0	0.011904761904761904	1	1
+Ru5P	Low	molybdopterin biosynthesis	0	0.011627906976744186	0.9999999999999999	1
+Ru5P	Low	fatty acid biosynthesis	0	0.011764705882352941	1	1
+Ru5P	Low	polypeptide chain elongation	0	0.011627906976744186	0.9999999999999999	1
+Ru5P	Low	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.011494252873563218	1	1
+Ru5P	Low	lipid IV(A) biosynthesis	0	0.011627906976744186	0.9999999999999999	1
+Ru5P	Low	L-leucine biosynthesis	0	0.012048192771084338	1	1
+Ru5P	Low	glycolysis	0	0.012048192771084338	1	1
+Ru5P	Low	guanine degradation	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	Low	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	Low	NAD(+) biosynthesis	0	0.011627906976744186	0.9999999999999999	1
+Ru5P	Low	L-isoleucine biosynthesis	0	0.012195121951219513	1	1
+Ru5P	Low	L-valine biosynthesis	0	0.011904761904761904	1	1
+Ru5P	Low	methylglyoxal degradation	0	0.011494252873563218	1	1
+Ru5P	Low	pyridoxine 5'-phosphate biosynthesis	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	High	poly-(R)-3-hydroxybutanoate biosynthesis	0.3333333333333333	0.19767441860465115	0.49671550843577184	1
+Ru5P	High	Calvin cycle	0	0.20689655172413793	1	1
+Ru5P	High	acetoin degradation	0	0.20689655172413793	1	1
+Ru5P	High	glycolate biosynthesis	0	0.20689655172413793	1	1
+Ru5P	High	pentose phosphate pathway	0.25	0.2	1	1
+Ru5P	High	L-arginine biosynthesis	0	0.20930232558139536	1	1
+Ru5P	High	L-lysine biosynthesis via DAP pathway	0	0.20689655172413793	1	1
+Ru5P	High	chorismate biosynthesis	0	0.20454545454545456	0.9999999999999999	1
+Ru5P	High	peptidoglycan biosynthesis	0	0.21176470588235294	0.5786455419462277	1
+Ru5P	High	L-proline biosynthesis	0.4	0.19047619047619047	0.26497055650619716	1
+Ru5P	High	molybdopterin biosynthesis	0	0.20930232558139536	1	1
+Ru5P	High	fatty acid biosynthesis	0.25	0.2	1	1
+Ru5P	High	polypeptide chain elongation	0	0.20930232558139536	1	1
+Ru5P	High	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.20689655172413793	1	1
+Ru5P	High	lipid IV(A) biosynthesis	0.3333333333333333	0.19767441860465115	0.49671550843577184	1
+Ru5P	High	L-leucine biosynthesis	0.16666666666666666	0.20481927710843373	1	1
+Ru5P	High	glycolysis	0.3333333333333333	0.1927710843373494	0.5967035901485321	1
+Ru5P	High	guanine degradation	0	0.20454545454545456	0.9999999999999999	1
+Ru5P	High	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.20454545454545456	0.9999999999999999	1
+Ru5P	High	NAD(+) biosynthesis	0.3333333333333333	0.19767441860465115	0.49671550843577184	1
+Ru5P	High	L-isoleucine biosynthesis	0.2857142857142857	0.1951219512195122	0.6258575474871927	1
+Ru5P	High	L-valine biosynthesis	0.2	0.20238095238095238	1	1
+Ru5P	High	methylglyoxal degradation	0	0.20689655172413793	1	1
+Ru5P	High	pyridoxine 5'-phosphate biosynthesis	0	0.20454545454545456	0.9999999999999999	1
+RuBP	Low	poly-(R)-3-hydroxybutanoate biosynthesis	0	0	1	1
+RuBP	Low	Calvin cycle	0	0	1	1
+RuBP	Low	acetoin degradation	0	0	1	1
+RuBP	Low	glycolate biosynthesis	0	0	1	1
+RuBP	Low	pentose phosphate pathway	0	0	1	1
+RuBP	Low	L-arginine biosynthesis	0	0	1	1
+RuBP	Low	L-lysine biosynthesis via DAP pathway	0	0	1	1
+RuBP	Low	chorismate biosynthesis	0	0	1	1
+RuBP	Low	peptidoglycan biosynthesis	0	0	1	1
+RuBP	Low	L-proline biosynthesis	0	0	1	1
+RuBP	Low	molybdopterin biosynthesis	0	0	1	1
+RuBP	Low	fatty acid biosynthesis	0	0	1	1
+RuBP	Low	polypeptide chain elongation	0	0	1	1
+RuBP	Low	isopentenyl diphosphate biosynthesis via DXP pathway	0	0	1	1
+RuBP	Low	lipid IV(A) biosynthesis	0	0	1	1
+RuBP	Low	L-leucine biosynthesis	0	0	1	1
+RuBP	Low	glycolysis	0	0	1	1
+RuBP	Low	guanine degradation	0	0	1	1
+RuBP	Low	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0	1	1
+RuBP	Low	NAD(+) biosynthesis	0	0	1	1
+RuBP	Low	L-isoleucine biosynthesis	0	0	1	1
+RuBP	Low	L-valine biosynthesis	0	0	1	1
+RuBP	Low	methylglyoxal degradation	0	0	1	1
+RuBP	Low	pyridoxine 5'-phosphate biosynthesis	0	0	1	1
+RuBP	High	poly-(R)-3-hydroxybutanoate biosynthesis	0.3333333333333333	0.05747126436781609	0.18893428668709578	1
+RuBP	High	Calvin cycle	0.5	0.056818181818181816	0.1295880149812734	1
+RuBP	High	acetoin degradation	0	0.06818181818181818	1	1
+RuBP	High	glycolate biosynthesis	0	0.06818181818181818	1	1
+RuBP	High	pentose phosphate pathway	0	0.06976744186046512	0.9999999999999999	1
+RuBP	High	L-arginine biosynthesis	0	0.06896551724137931	0.9999999999999999	1
+RuBP	High	L-lysine biosynthesis via DAP pathway	0.5	0.056818181818181816	0.1295880149812734	1
+RuBP	High	chorismate biosynthesis	0	0.06741573033707865	1	1
+RuBP	High	peptidoglycan biosynthesis	0.25	0.05813953488372093	0.24486985312246828	1
+RuBP	High	L-proline biosynthesis	0	0.07058823529411765	0.9999999999999999	1
+RuBP	High	molybdopterin biosynthesis	0	0.06896551724137931	0.9999999999999999	1
+RuBP	High	fatty acid biosynthesis	0	0.07058823529411765	0.9999999999999999	1
+RuBP	High	polypeptide chain elongation	0	0.06896551724137931	0.9999999999999999	1
+RuBP	High	isopentenyl diphosphate biosynthesis via DXP pathway	0	0.06818181818181818	1	1
+RuBP	High	lipid IV(A) biosynthesis	0	0.06896551724137931	0.9999999999999999	1
+RuBP	High	L-leucine biosynthesis	0.16666666666666666	0.05952380952380952	0.34713782103064317	1
+RuBP	High	glycolysis	0.16666666666666666	0.05952380952380952	0.34713782103064317	1
+RuBP	High	guanine degradation	0	0.06741573033707865	1	1
+RuBP	High	ADP-L-glycero-beta-D-manno-heptose biosynthesis	0	0.06741573033707865	1	1
+RuBP	High	NAD(+) biosynthesis	0	0.06896551724137931	0.9999999999999999	1
+RuBP	High	L-isoleucine biosynthesis	0	0.07228915662650602	1	1
+RuBP	High	L-valine biosynthesis	0	0.07058823529411765	0.9999999999999999	1
+RuBP	High	methylglyoxal degradation	0	0.06818181818181818	1	1
+RuBP	High	pyridoxine 5'-phosphate biosynthesis	0	0.06741573033707865	1	1
+3PGA	Low	Aromatic compound metabolism	0	0.0078125	1	1
+3PGA	Low	(R)-pantothenate biosynthesis	0	0.0078125	1	1
+3PGA	Low	biotin biosynthesis	0	0.007936507936507936	1	1
+3PGA	Low	tricarboxylic acid cycle	0	0.007874015748031496	1	1
+3PGA	Low	L-histidine biosynthesis	0	0.00819672131147541	1	1
+3PGA	Low	XMP biosynthesis via de novo pathway	0	0.0078125	1	1
+3PGA	Low	riboflavin biosynthesis	0	0.007936507936507936	1	1
+3PGA	Low	tRNA modification	0	0.0078125	1	1
+3PGA	Low	glutathione biosynthesis	0	0.007936507936507936	1	1
+3PGA	High	Aromatic compound metabolism	0	0.0234375	1	1
+3PGA	High	(R)-pantothenate biosynthesis	0	0.0234375	1	1
+3PGA	High	biotin biosynthesis	0	0.023809523809523808	1	1
+3PGA	High	tricarboxylic acid cycle	0	0.023622047244094488	0.9999999999999999	1
+3PGA	High	L-histidine biosynthesis	0	0.02459016393442623	1	1
+3PGA	High	XMP biosynthesis via de novo pathway	0	0.0234375	1	1
+3PGA	High	riboflavin biosynthesis	0	0.023809523809523808	1	1
+3PGA	High	tRNA modification	0	0.0234375	1	1
+3PGA	High	glutathione biosynthesis	0	0.023809523809523808	1	1
+AcCoA	Low	L-threonine degradation via propanoate pathway	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	Low	Aromatic compound metabolism	0	0.19327731092436976	1	1
+AcCoA	Low	(R)-pantothenate biosynthesis	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	Low	biotin biosynthesis	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	Low	tricarboxylic acid cycle	1	0.17647058823529413	0.03484848484848483	1
+AcCoA	Low	L-histidine biosynthesis	0.42857142857142855	0.17543859649122806	0.1253435257285775	1
+AcCoA	Low	XMP biosynthesis via de novo pathway	1	0.18333333333333332	0.1900826446280992	1
+AcCoA	Low	riboflavin biosynthesis	0	0.19491525423728814	1	1
+AcCoA	Low	adenosylcobalamin biosynthesis	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	Low	glutathione biosynthesis	0.3333333333333333	0.1864406779661017	0.4718522119591638	1
+AcCoA	High	L-threonine degradation via propanoate pathway	0	0.425	1	1
+AcCoA	High	Aromatic compound metabolism	0.5	0.42016806722689076	1	1
+AcCoA	High	(R)-pantothenate biosynthesis	1	0.4166666666666667	0.42148760330578516	1
+AcCoA	High	biotin biosynthesis	1	0.4166666666666667	0.42148760330578516	1
+AcCoA	High	tricarboxylic acid cycle	1	0.4117647058823529	0.1756198347107438	1
+AcCoA	High	L-histidine biosynthesis	0.42857142857142855	0.42105263157894735	1	1
+AcCoA	High	XMP biosynthesis via de novo pathway	1	0.4166666666666667	0.42148760330578516	1
+AcCoA	High	riboflavin biosynthesis	0.3333333333333333	0.423728813559322	1	1
+AcCoA	High	adenosylcobalamin biosynthesis	1	0.4166666666666667	0.42148760330578516	1
+AcCoA	High	glutathione biosynthesis	0.6666666666666666	0.4152542372881356	0.5723140495867767	1
+ATP	Low	Aromatic compound metabolism	0	0.07142857142857142	1	1
+ATP	Low	(R)-pantothenate biosynthesis	0	0.07142857142857142	1	1
+ATP	Low	biotin biosynthesis	0	0.07258064516129033	1	1
+ATP	Low	tricarboxylic acid cycle	0	0.072	1	1
+ATP	Low	L-histidine biosynthesis	0.14285714285714285	0.06666666666666667	0.4099772744158057	1
+ATP	Low	XMP biosynthesis via de novo pathway	1	0.06349206349206349	0.07086614173228345	1
+ATP	Low	riboflavin biosynthesis	0	0.07258064516129033	1	1
+ATP	Low	tRNA modification	0	0.07142857142857142	1	1
+ATP	Low	glutathione biosynthesis	0.3333333333333333	0.06451612903225806	0.1993520809898763	1
+ATP	High	Aromatic compound metabolism	1	0.42857142857142855	0.43307086614173235	1
+ATP	High	(R)-pantothenate biosynthesis	1	0.42857142857142855	0.43307086614173235	1
+ATP	High	biotin biosynthesis	0.3333333333333333	0.43548387096774194	1	1
+ATP	High	tricarboxylic acid cycle	0.5	0.432	1	1
+ATP	High	L-histidine biosynthesis	0.7142857142857143	0.4166666666666667	0.23779095099900785	1
+ATP	High	XMP biosynthesis via de novo pathway	1	0.42857142857142855	0.43307086614173235	1
+ATP	High	riboflavin biosynthesis	1	0.41935483870967744	0.07869516310461191	1
+ATP	High	tRNA modification	0	0.4365079365079365	1	1
+ATP	High	glutathione biosynthesis	0.6666666666666666	0.4274193548387097	0.5783127109111361	1
+Cit	Low	Aromatic compound metabolism	0	0	1	1
+Cit	Low	(R)-pantothenate biosynthesis	0	0	1	1
+Cit	Low	biotin biosynthesis	0	0	1	1
+Cit	Low	tricarboxylic acid cycle	0	0	1	1
+Cit	Low	L-histidine biosynthesis	0	0	1	1
+Cit	Low	XMP biosynthesis via de novo pathway	0	0	1	1
+Cit	Low	ubiquinone biosynthesis	0	0	1	1
+Cit	Low	menaquinone biosynthesis	0	0	1	1
+Cit	Low	riboflavin biosynthesis	0	0	1	1
+Cit	Low	tRNA modification	0	0	1	1
+Cit	Low	glutathione biosynthesis	0	0	1	1
+Cit	High	Aromatic compound metabolism	0	0.18604651162790697	1	1
+Cit	High	(R)-pantothenate biosynthesis	0	0.18604651162790697	1	1
+Cit	High	biotin biosynthesis	0	0.1889763779527559	1	1
+Cit	High	tricarboxylic acid cycle	0	0.1875	1	1
+Cit	High	L-histidine biosynthesis	0.2857142857142857	0.17886178861788618	0.6124323147716064	1
+Cit	High	XMP biosynthesis via de novo pathway	0	0.18604651162790697	1	1
+Cit	High	ubiquinone biosynthesis	0	0.18604651162790697	1	1
+Cit	High	menaquinone biosynthesis	0	0.18604651162790697	1	1
+Cit	High	riboflavin biosynthesis	0	0.1889763779527559	1	1
+Cit	High	tRNA modification	0	0.18604651162790697	1	1
+Cit	High	glutathione biosynthesis	0	0.1889763779527559	1	1
+FBP	Low	Aromatic compound metabolism	0	0	1	1
+FBP	Low	(R)-pantothenate biosynthesis	0	0	1	1
+FBP	Low	biotin biosynthesis	0	0	1	1
+FBP	Low	tricarboxylic acid cycle	0	0	1	1
+FBP	Low	L-histidine biosynthesis	0	0	1	1
+FBP	Low	XMP biosynthesis via de novo pathway	0	0	1	1
+FBP	Low	riboflavin biosynthesis	0	0	1	1
+FBP	Low	tRNA modification	0	0	1	1
+FBP	Low	glutathione biosynthesis	0	0	1	1
+FBP	High	Aromatic compound metabolism	1	0.04838709677419355	0.05599999999999996	1
+FBP	High	(R)-pantothenate biosynthesis	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	biotin biosynthesis	0	0.05737704918032787	0.9999999999999999	1
+FBP	High	tricarboxylic acid cycle	1	0.04065040650406504	0.002709677419354839	1
+FBP	High	L-histidine biosynthesis	0.2857142857142857	0.0423728813559322	0.04956449553413696	1
+FBP	High	XMP biosynthesis via de novo pathway	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	riboflavin biosynthesis	0	0.05737704918032787	0.9999999999999999	1
+FBP	High	tRNA modification	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	glutathione biosynthesis	0	0.05737704918032787	0.9999999999999999	1
+G6P	Low	Aromatic compound metabolism	0	0.00819672131147541	1	1
+G6P	Low	(R)-pantothenate biosynthesis	0	0.00819672131147541	1	1
+G6P	Low	biotin biosynthesis	0	0.008333333333333333	1	1
+G6P	Low	tricarboxylic acid cycle	0	0.008264462809917356	1	1
+G6P	Low	L-histidine biosynthesis	0	0.008620689655172414	1	1
+G6P	Low	XMP biosynthesis via de novo pathway	0	0.00819672131147541	1	1
+G6P	Low	riboflavin biosynthesis	0	0.008333333333333333	1	1
+G6P	Low	tRNA modification	0	0.00819672131147541	1	1
+G6P	Low	glutathione biosynthesis	0	0.008333333333333333	1	1
+G6P	High	Aromatic compound metabolism	0	0.18032786885245902	1	1
+G6P	High	(R)-pantothenate biosynthesis	0	0.18032786885245902	1	1
+G6P	High	biotin biosynthesis	0	0.18333333333333332	1	1
+G6P	High	tricarboxylic acid cycle	0.5	0.17355371900826447	0.32693589230974274	1
+G6P	High	L-histidine biosynthesis	0	0.1896551724137931	0.34983163469535633	1
+G6P	High	XMP biosynthesis via de novo pathway	0	0.18032786885245902	1	1
+G6P	High	riboflavin biosynthesis	0	0.18333333333333332	1	1
+G6P	High	tRNA modification	0	0.18032786885245902	1	1
+G6P	High	glutathione biosynthesis	0	0.18333333333333332	1	1
+GAP	Low	Aromatic compound metabolism	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	(R)-pantothenate biosynthesis	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	biotin biosynthesis	0	0.024793388429752067	1	1
+GAP	Low	tricarboxylic acid cycle	0	0.02459016393442623	1	1
+GAP	Low	L-histidine biosynthesis	0	0.02564102564102564	1	1
+GAP	Low	XMP biosynthesis via de novo pathway	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	riboflavin biosynthesis	0	0.024793388429752067	1	1
+GAP	Low	tRNA modification	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	glutathione biosynthesis	0	0.024793388429752067	1	1
+GAP	High	Aromatic compound metabolism	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	(R)-pantothenate biosynthesis	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	biotin biosynthesis	0.3333333333333333	0.5867768595041323	0.5714230436857515	1
+GAP	High	tricarboxylic acid cycle	1	0.5737704918032787	0.5090479937057436	1
+GAP	High	L-histidine biosynthesis	0.7142857142857143	0.5726495726495726	0.697958003718159	1
+GAP	High	XMP biosynthesis via de novo pathway	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	riboflavin biosynthesis	0.3333333333333333	0.5867768595041323	0.5714230436857515	1
+GAP	High	tRNA modification	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	glutathione biosynthesis	0.3333333333333333	0.5867768595041323	0.5714230436857515	1
+Glyx	Low	L-threonine degradation via propanoate pathway	0	0.023809523809523808	1	1
+Glyx	Low	Aromatic compound metabolism	0	0.024193548387096774	1	1
+Glyx	Low	(R)-pantothenate biosynthesis	0	0.023809523809523808	1	1
+Glyx	Low	biotin biosynthesis	0	0.024193548387096774	1	1
+Glyx	Low	tricarboxylic acid cycle	0	0.024	1	1
+Glyx	Low	L-histidine biosynthesis	0	0.025	1	1
+Glyx	Low	XMP biosynthesis via de novo pathway	0	0.023809523809523808	1	1
+Glyx	Low	(S)-3-hydroxy-3-methylglutaryl-CoA degradation	0	0.023809523809523808	1	1
+Glyx	Low	riboflavin biosynthesis	0	0.024193548387096774	1	1
+Glyx	Low	tRNA modification	0	0.023809523809523808	1	1
+Glyx	Low	glutathione biosynthesis	0	0.024193548387096774	1	1
+Glyx	High	L-threonine degradation via propanoate pathway	0	0.2222222222222222	1	1
+Glyx	High	Aromatic compound metabolism	0	0.22580645161290322	0.9999999999999999	1
+Glyx	High	(R)-pantothenate biosynthesis	1	0.21428571428571427	0.22047244094488191	1
+Glyx	High	biotin biosynthesis	0	0.22580645161290322	0.9999999999999999	1
+Glyx	High	tricarboxylic acid cycle	0	0.224	1	1
+Glyx	High	L-histidine biosynthesis	0	0.23333333333333334	0.3463192643371219	1
+Glyx	High	XMP biosynthesis via de novo pathway	0	0.2222222222222222	1	1
+Glyx	High	(S)-3-hydroxy-3-methylglutaryl-CoA degradation	0	0.2222222222222222	1	1
+Glyx	High	riboflavin biosynthesis	0	0.22580645161290322	0.9999999999999999	1
+Glyx	High	tRNA modification	0	0.2222222222222222	1	1
+Glyx	High	glutathione biosynthesis	0	0.22580645161290322	0.9999999999999999	1
+3PGA	Low	glycogen biosynthesis	0	0.0078125	1	1
+3PGA	Low	chlorophyll biosynthesis (light-independent)	0	0.007874015748031496	1	1
+3PGA	Low	GDP-L-fucose biosynthesis via de novo pathway	0	0.007874015748031496	1	1
+3PGA	Low	thiamine diphosphate biosynthesis	0	0.0078125	1	1
+3PGA	Low	IMP biosynthesis via de novo pathway	0	0.007874015748031496	1	1
+3PGA	Low	Porphyrin-containing compound metabolism	0	0.0078125	1	1
+3PGA	Low	coenzyme A biosynthesis	0	0.0078125	1	1
+3PGA	Low	7,8-dihydroneopterin triphosphate biosynthesis	0	0.0078125	1	1
+3PGA	Low	chlorophyll biosynthesis	0	0.0078125	1	1
+3PGA	Low	glycerophospholipid metabolism	0	0.0078125	1	1
+3PGA	High	glycogen biosynthesis	0	0.0234375	1	1
+3PGA	High	chlorophyll biosynthesis (light-independent)	0	0.023622047244094488	0.9999999999999999	1
+3PGA	High	GDP-L-fucose biosynthesis via de novo pathway	0	0.023622047244094488	0.9999999999999999	1
+3PGA	High	thiamine diphosphate biosynthesis	0	0.0234375	1	1
+3PGA	High	IMP biosynthesis via de novo pathway	0	0.023622047244094488	0.9999999999999999	1
+3PGA	High	Porphyrin-containing compound metabolism	0	0.0234375	1	1
+3PGA	High	coenzyme A biosynthesis	0	0.0234375	1	1
+3PGA	High	7,8-dihydroneopterin triphosphate biosynthesis	0	0.0234375	1	1
+3PGA	High	chlorophyll biosynthesis	0	0.0234375	1	1
+3PGA	High	glycerophospholipid metabolism	0	0.0234375	1	1
+AcCoA	Low	glycogen biosynthesis	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	Low	chlorophyll biosynthesis (light-independent)	0	0.19327731092436976	1	1
+AcCoA	Low	thiamine diphosphate biosynthesis	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	Low	IMP biosynthesis via de novo pathway	0	0.19327731092436976	1	1
+AcCoA	Low	Porphyrin-containing compound metabolism	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	Low	7,8-dihydroneopterin triphosphate biosynthesis	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	Low	chlorophyll biosynthesis	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	High	glycogen biosynthesis	0	0.425	1	1
+AcCoA	High	chlorophyll biosynthesis (light-independent)	1	0.4117647058823529	0.1756198347107438	1
+AcCoA	High	thiamine diphosphate biosynthesis	0	0.425	1	1
+AcCoA	High	IMP biosynthesis via de novo pathway	0	0.42857142857142855	0.5082644628099173	1
+AcCoA	High	Porphyrin-containing compound metabolism	0	0.425	1	1
+AcCoA	High	7,8-dihydroneopterin triphosphate biosynthesis	1	0.4166666666666667	0.42148760330578516	1
+AcCoA	High	chlorophyll biosynthesis	0	0.425	1	1
+ATP	Low	glycogen biosynthesis	0	0.07142857142857142	1	1
+ATP	Low	chlorophyll biosynthesis (light-independent)	0	0.072	1	1
+ATP	Low	thiamine diphosphate biosynthesis	0	0.07142857142857142	1	1
+ATP	Low	IMP biosynthesis via de novo pathway	0	0.072	1	1
+ATP	Low	Porphyrin-containing compound metabolism	0	0.07142857142857142	1	1
+ATP	Low	7,8-dihydroneopterin triphosphate biosynthesis	0	0.07142857142857142	1	1
+ATP	Low	chlorophyll biosynthesis	0	0.07142857142857142	1	1
+ATP	Low	glycerophospholipid metabolism	0	0.07142857142857142	1	1
+ATP	High	glycogen biosynthesis	0	0.4365079365079365	1	1
+ATP	High	chlorophyll biosynthesis (light-independent)	0	0.44	0.5050618672665916	1
+ATP	High	thiamine diphosphate biosynthesis	1	0.42857142857142855	0.43307086614173235	1
+ATP	High	IMP biosynthesis via de novo pathway	0	0.44	0.5050618672665916	1
+ATP	High	Porphyrin-containing compound metabolism	0	0.4365079365079365	1	1
+ATP	High	7,8-dihydroneopterin triphosphate biosynthesis	0	0.4365079365079365	1	1
+ATP	High	chlorophyll biosynthesis	1	0.42857142857142855	0.43307086614173235	1
+ATP	High	glycerophospholipid metabolism	0	0.4365079365079365	1	1
+Cit	Low	glycogen biosynthesis	0	0	1	1
+Cit	Low	chlorophyll biosynthesis (light-independent)	0	0	1	1
+Cit	Low	GDP-L-fucose biosynthesis via de novo pathway	0	0	1	1
+Cit	Low	thiamine diphosphate biosynthesis	0	0	1	1
+Cit	Low	IMP biosynthesis via de novo pathway	0	0	1	1
+Cit	Low	Porphyrin-containing compound metabolism	0	0	1	1
+Cit	Low	coenzyme A biosynthesis	0	0	1	1
+Cit	Low	7,8-dihydroneopterin triphosphate biosynthesis	0	0	1	1
+Cit	Low	chlorophyll biosynthesis	0	0	1	1
+Cit	Low	glycerophospholipid metabolism	0	0	1	1
+Cit	High	glycogen biosynthesis	0	0.18604651162790697	1	1
+Cit	High	chlorophyll biosynthesis (light-independent)	0	0.1875	1	1
+Cit	High	GDP-L-fucose biosynthesis via de novo pathway	0	0.1875	1	1
+Cit	High	thiamine diphosphate biosynthesis	0	0.18604651162790697	1	1
+Cit	High	IMP biosynthesis via de novo pathway	0	0.1875	1	1
+Cit	High	Porphyrin-containing compound metabolism	0	0.18604651162790697	1	1
+Cit	High	coenzyme A biosynthesis	0	0.18604651162790697	1	1
+Cit	High	7,8-dihydroneopterin triphosphate biosynthesis	0	0.18604651162790697	1	1
+Cit	High	chlorophyll biosynthesis	0	0.18604651162790697	1	1
+Cit	High	glycerophospholipid metabolism	0	0.18604651162790697	1	1
+FBP	Low	glycogen biosynthesis	0	0	1	1
+FBP	Low	chlorophyll biosynthesis (light-independent)	0	0	1	1
+FBP	Low	thiamine diphosphate biosynthesis	0	0	1	1
+FBP	Low	IMP biosynthesis via de novo pathway	0	0	1	1
+FBP	Low	Porphyrin-containing compound metabolism	0	0	1	1
+FBP	Low	7,8-dihydroneopterin triphosphate biosynthesis	0	0	1	1
+FBP	Low	chlorophyll biosynthesis	0	0	1	1
+FBP	Low	glycerophospholipid metabolism	0	0	1	1
+FBP	High	glycogen biosynthesis	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	chlorophyll biosynthesis (light-independent)	0	0.056910569105691054	1	1
+FBP	High	thiamine diphosphate biosynthesis	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	IMP biosynthesis via de novo pathway	0	0.056910569105691054	1	1
+FBP	High	Porphyrin-containing compound metabolism	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	7,8-dihydroneopterin triphosphate biosynthesis	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	chlorophyll biosynthesis	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	glycerophospholipid metabolism	0	0.056451612903225805	0.9999999999999999	1
+G6P	Low	glycogen biosynthesis	0	0.00819672131147541	1	1
+G6P	Low	chlorophyll biosynthesis (light-independent)	0	0.008264462809917356	1	1
+G6P	Low	thiamine diphosphate biosynthesis	0	0.00819672131147541	1	1
+G6P	Low	IMP biosynthesis via de novo pathway	0	0.008264462809917356	1	1
+G6P	Low	Porphyrin-containing compound metabolism	0	0.00819672131147541	1	1
+G6P	Low	7,8-dihydroneopterin triphosphate biosynthesis	0	0.00819672131147541	1	1
+G6P	Low	chlorophyll biosynthesis	0	0.00819672131147541	1	1
+G6P	High	glycogen biosynthesis	0	0.18032786885245902	1	1
+G6P	High	chlorophyll biosynthesis (light-independent)	0	0.18181818181818182	1	1
+G6P	High	thiamine diphosphate biosynthesis	0	0.18032786885245902	1	1
+G6P	High	IMP biosynthesis via de novo pathway	0	0.18181818181818182	1	1
+G6P	High	Porphyrin-containing compound metabolism	0	0.18032786885245902	1	1
+G6P	High	7,8-dihydroneopterin triphosphate biosynthesis	0	0.18032786885245902	1	1
+G6P	High	chlorophyll biosynthesis	0	0.18032786885245902	1	1
+GAP	Low	glycogen biosynthesis	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	chlorophyll biosynthesis (light-independent)	0	0.02459016393442623	1	1
+GAP	Low	thiamine diphosphate biosynthesis	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	IMP biosynthesis via de novo pathway	0	0.02459016393442623	1	1
+GAP	Low	Porphyrin-containing compound metabolism	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	7,8-dihydroneopterin triphosphate biosynthesis	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	chlorophyll biosynthesis	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	glycerophospholipid metabolism	0	0.024390243902439025	1.0000000000000002	1
+GAP	High	glycogen biosynthesis	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	chlorophyll biosynthesis (light-independent)	1	0.5737704918032787	0.5090479937057436	1
+GAP	High	thiamine diphosphate biosynthesis	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	IMP biosynthesis via de novo pathway	1	0.5737704918032787	0.5090479937057436	1
+GAP	High	Porphyrin-containing compound metabolism	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	7,8-dihydroneopterin triphosphate biosynthesis	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	chlorophyll biosynthesis	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	glycerophospholipid metabolism	0	0.5853658536585366	0.4193548387096774	1
+Glyx	Low	glycogen biosynthesis	0	0.023809523809523808	1	1
+Glyx	Low	chlorophyll biosynthesis (light-independent)	0	0.024	1	1
+Glyx	Low	thiamine diphosphate biosynthesis	0	0.023809523809523808	1	1
+Glyx	Low	IMP biosynthesis via de novo pathway	0	0.024	1	1
+Glyx	Low	Porphyrin-containing compound metabolism	0	0.023809523809523808	1	1
+Glyx	Low	7,8-dihydroneopterin triphosphate biosynthesis	0	0.023809523809523808	1	1
+Glyx	Low	chlorophyll biosynthesis	0	0.023809523809523808	1	1
+Glyx	Low	glycerophospholipid metabolism	0	0.023809523809523808	1	1
+Glyx	High	glycogen biosynthesis	0	0.2222222222222222	1	1
+Glyx	High	chlorophyll biosynthesis (light-independent)	0	0.224	1	1
+Glyx	High	thiamine diphosphate biosynthesis	0	0.2222222222222222	1	1
+Glyx	High	IMP biosynthesis via de novo pathway	0	0.224	1	1
+Glyx	High	Porphyrin-containing compound metabolism	0	0.2222222222222222	1	1
+Glyx	High	7,8-dihydroneopterin triphosphate biosynthesis	0	0.2222222222222222	1	1
+Glyx	High	chlorophyll biosynthesis	0	0.2222222222222222	1	1
+Glyx	High	glycerophospholipid metabolism	0	0.2222222222222222	1	1
+Ru5P	Low	glutathione biosynthesis	0	0.011494252873563218	1	1
+Ru5P	Low	glycogen biosynthesis	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	Low	riboflavin biosynthesis	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	Low	biotin biosynthesis	0	0.011494252873563218	1	1
+Ru5P	Low	L-histidine biosynthesis	0	0.011764705882352941	1	1
+Ru5P	Low	chlorophyll biosynthesis (light-independent)	0	0.011494252873563218	1	1
+Ru5P	Low	thiamine diphosphate biosynthesis	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	Low	IMP biosynthesis via de novo pathway	0	0.011494252873563218	1	1
+Ru5P	Low	Porphyrin-containing compound metabolism	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	Low	7,8-dihydroneopterin triphosphate biosynthesis	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	Low	chlorophyll biosynthesis	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	High	glutathione biosynthesis	0.5	0.19540229885057472	0.36542390194075586	1
+Ru5P	High	glycogen biosynthesis	0	0.20454545454545456	0.9999999999999999	1
+Ru5P	High	riboflavin biosynthesis	0	0.20454545454545456	0.9999999999999999	1
+Ru5P	High	biotin biosynthesis	0	0.20689655172413793	1	1
+Ru5P	High	L-histidine biosynthesis	0.25	0.2	1	1
+Ru5P	High	chlorophyll biosynthesis (light-independent)	0.5	0.19540229885057472	0.36542390194075586	1
+Ru5P	High	thiamine diphosphate biosynthesis	0	0.20454545454545456	0.9999999999999999	1
+Ru5P	High	IMP biosynthesis via de novo pathway	0	0.20689655172413793	1	1
+Ru5P	High	Porphyrin-containing compound metabolism	0	0.20454545454545456	0.9999999999999999	1
+Ru5P	High	7,8-dihydroneopterin triphosphate biosynthesis	0	0.20454545454545456	0.9999999999999999	1
+Ru5P	High	chlorophyll biosynthesis	0	0.20454545454545456	0.9999999999999999	1
+RuBP	Low	glutathione biosynthesis	0	0	1	1
+RuBP	Low	glycogen biosynthesis	0	0	1	1
+RuBP	Low	riboflavin biosynthesis	0	0	1	1
+RuBP	Low	biotin biosynthesis	0	0	1	1
+RuBP	Low	L-histidine biosynthesis	0	0	1	1
+RuBP	Low	chlorophyll biosynthesis (light-independent)	0	0	1	1
+RuBP	Low	thiamine diphosphate biosynthesis	0	0	1	1
+RuBP	Low	IMP biosynthesis via de novo pathway	0	0	1	1
+RuBP	Low	Porphyrin-containing compound metabolism	0	0	1	1
+RuBP	Low	7,8-dihydroneopterin triphosphate biosynthesis	0	0	1	1
+RuBP	Low	chlorophyll biosynthesis	0	0	1	1
+RuBP	High	glutathione biosynthesis	0	0.06818181818181818	1	1
+RuBP	High	glycogen biosynthesis	0	0.06741573033707865	1	1
+RuBP	High	riboflavin biosynthesis	0	0.06741573033707865	1	1
+RuBP	High	biotin biosynthesis	0	0.06818181818181818	1	1
+RuBP	High	L-histidine biosynthesis	0	0.06976744186046512	0.9999999999999999	1
+RuBP	High	chlorophyll biosynthesis (light-independent)	0	0.06818181818181818	1	1
+RuBP	High	thiamine diphosphate biosynthesis	0	0.06741573033707865	1	1
+RuBP	High	IMP biosynthesis via de novo pathway	0	0.06818181818181818	1	1
+RuBP	High	Porphyrin-containing compound metabolism	0	0.06741573033707865	1	1
+RuBP	High	7,8-dihydroneopterin triphosphate biosynthesis	0	0.06741573033707865	1	1
+RuBP	High	chlorophyll biosynthesis	0	0.06741573033707865	1	1
+3PGA	Low	L-glutamate biosynthesis via GLT pathway	1	0	0.007751937984496126	1
+3PGA	Low	nitrogen metabolism	1	0	0.007751937984496126	1
+3PGA	Low	flavonoid biosynthesis	0	0.0078125	1	1
+3PGA	Low	UMP biosynthesis via de novo pathway	0	0.0078125	1	1
+3PGA	High	L-glutamate biosynthesis via GLT pathway	1	0.015625	0.023255813953488382	1
+3PGA	High	nitrogen metabolism	1	0.015625	0.023255813953488382	1
+3PGA	High	flavonoid biosynthesis	0	0.0234375	1	1
+3PGA	High	UMP biosynthesis via de novo pathway	0	0.0234375	1	1
+AcCoA	Low	L-glutamate biosynthesis via GLT pathway	1	0.18333333333333332	0.1900826446280992	1
+AcCoA	Low	nitrogen metabolism	1	0.18333333333333332	0.1900826446280992	1
+AcCoA	Low	GDP-L-fucose biosynthesis via de novo pathway	0	0.19166666666666668	0.9999999999999999	1
+AcCoA	Low	UMP biosynthesis via de novo pathway	1	0.18333333333333332	0.1900826446280992	1
+AcCoA	High	L-glutamate biosynthesis via GLT pathway	1	0.4166666666666667	0.42148760330578516	1
+AcCoA	High	nitrogen metabolism	1	0.4166666666666667	0.42148760330578516	1
+AcCoA	High	GDP-L-fucose biosynthesis via de novo pathway	0	0.425	1	1
+AcCoA	High	UMP biosynthesis via de novo pathway	1	0.4166666666666667	0.42148760330578516	1
+ATP	Low	L-glutamate biosynthesis via GLT pathway	0	0.07142857142857142	1	1
+ATP	Low	nitrogen metabolism	0	0.07142857142857142	1	1
+ATP	Low	GDP-L-fucose biosynthesis via de novo pathway	0	0.07142857142857142	1	1
+ATP	Low	flavonoid biosynthesis	0	0.07142857142857142	1	1
+ATP	Low	adenosylcobalamin biosynthesis	0	0.07142857142857142	1	1
+ATP	Low	UMP biosynthesis via de novo pathway	1	0.06349206349206349	0.07086614173228345	1
+ATP	High	L-glutamate biosynthesis via GLT pathway	1	0.42857142857142855	0.43307086614173235	1
+ATP	High	nitrogen metabolism	1	0.42857142857142855	0.43307086614173235	1
+ATP	High	GDP-L-fucose biosynthesis via de novo pathway	1	0.42857142857142855	0.43307086614173235	1
+ATP	High	flavonoid biosynthesis	0	0.4365079365079365	1	1
+ATP	High	adenosylcobalamin biosynthesis	0	0.4365079365079365	1	1
+ATP	High	UMP biosynthesis via de novo pathway	1	0.42857142857142855	0.43307086614173235	1
+Cit	Low	L-glutamate biosynthesis via GLT pathway	0	0	1	1
+Cit	Low	nitrogen metabolism	0	0	1	1
+Cit	Low	flavonoid biosynthesis	0	0	1	1
+Cit	Low	adenosylcobalamin biosynthesis	0	0	1	1
+Cit	Low	UMP biosynthesis via de novo pathway	0	0	1	1
+Cit	High	L-glutamate biosynthesis via GLT pathway	1	0.17829457364341086	0.1846153846153846	1
+Cit	High	nitrogen metabolism	1	0.17829457364341086	0.1846153846153846	1
+Cit	High	flavonoid biosynthesis	0	0.18604651162790697	1	1
+Cit	High	adenosylcobalamin biosynthesis	0	0.18604651162790697	1	1
+Cit	High	UMP biosynthesis via de novo pathway	1	0.17829457364341086	0.1846153846153846	1
+FBP	Low	L-glutamate biosynthesis via GLT pathway	0	0	1	1
+FBP	Low	nitrogen metabolism	0	0	1	1
+FBP	Low	GDP-L-fucose biosynthesis via de novo pathway	0	0	1	1
+FBP	Low	flavonoid biosynthesis	0	0	1	1
+FBP	Low	adenosylcobalamin biosynthesis	0	0	1	1
+FBP	Low	UMP biosynthesis via de novo pathway	0	0	1	1
+FBP	High	L-glutamate biosynthesis via GLT pathway	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	nitrogen metabolism	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	GDP-L-fucose biosynthesis via de novo pathway	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	flavonoid biosynthesis	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	adenosylcobalamin biosynthesis	0	0.056451612903225805	0.9999999999999999	1
+FBP	High	UMP biosynthesis via de novo pathway	0	0.056451612903225805	0.9999999999999999	1
+G6P	Low	L-glutamate biosynthesis via GLT pathway	0	0.00819672131147541	1	1
+G6P	Low	nitrogen metabolism	0	0.00819672131147541	1	1
+G6P	Low	GDP-L-fucose biosynthesis via de novo pathway	0	0.00819672131147541	1	1
+G6P	Low	flavonoid biosynthesis	0	0.00819672131147541	1	1
+G6P	Low	adenosylcobalamin biosynthesis	0	0.00819672131147541	1	1
+G6P	Low	UMP biosynthesis via de novo pathway	0	0.00819672131147541	1	1
+G6P	High	L-glutamate biosynthesis via GLT pathway	0	0.18032786885245902	1	1
+G6P	High	nitrogen metabolism	0	0.18032786885245902	1	1
+G6P	High	GDP-L-fucose biosynthesis via de novo pathway	0	0.18032786885245902	1	1
+G6P	High	flavonoid biosynthesis	0	0.18032786885245902	1	1
+G6P	High	adenosylcobalamin biosynthesis	0	0.18032786885245902	1	1
+G6P	High	UMP biosynthesis via de novo pathway	1	0.1721311475409836	0.17886178861788612	1
+GAP	Low	L-glutamate biosynthesis via GLT pathway	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	nitrogen metabolism	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	GDP-L-fucose biosynthesis via de novo pathway	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	flavonoid biosynthesis	0	0.024390243902439025	1.0000000000000002	1
+GAP	Low	UMP biosynthesis via de novo pathway	0	0.024390243902439025	1.0000000000000002	1
+GAP	High	L-glutamate biosynthesis via GLT pathway	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	nitrogen metabolism	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	GDP-L-fucose biosynthesis via de novo pathway	1	0.5772357723577236	0.9999999999999999	1
+GAP	High	flavonoid biosynthesis	0	0.5853658536585366	0.4193548387096774	1
+GAP	High	UMP biosynthesis via de novo pathway	1	0.5772357723577236	0.9999999999999999	1
+Glyx	Low	L-glutamate biosynthesis via GLT pathway	1	0.015873015873015872	0.02362204724409448	1
+Glyx	Low	nitrogen metabolism	1	0.015873015873015872	0.02362204724409448	1
+Glyx	Low	GDP-L-fucose biosynthesis via de novo pathway	0	0.023809523809523808	1	1
+Glyx	Low	flavonoid biosynthesis	0	0.023809523809523808	1	1
+Glyx	Low	adenosylcobalamin biosynthesis	0	0.023809523809523808	1	1
+Glyx	Low	UMP biosynthesis via de novo pathway	0	0.023809523809523808	1	1
+Glyx	High	L-glutamate biosynthesis via GLT pathway	1	0.21428571428571427	0.22047244094488191	1
+Glyx	High	nitrogen metabolism	1	0.21428571428571427	0.22047244094488191	1
+Glyx	High	GDP-L-fucose biosynthesis via de novo pathway	1	0.21428571428571427	0.22047244094488191	1
+Glyx	High	flavonoid biosynthesis	0	0.2222222222222222	1	1
+Glyx	High	adenosylcobalamin biosynthesis	0	0.2222222222222222	1	1
+Glyx	High	UMP biosynthesis via de novo pathway	1	0.21428571428571427	0.22047244094488191	1
+Ru5P	Low	L-glutamate biosynthesis via GLT pathway	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	Low	nitrogen metabolism	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	Low	GDP-L-fucose biosynthesis via de novo pathway	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	Low	flavonoid biosynthesis	0	0.011363636363636364	0.9999999999999999	1
+Ru5P	Low	UMP biosynthesis via de novo pathway	1	0	0.01123595505617978	1
+Ru5P	High	L-glutamate biosynthesis via GLT pathway	1	0.19318181818181818	0.20224719101123592	1
+Ru5P	High	nitrogen metabolism	1	0.19318181818181818	0.20224719101123592	1
+Ru5P	High	GDP-L-fucose biosynthesis via de novo pathway	1	0.19318181818181818	0.20224719101123592	1
+Ru5P	High	flavonoid biosynthesis	0	0.20454545454545456	0.9999999999999999	1
+Ru5P	High	UMP biosynthesis via de novo pathway	1	0.19318181818181818	0.20224719101123592	1
+RuBP	Low	L-glutamate biosynthesis via GLT pathway	0	0	1	1
+RuBP	Low	nitrogen metabolism	0	0	1	1
+RuBP	Low	GDP-L-fucose biosynthesis via de novo pathway	0	0	1	1
+RuBP	Low	flavonoid biosynthesis	0	0	1	1
+RuBP	Low	UMP biosynthesis via de novo pathway	0	0	1	1
+RuBP	High	L-glutamate biosynthesis via GLT pathway	0	0.06741573033707865	1	1
+RuBP	High	nitrogen metabolism	0	0.06741573033707865	1	1
+RuBP	High	GDP-L-fucose biosynthesis via de novo pathway	0	0.06741573033707865	1	1
+RuBP	High	flavonoid biosynthesis	0	0.06741573033707865	1	1
+RuBP	High	UMP biosynthesis via de novo pathway	1	0.056179775280898875	0.06666666666666662	1

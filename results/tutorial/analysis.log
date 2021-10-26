@@ -1,0 +1,1494 @@
+tis 26 okt 2021 12:34:19 CEST
+
+1. Interactions with enzymes
+── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Rows: 86891 Columns: 14
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (9): Organism, Metabolite, Peptide_ID, Peptide, UniProt_entry, Gene_ontology_GO, Pathway, Sign, Locus
+dbl (5): Conc, Date, log2FC, SE, adj.pvalue
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17476 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, UniProt, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5074 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, EC, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+`summarise()` has grouped output by 'Organism'. You can override using the `.groups` argument.
+Joining, by = c("KEGGgene", "Organism")
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
+Loading required package: parallel
+
+2. Functional categories
+── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Rows: 86891 Columns: 14
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (9): Organism, Metabolite, Peptide_ID, Peptide, UniProt_entry, Gene_ontology_GO, Pathway, Sign, Locus
+dbl (5): Conc, Date, log2FC, SE, adj.pvalue
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4125 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, Module, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17476 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, UniProt, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5074 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, EC, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Joining, by = c("KEGGgene", "Organism")
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = c("KEGGgene", "Organism")
+Joining, by = "UniProt_entry"
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Adding missing grouping variables: `Organism`
+`summarise()` has grouped output by 'Metabolite'. You can override using the `.groups` argument.
+Joining, by = c("Metabolite", "Conc")
+Adding missing grouping variables: `Organism`
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = c("Metabolite", "Conc", "Annotation")
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
+Loading required package: parallel
+Joining, by = "UniProt_entry"
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Adding missing grouping variables: `Organism`
+`summarise()` has grouped output by 'Metabolite'. You can override using the `.groups` argument.
+Joining, by = c("Metabolite", "Conc")
+Adding missing grouping variables: `Organism`
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = c("Metabolite", "Conc", "Annotation")
+Joining, by = "UniProt_entry"
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Adding missing grouping variables: `Organism`
+`summarise()` has grouped output by 'Metabolite'. You can override using the `.groups` argument.
+Joining, by = c("Metabolite", "Conc")
+Adding missing grouping variables: `Organism`
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = c("Metabolite", "Conc", "Annotation")
+Joining, by = "UniProt_entry"
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Adding missing grouping variables: `Organism`
+`summarise()` has grouped output by 'Metabolite'. You can override using the `.groups` argument.
+Joining, by = c("Metabolite", "Conc")
+Adding missing grouping variables: `Organism`
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = c("Metabolite", "Conc", "Annotation")
+
+3. Comparison of orthologs
+Loading required package: ggplot2
+ggtree v3.0.4  For help: https://yulab-smu.top/treedata-book/
+
+If you use ggtree in published research, please cite the most appropriate paper(s):
+
+1. Guangchuang Yu. Using ggtree to visualize data on tree-like structures. Current Protocols in Bioinformatics, 2020, 69:e96. doi:10.1002/cpbi.96
+2. Guangchuang Yu, Tommy Tsan-Yuk Lam, Huachen Zhu, Yi Guan. Two methods for mapping and visualizing associated data on phylogeny using ggtree. Molecular Biology and Evolution 2018, 35(12):3041-3043. doi:10.1093/molbev/msy194
+3. Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution 2017, 8(1):28-36. doi:10.1111/2041-210X.12628
+
+
+
+Attaching package: ‘ggtree’
+
+The following object is masked from ‘package:ggpubr’:
+
+    rotate
+
+Loading required package: ape
+
+Attaching package: ‘ape’
+
+The following object is masked from ‘package:ggtree’:
+
+    rotate
+
+The following object is masked from ‘package:ggpubr’:
+
+    rotate
+
+Loading required package: maps
+Loading required package: permute
+Loading required package: lattice
+This is vegan 2.5-7
+
+Attaching package: ‘vegan’
+
+The following object is masked from ‘package:phytools’:
+
+    scores
+
+── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+✔ purrr   0.3.4     
+── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ readr::col_factor() masks scales::col_factor()
+✖ purrr::discard()    masks scales::discard()
+✖ tidyr::expand()     masks ggtree::expand()
+✖ dplyr::filter()     masks stats::filter()
+✖ dplyr::lag()        masks stats::lag()
+✖ purrr::map()        masks maps::map()
+Rows: 86891 Columns: 14
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (9): Organism, Metabolite, Peptide_ID, Peptide, UniProt_entry, Gene_ontology_GO, Pathway, Sign, Locus
+dbl (5): Conc, Date, log2FC, SE, adj.pvalue
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 16831 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): UniProt_entry, Ortholog
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17387 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Organism, UniProt_entry
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5988 Columns: 4
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): Ortholog, Category, Description
+dbl (1): Version
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 25 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): Category, Description, Short_description
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17476 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, UniProt, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4125 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, Module, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Joining, by = c("KEGGgene", "Organism")
+Rows: 453 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Module, Description
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 28 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): Module, Description, Short_description
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "UniProt_entry"
+`summarise()` has grouped output by 'Organism', 'Metabolite'. You can override using the `.groups` argument.
+`summarise()` has grouped output by 'Organism', 'Metabolite'. You can override using the `.groups` argument.
+Warning messages:
+1: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead. 
+2: ggrepel: 1 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+3: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead. 
+4: Graphs cannot be vertically aligned unless the axis parameter is set. Placing graphs unaligned. 
+5: ggrepel: 1 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+Warning messages:
+1: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead. 
+2: ggrepel: 8 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+3: ggrepel: 9 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+4: ggrepel: 8 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+5: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead. 
+6: Graphs cannot be vertically aligned unless the axis parameter is set. Placing graphs unaligned. 
+7: ggrepel: 8 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+8: ggrepel: 9 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+9: ggrepel: 8 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "label"
+Joining, by = "MRCA"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "node"
+Joining, by = "Ortholog"
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Ortholog"
+Joining, by = "Ortholog"
+`summarise()` has grouped output by 'Organism', 'Conc', 'Category'. You can override using the `.groups` argument.
+Joining, by = "Category"
+Warning messages:
+1: Removed 75 rows containing missing values (geom_label). 
+2: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead. 
+Joining, by = "Ortholog"
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Category"
+Joining, by = "label"
+Joining, by = "MRCA"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "node"
+Note: Using an external vector in selections is ambiguous.
+ℹ Use `all_of(grouping)` instead of `grouping` to silence this message.
+ℹ See <https://tidyselect.r-lib.org/reference/faq-external-vector.html>.
+This message is displayed once per session.
+Joining, by = "label"
+Joining, by = "label"
+Joining, by = "Ortholog"
+Joining, by = c("label", "Conc")
+`summarise()` has grouped output by 'Category', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Category"
+Joining, by = "UniProt_entry"
+Joining, by = c("label", "Conc")
+`summarise()` has grouped output by 'Module', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Module"
+Joining, by = "UniProt_entry"
+Joining, by = "Module"
+Joining, by = "label"
+Joining, by = "MRCA"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "node"
+Joining, by = "label"
+Joining, by = "label"
+Joining, by = "label"
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Ortholog"
+Joining, by = "label"
+`summarise()` has grouped output by 'Category', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Category"
+Joining, by = "label"
+Joining, by = "MRCA"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "node"
+Joining, by = "label"
+Joining, by = "label"
+Joining, by = "Ortholog"
+Joining, by = c("label", "Conc")
+`summarise()` has grouped output by 'Category', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Category"
+Joining, by = "UniProt_entry"
+Joining, by = c("label", "Conc")
+`summarise()` has grouped output by 'Module', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Module"
+Joining, by = "UniProt_entry"
+Joining, by = "Module"
+Joining, by = "label"
+Joining, by = "MRCA"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "node"
+Joining, by = "label"
+Joining, by = "label"
+Joining, by = "label"
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Ortholog"
+Joining, by = "label"
+`summarise()` has grouped output by 'Category', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Category"
+Joining, by = "label"
+Joining, by = "MRCA"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "node"
+Joining, by = "label"
+Joining, by = "label"
+Joining, by = "Ortholog"
+Joining, by = c("label", "Conc")
+`summarise()` has grouped output by 'Category', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Category"
+Joining, by = "UniProt_entry"
+Joining, by = c("label", "Conc")
+`summarise()` has grouped output by 'Module', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Module"
+Joining, by = "UniProt_entry"
+Joining, by = "Module"
+Joining, by = "label"
+Joining, by = "MRCA"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "node"
+Joining, by = "label"
+Joining, by = "label"
+Joining, by = "label"
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Ortholog"
+Joining, by = "label"
+`summarise()` has grouped output by 'Category', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Category"
+Joining, by = "label"
+Joining, by = "MRCA"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "node"
+Joining, by = "label"
+Joining, by = "label"
+Joining, by = "Ortholog"
+Joining, by = c("label", "Conc")
+`summarise()` has grouped output by 'Category', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Category"
+Joining, by = "UniProt_entry"
+Joining, by = c("label", "Conc")
+`summarise()` has grouped output by 'Module', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Module"
+Joining, by = "UniProt_entry"
+Joining, by = "Module"
+Joining, by = "label"
+Joining, by = "MRCA"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "Cluster"
+Joining, by = "node"
+Joining, by = "label"
+Joining, by = "label"
+Joining, by = "label"
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Ortholog"
+Joining, by = "label"
+`summarise()` has grouped output by 'Category', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Category"
+There were 47 warnings (use warnings() to see them)
+Joining, by = "Ortholog"
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "UniProt_entry"
+Joining, by = "Ortholog"
+`summarise()` has grouped output by 'Organism', 'Metabolite'. You can override using the `.groups` argument.
+Joining, by = c("Organism", "Metabolite", "Category")
+Joining, by = c("Organism", "Metabolite", "Category")
+Joining, by = "Category"
+Joining, by = "UniProt_entry"
+Joining, by = "Ortholog"
+Joining, by = c("Organism", "Metabolite", "Category")
+Joining, by = c("Organism", "Category")
+Joining, by = c("Organism", "Metabolite")
+Joining, by = c("Organism", "Metabolite", "Category")
+Joining, by = "Category"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+pdf 
+  2 
+Warning messages:
+1: Transformation introduced infinite values in discrete y-axis 
+2: Removed 582 rows containing missing values (geom_point). 
+3: Transformation introduced infinite values in discrete y-axis 
+4: Removed 582 rows containing missing values (geom_point). 
+Joining, by = "Category"
+Joining, by = "UniProt_entry"
+Joining, by = "Ortholog"
+Joining, by = c("Organism", "Metabolite", "Category")
+Joining, by = c("Organism", "Category")
+Joining, by = c("Organism", "Metabolite")
+Joining, by = c("Organism", "Metabolite", "Category")
+Joining, by = "Category"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+pdf 
+  2 
+Warning messages:
+1: Transformation introduced infinite values in discrete y-axis 
+2: Removed 582 rows containing missing values (geom_point). 
+3: Transformation introduced infinite values in discrete y-axis 
+4: Removed 582 rows containing missing values (geom_point). 
+
+4. Comparison of KEGG modules
+── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Rows: 86891 Columns: 14
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (9): Organism, Metabolite, Peptide_ID, Peptide, UniProt_entry, Gene_ontology_GO, Pathway, Sign, Locus
+dbl (5): Conc, Date, log2FC, SE, adj.pvalue
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17476 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, UniProt, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4125 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, Module, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2522 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Module, Reaction
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 48952 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Reaction, Compound
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 25 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Metabolite, Compound
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 453 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Module, Description
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Joining, by = "Reaction"
+Joining, by = c("KEGGgene", "Organism")
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "UniProt_entry"
+Joining, by = "Metabolite"
+Joining, by = c("Module", "Compound")
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc', 'Module'. You can override using the `.groups` argument.
+Joining, by = "Module"
+Joining, by = "Metabolite"
+Joining, by = c("Module", "Compound")
+Joining, by = "Module"
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Rows: 17476 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, UniProt, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4125 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, Module, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 16831 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): UniProt_entry, Ortholog
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 25 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): Category, Description, Short_description
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 453 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Module, Description
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5988 Columns: 4
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): Ortholog, Category, Description
+dbl (1): Version
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Joining, by = c("KEGGgene", "Organism")
+Joining, by = "UniProt_entry"
+Joining, by = "Ortholog"
+Joining, by = "Category"
+Joining, by = "Module"
+`summarise()` has grouped output by 'Ortholog_description', 'Module_description'. You can override using the `.groups` argument.
+
+5. Phylogenetic trees
+── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Rows: 6819 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): UniProt_entry, Gene_name
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17387 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Organism, UniProt_entry
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17476 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): UniProt_entry, Locus
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Read 21 items
+Rows: 21 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Ortholog, Description
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 21 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Ortholog, Name
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 822 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 496 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (11): identifier, group, superkingdom, phylum, class, order, family, genus, species, lowest_rank_name,...
+dbl  (1): taxid
+lgl  (1): kingdom
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 747 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 980 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 742 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 85 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (11): identifier, group, superkingdom, phylum, class, order, family, genus, species, lowest_rank_name,...
+dbl  (1): taxid
+lgl  (1): kingdom
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 139 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 718 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 590 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 891 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 969 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 851 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 915 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 931 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (11): identifier, group, superkingdom, phylum, class, order, family, genus, species, lowest_rank_name,...
+dbl  (1): taxid
+lgl  (1): kingdom
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 986 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 162 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 523 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (11): identifier, group, superkingdom, phylum, class, order, family, genus, species, lowest_rank_name,...
+dbl  (1): taxid
+lgl  (1): kingdom
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 999 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 167 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (11): identifier, group, superkingdom, phylum, class, order, family, genus, species, lowest_rank_name,...
+dbl  (1): taxid
+lgl  (1): kingdom
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 814 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 857 Columns: 13
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (12): identifier, group, superkingdom, kingdom, phylum, class, order, family, genus, species, lowest_r...
+dbl  (1): taxid
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 86891 Columns: 14
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (9): Organism, Metabolite, Peptide_ID, Peptide, UniProt_entry, Gene_ontology_GO, Pathway, Sign, Locus
+dbl (5): Conc, Date, log2FC, SE, adj.pvalue
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "UniProt_entry"
+Loading required package: ape
+Loading required package: maps
+
+Attaching package: ‘maps’
+
+The following object is masked from ‘package:purrr’:
+
+    map
+
+ggtree v3.0.4  For help: https://yulab-smu.top/treedata-book/
+
+If you use ggtree in published research, please cite the most appropriate paper(s):
+
+1. Guangchuang Yu. Using ggtree to visualize data on tree-like structures. Current Protocols in Bioinformatics, 2020, 69:e96. doi:10.1002/cpbi.96
+2. Guangchuang Yu, Tommy Tsan-Yuk Lam, Huachen Zhu, Yi Guan. Two methods for mapping and visualizing associated data on phylogeny using ggtree. Molecular Biology and Evolution 2018, 35(12):3041-3043. doi:10.1093/molbev/msy194
+3. Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution 2017, 8(1):28-36. doi:10.1111/2041-210X.12628
+
+
+
+Attaching package: ‘ggtree’
+
+The following object is masked from ‘package:ape’:
+
+    rotate
+
+The following object is masked from ‘package:tidyr’:
+
+    expand
+
+Joining, by = "Group"
+
+Attaching package: ‘ggpubr’
+
+The following object is masked from ‘package:ggtree’:
+
+    rotate
+
+The following object is masked from ‘package:ape’:
+
+    rotate
+
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
+Loading required package: parallel
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "identifier"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "identifier"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "identifier"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "identifier"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "identifier"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "UniProt_entry"
+Joining, by = "identifier"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "identifier"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "identifier"
+Joining, by = "identifier"
+Joining, by = "Organism"
+Joining, by = "UniProt_entry"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "UniProt_entry"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "identifier"
+Joining, by = "UniProt_entry"
+Joining, by = "identifier"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "UniProt_entry"
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "UniProt_entry"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "Organism"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "identifier"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "Organism"
+Joining, by = "identifier"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "Organism"
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "identifier"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "identifier"
+Joining, by = "UniProt_entry"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "identifier"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Joining, by = "identifier"
+Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+Scale for 'fill' is already present. Adding another scale for 'fill', which will replace the existing
+scale.
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "UniProt_entry"
+Joining, by = "Organism"
+Joining, by = "Organism"
+Joining, by = "Organism"
+
+6. Supplementary tables
+── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Rows: 86891 Columns: 14
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (9): Organism, Metabolite, Peptide_ID, Peptide, UniProt_entry, Gene_ontology_GO, Pathway, Sign, Locus
+dbl (5): Conc, Date, log2FC, SE, adj.pvalue
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 16831 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): UniProt_entry, Ortholog
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17387 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Organism, UniProt_entry
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17476 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): UniProt_entry, Locus
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5988 Columns: 4
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): Ortholog, Category, Description
+dbl (1): Version
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 25 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): Category, Description, Short_description
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17476 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, UniProt, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4125 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, Module, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5074 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, EC, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Joining, by = c("KEGGgene", "Organism")
+Rows: 453 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Module, Description
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 28 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): Module, Description, Short_description
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 7890 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): EC, Description
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Organism"
+Joining, by = c("Organism", "Metabolite", "Conc", "UniProt_entry")
+Joining, by = c("Organism", "UniProt_entry")
+Joining, by = "UniProt_entry"
+Joining, by = "Module"
+Joining, by = c("Organism", "KEGGgene")
+Joining, by = "EC"
+Joining, by = "UniProt_entry"
+Joining, by = "Ortholog"
+Joining, by = "Category"
+Joining, by = "Ortholog"
+Joining, by = "UniProt_entry"
+
+7. Calvin cycle and sinks
+Loading required package: ggplot2
+── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+✔ purrr   0.3.4     
+── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Rows: 86891 Columns: 14
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (9): Organism, Metabolite, Peptide_ID, Peptide, UniProt_entry, Gene_ontology_GO, Pathway, Sign, Locus
+dbl (5): Conc, Date, log2FC, SE, adj.pvalue
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5074 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, EC, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17476 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): KEGGgene, UniProt, Organism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17387 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): Organism, UniProt_entry
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 14 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): Name, Abbreviation, EC
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 12 Columns: 3
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (3): Name, Abbreviation, EC
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = c("Organism", "UniProt_entry")
+Joining, by = c("Organism", "KEGGgene")
+Joining, by = "EC"
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc', 'Abbreviation'. You can override using the `.groups` argument.
+Joining, by = c("Organism", "UniProt_entry")
+Joining, by = c("Organism", "KEGGgene")
+Joining, by = "EC"
+Joining, by = c("Organism", "Abbreviation", "Conc", "Metabolite")
+Joining, by = c("Organism", "Abbreviation")
+Joining, by = c("Organism", "Conc", "Metabolite")
+Joining, by = "Abbreviation"
+Warning messages:
+1: Removed 56 rows containing missing values (geom_point). 
+2: Removed 56 rows containing missing values (geom_point). 
+3: Removed 56 rows containing missing values (geom_point). 
+4: Removed 87 rows containing missing values (geom_point). 
+5: Removed 87 rows containing missing values (geom_point). 
+6: Graphs cannot be horizontally aligned unless the axis parameter is set. Placing graphs unaligned. 
+null device 
+          1 
+
+8. Carbon concentration mechanisms
+── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Rows: 86891 Columns: 14
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (9): Organism, Metabolite, Peptide_ID, Peptide, UniProt_entry, Gene_ontology_GO, Pathway, Sign, Locus
+dbl (5): Conc, Date, log2FC, SE, adj.pvalue
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 34 Columns: 5
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: ","
+chr (5): Gene_name, Locus_tag, Category, Protein_complex_1, Protein_complex_2
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Locus"
+Joining, by = c("Locus", "Metabolite", "Conc")
+Joining, by = "Locus"
+Warning message:
+`guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead. 
+Warning message:
+Removed 44 rows containing missing values (geom_point). 
+
+9. Number of detected peptides
+── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Rows: 86891 Columns: 14
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (9): Organism, Metabolite, Peptide_ID, Peptide, UniProt_entry, Gene_ontology_GO, Pathway, Sign, Locus
+dbl (5): Conc, Date, log2FC, SE, adj.pvalue
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc', 'UniProt_entry'. You can override using the `.groups` argument.
+Joining, by = c("Organism", "Metabolite", "Conc", "Interaction")
+`summarise()` has grouped output by 'Organism', 'Metabolite'. You can override using the `.groups` argument.
+`summarise()` has grouped output by 'Organism', 'Metabolite'. You can override using the `.groups` argument.
+Joining, by = c("Organism", "Metabolite", "Conc")
+Warning messages:
+1: Removed 1 rows containing missing values (geom_point). 
+2: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead. 
+
+10. Post-translational modifications
+── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Rows: 86891 Columns: 14
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (9): Organism, Metabolite, Peptide_ID, Peptide, UniProt_entry, Gene_ontology_GO, Pathway, Sign, Locus
+dbl (5): Conc, Date, log2FC, SE, adj.pvalue
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 17476 Columns: 2
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (2): UniProt_entry, Locus
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Read 513 items
+Read 69 items
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "UniProt_entry"
+`summarise()` has grouped output by 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:purrr’:
+
+    discard
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+Warning message:
+It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead. 
+
+11. Quality control
+── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Rows: 86891 Columns: 14
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (9): Organism, Metabolite, Peptide_ID, Peptide, UniProt_entry, Gene_ontology_GO, Pathway, Sign, Locus
+dbl (5): Conc, Date, log2FC, SE, adj.pvalue
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+`summarise()` has grouped output by 'Organism', 'Metabolite'. You can override using the `.groups` argument.
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:purrr’:
+
+    discard
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+`summarise()` has grouped output by 'Organism', 'Metabolite'. You can override using the `.groups` argument.
+Error: Problem with `filter()` input `..2`.
+ℹ Input `..2` is `Metabolite %in% mets`.
+✖ subscript out of bounds
+Backtrace:
+     █
+  1. ├─ggpubr::ggarrange(...)
+  2. ├─global::make_plot(met_split[[3]], T, F)
+  3. │ ├─ggplot2::ggplot(...)
+  4. │ └─peptide_fc %>% filter(!Significant, Metabolite %in% mets)
+  5. ├─dplyr::filter(., !Significant, Metabolite %in% mets)
+  6. ├─dplyr:::filter.data.frame(., !Significant, Metabolite %in% mets)
+  7. │ └─dplyr:::filter_rows(.data, ..., caller_env = caller_env())
+  8. │   ├─base::withCallingHandlers(...)
+  9. │   └─mask$eval_all_filter(dots, env_filter)
+ 10. ├─Metabolite %in% mets
+ 11. └─base::.handleSimpleError(...)
+ 12.   └─dplyr:::h(simpleError(msg, call))
+Execution halted
+
+12. Metabolite interactions clustering
+ggtree v3.0.4  For help: https://yulab-smu.top/treedata-book/
+
+If you use ggtree in published research, please cite the most appropriate paper(s):
+
+1. Guangchuang Yu. Using ggtree to visualize data on tree-like structures. Current Protocols in Bioinformatics, 2020, 69:e96. doi:10.1002/cpbi.96
+2. Guangchuang Yu, Tommy Tsan-Yuk Lam, Huachen Zhu, Yi Guan. Two methods for mapping and visualizing associated data on phylogeny using ggtree. Molecular Biology and Evolution 2018, 35(12):3041-3043. doi:10.1093/molbev/msy194
+3. Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution 2017, 8(1):28-36. doi:10.1111/2041-210X.12628
+
+
+Loading required package: permute
+Loading required package: lattice
+This is vegan 2.5-7
+Loading required package: ape
+
+Attaching package: ‘ape’
+
+The following object is masked from ‘package:ggtree’:
+
+    rotate
+
+Loading required package: maps
+
+Attaching package: ‘phytools’
+
+The following object is masked from ‘package:vegan’:
+
+    scores
+
+Loading required package: ggplot2
+── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
+✔ tibble  3.1.5     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+✔ purrr   0.3.4     
+── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ readr::col_factor() masks scales::col_factor()
+✖ purrr::discard()    masks scales::discard()
+✖ tidyr::expand()     masks ggtree::expand()
+✖ dplyr::filter()     masks stats::filter()
+✖ dplyr::lag()        masks stats::lag()
+✖ purrr::map()        masks maps::map()
+
+Attaching package: ‘ggpubr’
+
+The following object is masked from ‘package:ape’:
+
+    rotate
+
+The following object is masked from ‘package:ggtree’:
+
+    rotate
+
+Rows: 86891 Columns: 14
+── Column specification ──────────────────────────────────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (9): Organism, Metabolite, Peptide_ID, Peptide, UniProt_entry, Gene_ontology_GO, Pathway, Sign, Locus
+dbl (5): Conc, Date, log2FC, SE, adj.pvalue
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+`summarise()` has grouped output by 'Organism', 'Metabolite', 'Conc'. You can override using the `.groups` argument.
+Joining, by = "Organism"
+Joining, by = c("Organism", "Metabolite", "Conc", "UniProt_entry")
+Joining, by = "UniProt_entry"
+Joining, by = "PC"
+Joining, by = "Metabolite"
+Joining, by = "PC"
+Joining, by = "Metabolite"
+Joining, by = "PC"
+Joining, by = "Metabolite"
+Joining, by = "PC"
+Joining, by = "Metabolite"
+Joining, by = "PC"
+Joining, by = "Metabolite"
+Joining, by = "PC"
+Joining, by = "Metabolite"
+Joining, by = "PC"
+Joining, by = "Metabolite"
+Joining, by = "PC"
+Joining, by = "Metabolite"
+Warning message:
+Removed 60 rows containing missing values (geom_text_repel). 
+There were 11 warnings (use warnings() to see them)
+null device 
+          1 
