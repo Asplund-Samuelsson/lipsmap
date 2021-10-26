@@ -24,8 +24,9 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
    11. [Quality control](#qc)
    12. [Metabolite interactions clustering](#metabolites)
 3. [Tutorial: Quick start](#tutorial)
-   1. [Concatenate the data](#tutcat)
-   2. [Run the analysis pipeline](#tutrun)
+   1. [Install and enter the lipsmap repository](#install)
+   2. [Concatenate the data](#tutcat)
+   3. [Run the analysis pipeline](#tutrun)
 4. [Requirements](#req)
 5. [Author](#author)
 
@@ -440,9 +441,21 @@ This tutorial demonstrates how to concatenate data from the original source stru
 
 **Important:** Before starting, make sure that the [requirements](#req) are met. For running only the tutorial or the analysis pipeline it is enough to meet the R, Bash, and GNU parallel requirements.
 
-<a name="tutcat"></a>
+<a name="install"></a>
+### 3.1. Install and enter the lipsmap repository
 
-### 3.1. Concatenate the data
+The lipsmap repository should be installed on the target computer like so:
+```
+git clone https://github.com/Asplund-Samuelsson/lipsmap
+```
+
+The installation takes approximately five seconds, depending on the speed of the internet connection. After it finishes, change directory into the lipsmap repository:
+```
+cd lipsmap
+```
+
+<a name="tutcat"></a>
+### 3.2. Concatenate the data
 
 The first step is to [concatenate the input data](#cat) from multiple LiP-SMap experiments in different organisms. Note that the pipeline described in this repository is specifically written to accommodate _Hydrogenophaga_, _Cupriavidus_, _Synechococcus_, and _Synechocystis_, and would require modification to accept other organisms.
 
@@ -478,14 +491,15 @@ data/tutorial/lipsmap.tab.gz
 **Important:** The concatenated data contains only the latest experiment, as defined by the date in the file names. If an earlier experiment is desired, one must remove the more recent file from the input directory. Another option is to set up a new input directory and populate it with symbolic links to the desired input files.
 
 <a name="tutrun"></a>
-
-### 3.2. Run the analysis pipeline
+### 3.3. Run the analysis pipeline
 
 The [analysis pipeline](#analysis) consists of many independent steps carried out by individual R scripts stored in the `source` directory. For convenience, a Bash script is set up to run all the steps automatically from a single command:
 
 ```
 ./analysis.sh data/tutorial/lipsmap.tab.gz results/tutorial
 ```
+
+The pipeline finishes in less than two minutes, depending on the performance of the computer.
 
 Messages from the individual pipeline scripts, for example errors, are stored in a log file:
 ```
