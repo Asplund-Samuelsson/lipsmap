@@ -26,7 +26,8 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
 3. [Tutorial: Quick start](#tutorial)
    1. [Concatenate the data](#tutcat)
    2. [Run the analysis pipeline](#tutrun)
-4. [Author](#author)
+4. [Requirements](#req)
+5. [Author](#author)
 
 <a name="prep"></a>
 ## 1. Data preparation
@@ -437,6 +438,8 @@ metabolites_jaccard_ward_D2.pdf
 
 This tutorial demonstrates how to concatenate data from the original source structure and then run all analysis scripts on those data. The [example data](#reddata) used here are a subset of the full dataset containing fewer metabolites and a random subset of 250 proteins per organism. It is therefore not representative of the full dataset.
 
+**Important:** Before starting, make sure that the [requirements](#req) are met. For running only the tutorial or the analysis pipeline it is enough to meet the R, Bash, and GNU parallel requirements.
+
 <a name="tutcat"></a>
 
 ### 3.1. Concatenate the data
@@ -513,6 +516,24 @@ The tutorial output is available in this repository to demonstrate what it shoul
 | --- |
 | **Fig 9.** Clustering of metabolite-protein interaction patterns in the tutorial dataset. Bars show number of proteins interacting with each metabolite. |
 
+<a name="req"></a>
+## 4. Requirements
+
+This analysis has been tested on a **12-core 32 GB RAM Linux system with Ubuntu 20.04 LTS** and the following software:
+
+| Program | Version | Libraries | |
+| --- | --- | --- | --- |
+| Bash | 5.0.17 | | \* |
+| R | 4.1.1 | ape, doMC, foreach, ggpubr, ggrepel, ggtree, openxlsx, phytools, scales, tidyverse, vegan | \* |
+| Python | 3.7.6 | Biopython | |
+| CD-HIT | 4.8.1 | | |
+| seqmagick | 0.8.0 | | |
+| MAFFT | 7.453 | | |
+| FastTree | 2.1.11 | | |
+| GNU parallel | 20161222 | | \* |
+
+\*Required for concatenating data and running the analysis pipeline.
+
 <a name="author"></a>
-## 4. Author
+## 5. Author
 Johannes Asplund-Samuelsson, KTH (johannes.asplund.samuelsson@scilifelab.se)
