@@ -9,7 +9,8 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
    2. [Additional annotations](#annotations)
    3. [Phylogenetic analysis](#phylogenetics)
    4. [Repeated experiments](#rep)
-2. [Analysis pipeline](#analysis)
+   5. [Reduced dataset for tutorial](#reddata)
+2. [Analysis pipeline: Step-by-step](#analysis)
    1. [Interaction with enzymes](#enzymes)
    2. [Functional categories](#functions)
    3. [Comparison of orthologs](#orthologs)
@@ -22,7 +23,10 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
    10. [Post-translational modifications](#mod)
    11. [Quality control](#qc)
    12. [Metabolite interactions clustering](#metabolites)
-3. [Author](#author)
+3. [Tutorial: Quick start](#tutorial)
+   1. [Concatenate the data](#tutcat)
+   2. [Run the analysis pipeline](#tutrun)
+4. [Author](#author)
 
 <a name="prep"></a>
 ## 1. Data preparation
@@ -131,8 +135,25 @@ results/dates_min_q_cor.pdf
 results/dates_agreement.pdf
 ```
 
+<a name="reddata"></a>
+### 1.5. Reduced dataset for tutorial
+
+A reduced dataset was prepared from the original source to be used in the [tutorial](#tutorial). The reduced tutorial dataset consists of a subset of metabolites measured in most organisms, and a subset of 250 randomly selected proteins per organism. The proteins were selected to overlap in terms of ortholog groups in order to permit some of the analysis steps.
+
+This script was used to subset the data from the original source:
+
+```
+source/tutorial_data.R
+```
+
+The tutorial dataset mimics the file names and directory structure of the original data and is thereby divided into one folder per organism, with one file per experiment (including repeated experiments), for example this file:
+
+```
+data/tutorial/lipsmap/Cupriavidus/comparisonResult_3PGA_7_grouped_annot_20200914.csv
+```
+
 <a name="analysis"></a>
-## 2. Analysis pipeline
+## 2. Analysis pipeline: Step-by-step
 
 A series of R scripts were used to test hypotheses, and to generate data visualizations and tables. All scripts can be run in order by invoking the analysis shell script:
 ```
@@ -411,6 +432,87 @@ metabolites_jaccard_ward_D2.pdf
 | --- |
 | **Fig 8.** Clustering of metabolite-protein interaction patterns. Bars show number of proteins interacting with each metabolite. |
 
+<a name="tutorial"></a>
+## 3. Tutorial: Quick start
+
+This tutorial demonstrates how to concatenate data from the original source structure and then run all analysis scripts on those data. The [example data](#reddata) used here are a subset of the full dataset containing fewer metabolites and a random subset of 250 proteins per organism. It is therefore not representative of the full dataset.
+
+<a name="tutcat"></a>
+
+### 3.1. Concatenate the data
+
+The first step is to [concatenate the input data](#cat) from multiple LiP-SMap experiments in different organisms. Note that the pipeline described in this repository is specifically written to accommodate _Hydrogenophaga_, _Cupriavidus_, _Synechococcus_, and _Synechocystis_, and would require modification to accept other organisms.
+
+The input data comes in multiple files:
+```
+data/tutorial/lipsmap/Cupriavidus/comparisonResult_3PGA_7_grouped_annot_20200914.csv
+...
+data/tutorial/lipsmap/Cupriavidus/comparisonResult_RuBP_7_grouped_annot_20200914.csv
+
+data/tutorial/lipsmap/Hydrogenophaga/comparisonResult_3PGA_16_grouped_annot_20210527.csv
+...
+data/tutorial/lipsmap/Hydrogenophaga/comparisonResult_Glyx_17_grouped_annot_20210603.csv
+
+data/tutorial/lipsmap/Synechococcus/comparisonResult_3PGA_13_grouped_annot_20210219.csv
+...
+data/tutorial/lipsmap/Synechococcus/comparisonResult_RuBP_14_grouped_annot_20210329.csv
+
+data/tutorial/lipsmap/Synechocystis/comparisonResult_3PGA_13_grouped_annot_20210219.csv
+...
+data/tutorial/lipsmap/Synechocystis/comparisonResult_RuBP_11_grouped_annot_20210113.csv
+```
+
+We concatenate the files and make some corrections to locus IDs with an R script:
+```
+Rscript source/concatenate_input_data.R data/tutorial/lipsmap data/tutorial/lipsmap.tab.gz
+```
+
+Thereby we get the following compressed data file to be used with the analysis pipeline:
+```
+data/tutorial/lipsmap.tab.gz
+```
+
+**Important:** The concatenated data contains only the latest experiment, as defined by the date in the file names. If an earlier experiment is desired, one must remove the more recent file from the input directory. Another option is to set up a new input directory and populate it with symbolic links to the desired input files.
+
+<a name="tutrun"></a>
+
+### 3.2. Run the analysis pipeline
+
+The [analysis pipeline](#analysis) consists of many independent steps carried out by individual R scripts stored in the `source` directory. For convenience, a Bash script is set up to run all the steps automatically from a single command:
+
+```
+./analysis.sh data/tutorial/lipsmap.tab.gz results/tutorial
+```
+
+Messages from the individual pipeline scripts, for example errors, are stored in a log file:
+```
+results/tutorial/analysis.log
+```
+
+The analysis pipeline stores the results in one subdirectory per script:
+```
+results/tutorial/cbb/
+results/tutorial/ccm/
+results/tutorial/enzymes/
+results/tutorial/functions/
+results/tutorial/metabolites/
+results/tutorial/modifications/
+results/tutorial/modules/
+results/tutorial/orthologs/
+results/tutorial/peptides/
+results/tutorial/phylogenetics/
+results/tutorial/qc/
+results/tutorial/tables/
+```
+
+The tutorial output is available in this repository to demonstrate what it should look like. One example is to compare the hierarchical clustering of a complete dataset ([Fig 8](#fig8)) and the reduced tutorial dataset ([Fig 9](#fig9)).
+
+<a name="fig9"></a>
+
+| ![alt text](data/tutorial/metabolites.png "Hierarchical clustering trees of tutorial metabolite-protein interactions") |
+| --- |
+| **Fig 9.** Clustering of metabolite-protein interaction patterns in the tutorial dataset. Bars show number of proteins interacting with each metabolite. |
+
 <a name="author"></a>
-## 3. Author
+## 4. Author
 Johannes Asplund-Samuelsson, KTH (johannes.asplund.samuelsson@scilifelab.se)
