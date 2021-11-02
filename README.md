@@ -5,37 +5,11 @@ Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.
 ### Contents
 
 1. [Data preparation](#prep)
-   <details><summary>Steps:</summary>
-   
-   1. [Concatenation](#cat)
-   2. [Additional annotations](#annotations)
-   3. [Phylogenetic analysis](#phylogenetics)
-   4. [Repeated experiments](#rep)
-   5. [Reduced dataset for tutorial](#reddata)
-   </details>
 2. [Analysis pipeline: Step-by-step](#analysis)
-   <details><summary>Steps:</summary>
-   
-   1. [Interaction with enzymes](#enzymes)
-   2. [Functional categories](#functions)
-   3. [Comparison of orthologs](#orthologs)
-   4. [Comparison of KEGG modules](#modules)
-   5. [Phylogenetic trees](#trees)
-   6. [Supplementary tables](#tables)
-   7. [Calvin cycle and sinks](#calvin)
-   8. [Carbon concentration mechanisms](#ccm)
-   9. [Number of detected peptides](#peptides)
-   10. [Post-translational modifications](#mod)
-   11. [Quality control](#qc)
-   12. [Metabolite interactions clustering](#metabolites)
-   </details>
 3. [Tutorial: Quick start](#tutorial)
-   <details><summary>Steps:</summary>
-   
    1. [Install and enter the lipsmap repository](#install)
    2. [Concatenate the data](#tutcat)
    3. [Run the analysis pipeline](#tutrun)
-   </details>
 4. [Requirements](#req)
 5. [Author](#author)
 
