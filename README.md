@@ -1,3 +1,5 @@
+![alt text](lipsmap.png "LiP-SMap data analysis")
+
 # LiP-SMap data analysis
 
 Analysis of [limited proteolysis small molecule mapping (LiP-SMap)](https://www.cell.com/cell/fulltext/S0092-8674(17)31448-4) data.
