@@ -535,4 +535,4 @@ This analysis has been tested on a **12-core 32 GB RAM Linux system with Ubuntu 
 
 <a name="author"></a>
 ## 5. Author
-Johannes Asplund-Samuelsson, KTH (johannes.asplund.samuelsson@scilifelab.se)
+Johannes Asplund-Samuelsson (johannes.aspsam@gmail.com)
